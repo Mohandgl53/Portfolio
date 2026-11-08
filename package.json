@@ -1,0 +1,32 @@
+{
+  "name": "mohan-portfolio",
+  "version": "1.0.0",
+  "description": "Mohan Kumar T — AI Engineer & Full-Stack Systems Architect Portfolio",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "portfolio",
+    "gsap",
+    "threejs",
+    "vite"
+  ],
+  "author": "Mohan Kumar T",
+  "license": "ISC",
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "gsap": "^3.15.1",
+    "lucide-react": "^1.70.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.2.1",
+    "vite": "^8.3.6",
+    "vite-plugin-singlefile": "^2.3.4"
+  }
+}
