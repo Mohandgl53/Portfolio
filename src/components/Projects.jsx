@@ -1693,7 +1693,7 @@ export const Projects = () => {
   }, [createCardFaceTexture]);
 
   return (
-    <section id="work" className="section" style={{ paddingTop: '48px', paddingBottom: '56px' }}>
+    <section id="work" className="section" style={{ paddingTop: '16px', paddingBottom: '36px' }}>
       <div className="sec-tag">// ENGINEERING SHOWCASE</div>
       <div className="projects-header-row">
         <div>

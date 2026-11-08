@@ -1152,7 +1152,7 @@ h1.hero-name span {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 32px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
   gap: 14px;
 }
@@ -3650,7 +3650,7 @@ html, body {
 
 /* ── SEAMLESS BLEND: PROJECTS -> SKILLS -> EXPERIENCE ── */
 #work {
-  padding-top: 24px !important;
+  padding-top: 16px !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
