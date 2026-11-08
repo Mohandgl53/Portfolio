@@ -229,132 +229,208 @@ export const Projects = () => {
     const img = new Image();
     img.src = proj.image;
 
+    const drawRoundRect = (ctx, x, y, w, h, r) => {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    };
+
     const drawActionButtons = (ctx, isLight, btnY, btnH) => {
       // Button 1: GitHub (Official Octocat Icon + Text)
       const b1X = 24;
       const b1W = 285;
+      const r = 10;
 
-      ctx.fillStyle = isLight ? '#ffffff' : 'rgba(255, 255, 255, 0.08)';
-      ctx.fillRect(b1X, btnY, b1W, btnH);
+      drawRoundRect(ctx, b1X, btnY, b1W, btnH, r);
+      if (isLight) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+      } else {
+        const btnGrad = ctx.createLinearGradient(b1X, btnY, b1X, btnY + btnH);
+        btnGrad.addColorStop(0, 'rgba(30, 41, 59, 0.92)');
+        btnGrad.addColorStop(1, 'rgba(15, 23, 42, 0.98)');
+        ctx.fillStyle = btnGrad;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
 
-      ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(255, 255, 255, 0.30)';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(b1X, btnY, b1W, btnH);
+        ctx.save();
+        ctx.beginPath();
+        drawRoundRect(ctx, b1X + 2, btnY + 2, b1W - 4, btnH / 2 - 2, 8);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.fill();
+        ctx.restore();
+      }
 
       // Official GitHub Octocat
       ctx.save();
-      ctx.translate(b1X + 24, btnY + 16);
-      ctx.scale(1.25, 1.25);
+      ctx.translate(b1X + 22, btnY + 15);
+      ctx.scale(1.35, 1.35);
       ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
       ctx.fill(new Path2D('M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z'));
       ctx.restore();
 
       ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
-      ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText('Complete GitHub', b1X + 56, btnY + 33);
-      ctx.font = 'bold 15px sans-serif';
-      ctx.fillText('↗', b1X + b1W - 28, btnY + 32);
+      ctx.font = 'bold 16.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillText('Complete GitHub', b1X + 58, btnY + 33);
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('↗', b1X + b1W - 26, btnY + 33);
 
       // Button 2: Live Demo (Official Globe Icon + Text)
       const b2X = 331;
       const b2W = 285;
 
-      ctx.fillStyle = isLight ? '#2563eb' : '#0284c7';
-      ctx.fillRect(b2X, btnY, b2W, btnH);
+      drawRoundRect(ctx, b2X, btnY, b2W, btnH, r);
+      if (isLight) {
+        ctx.fillStyle = '#2563eb';
+        ctx.fill();
+        ctx.strokeStyle = '#1d4ed8';
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+      } else {
+        const demoGrad = ctx.createLinearGradient(b2X, btnY, b2X, btnY + btnH);
+        demoGrad.addColorStop(0, '#0284c7');
+        demoGrad.addColorStop(1, '#1d4ed8');
+        ctx.fillStyle = demoGrad;
+        ctx.fill();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
 
-      ctx.strokeStyle = isLight ? '#1d4ed8' : '#38bdf8';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(b2X, btnY, b2W, btnH);
+        ctx.save();
+        ctx.beginPath();
+        drawRoundRect(ctx, b2X + 2, btnY + 2, b2W - 4, btnH / 2 - 2, 8);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
+        ctx.fill();
+        ctx.restore();
+      }
 
       // Official Globe Icon
       ctx.save();
-      ctx.translate(b2X + 28, btnY + 16);
-      ctx.scale(1.10, 1.10);
+      ctx.translate(b2X + 26, btnY + 16);
+      ctx.scale(1.20, 1.20);
       ctx.fillStyle = '#ffffff';
       ctx.fill(new Path2D('M10 2a8 8 0 100 16 8 8 0 000-16zm6.93 7h-2.95a12.7 12.7 0 00-1.18-4.2A6.02 6.02 0 0116.93 9zM10 3.05c.87 1.42 1.5 3.54 1.7 5.95H8.3c.2-2.41.83-4.53 1.7-5.95zM4.02 9h2.95c.24-1.6.66-3.08 1.18-4.2A6.02 6.02 0 004.02 9zm-.95 2c0 .34.03.67.08 1h3.1c-.05-.33-.08-.66-.08-1s.03-.67.08-1h-3.1c-.05.33-.08.66-.08 1zm1.15 3h2.95c.42 1.35.95 2.5 1.58 3.38A6.02 6.02 0 014.22 14zm4.08 0h3.4c-.2 2.41-.83 4.53-1.7 5.95-.87-1.42-1.5-3.54-1.7-5.95zm5.55 3.38c.63-.88 1.16-2.03 1.58-3.38h2.95a6.02 6.02 0 01-4.53 3.38zM15.83 12c.05.33.08.66.08 1s-.03.67-.08 1h3.1c.05-.33.08-.66.08-1s-.03-.67-.08-1h-3.1z'));
       ctx.restore();
 
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.font = 'bold 16.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
       ctx.fillText('Live Demo', b2X + 62, btnY + 33);
-      ctx.font = 'bold 15px sans-serif';
-      ctx.fillText('↗', b2X + b2W - 28, btnY + 32);
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('↗', b2X + b2W - 26, btnY + 33);
     };
 
     const drawContent = () => {
       ctx.clearRect(0, 0, 640, 800);
 
-      // 1. Outer Plate with Matching Theme Colors
+      // 1. Outer Plate with Creative Modern Gradients
       if (isLight) {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, 640, 800);
 
-        ctx.strokeStyle = '#cbd5e1';
+        ctx.strokeStyle = '#94a3b8';
         ctx.lineWidth = 3;
         ctx.strokeRect(1.5, 1.5, 637, 797);
 
-        ctx.strokeStyle = 'rgba(37, 99, 235, 0.40)';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.moveTo(3, 3);
         ctx.lineTo(637, 3);
         ctx.stroke();
       } else {
         const bgGrad = ctx.createLinearGradient(0, 0, 0, 800);
-        bgGrad.addColorStop(0, 'rgba(13, 21, 39, 0.98)');
-        bgGrad.addColorStop(1, 'rgba(8, 13, 26, 0.99)');
+        bgGrad.addColorStop(0, '#0c1527');
+        bgGrad.addColorStop(0.5, '#070d1a');
+        bgGrad.addColorStop(1, '#040710');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, 640, 800);
 
-        ctx.strokeStyle = 'rgba(56, 189, 248, 0.85)';
+        // Cyber neon ambient border with corner glow
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.95)';
         ctx.lineWidth = 3.5;
         ctx.strokeRect(1.5, 1.5, 637, 797);
 
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-        ctx.lineWidth = 1;
-        ctx.strokeRect(5, 5, 630, 790);
+        ctx.strokeStyle = 'rgba(129, 140, 248, 0.35)';
+        ctx.lineWidth = 1.2;
+        ctx.strokeRect(5.5, 5.5, 629, 789);
+
+        // Top vibrant neon bar
+        const topNeon = ctx.createLinearGradient(0, 0, 640, 0);
+        topNeon.addColorStop(0, '#38bdf8');
+        topNeon.addColorStop(0.5, '#818cf8');
+        topNeon.addColorStop(1, '#c084fc');
+        ctx.strokeStyle = topNeon;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(4, 3);
+        ctx.lineTo(636, 3);
+        ctx.stroke();
       }
 
       if (!isExpanded) {
         // ==========================================
-        // CAROUSEL VIEW: Big Typography, Bold & Fills Entire Space!
+        // CAROUSEL VIEW: High Contrast, Punchy, Space-Filling
         // ==========================================
         const fw = 592;
-        const fh = 300;
+        const fh = 285;
         const fx = 24;
-        const fy = 20;
+        const fy = 18;
 
         // Viewport background
         ctx.fillStyle = isLight ? '#f8fafc' : '#030712';
         ctx.fillRect(fx, fy, fw, fh);
 
-        // Header bar
-        const barH = 28;
-        ctx.fillStyle = isLight ? '#f1f5f9' : '#0b1326';
+        // Browser Header bar
+        const barH = 30;
+        ctx.fillStyle = isLight ? '#f1f5f9' : '#0e1830';
         ctx.fillRect(fx, fy, fw, barH);
 
-        ctx.strokeStyle = isLight ? '#e2e8f0' : '#1e293b';
+        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(56, 189, 248, 0.25)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(fx, fy + barH);
         ctx.lineTo(fx + fw, fy + barH);
         ctx.stroke();
 
-        // Control dots
-        const dots = ['#ef4444', '#eab308', '#22c55e'];
+        // Glowing macOS control dots
+        const dots = ['#ff5f56', '#ffbd2e', '#27c93f'];
         dots.forEach((color, i) => {
           ctx.fillStyle = color;
           ctx.beginPath();
-          ctx.arc(fx + 16 + i * 14, fy + barH / 2, 3.5, 0, Math.PI * 2);
+          ctx.arc(fx + 18 + i * 16, fy + barH / 2, 4.5, 0, Math.PI * 2);
           ctx.fill();
         });
 
-        // URL badge
-        ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.06)';
-        ctx.fillRect(fx + 70, fy + 5, fw - 90, barH - 10);
-        ctx.fillStyle = isLight ? '#94a3b8' : '#64748b';
-        ctx.font = '11px monospace';
-        ctx.fillText(`https://${proj.id}.mohankumar.dev`, fx + 80, fy + 18);
+        // Pill address bar with live indicator
+        drawRoundRect(ctx, fx + 80, fy + 5, fw - 100, barH - 10, 6);
+        ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.07)';
+        ctx.fill();
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.30)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Green live orb
+        ctx.fillStyle = '#22c55e';
+        ctx.beginPath();
+        ctx.arc(fx + 96, fy + barH / 2, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText(`https://${proj.id}.mohankumar.dev`, fx + 108, fy + 19);
 
         // Screenshot
         try {
@@ -379,56 +455,68 @@ export const Projects = () => {
           }
         } catch (e) {}
 
-        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.18)';
-        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.22)';
+        ctx.lineWidth = 1.8;
         ctx.strokeRect(fx, fy, fw, fh);
 
-        // Title & Category
+        // Title: BIGGER & BOLDER (34px)
         ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
-        ctx.font = 'bold 28px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.title, 24, 358);
+        ctx.font = 'bold 34px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.title, 24, 346);
 
-        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-        ctx.font = 'bold 12.5px monospace';
-        ctx.fillText(proj.subtitle || '// FEATURED PROJECT', 24, 384);
+        // Subtitle badge: 14px bold in a pill
+        const subText = proj.subtitle || '// FEATURED PROJECT';
+        ctx.font = 'bold 13.5px monospace';
+        const subW = ctx.measureText(subText).width + 20;
+        drawRoundRect(ctx, 24, 360, subW, 26, 6);
+        ctx.fillStyle = isLight ? 'rgba(37, 99, 235, 0.10)' : 'rgba(56, 189, 248, 0.15)';
+        ctx.fill();
+        ctx.strokeStyle = isLight ? '#2563eb' : 'rgba(56, 189, 248, 0.50)';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
+        ctx.fillText(subText, 34, 378);
 
-        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.08)';
-        ctx.lineWidth = 1;
+        // Separator line
+        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
+        ctx.lineWidth = 1.2;
         ctx.beginPath();
-        ctx.moveTo(24, 398);
-        ctx.lineTo(616, 398);
+        ctx.moveTo(24, 396);
+        ctx.lineTo(616, 396);
         ctx.stroke();
 
-        // Big Headline & Motivations
+        // Headline & Motivations (BIGGER: 18px & 16px)
         ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
-        ctx.font = 'bold 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 428);
+        ctx.font = 'bold 18px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 426);
 
         ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
-        ctx.font = '500 14.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.summary1 || proj.whyBuilt1 || '', 24, 455);
-        ctx.fillText(proj.summary2 || proj.whyBuilt2 || '', 24, 478);
+        ctx.font = '500 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.summary1 || proj.whyBuilt1 || '', 24, 453);
+        ctx.fillText(proj.summary2 || proj.whyBuilt2 || '', 24, 477);
 
-        // Core Technologies (2 rows of clean badge pills)
-        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
-        ctx.font = 'bold 11px monospace';
-        ctx.fillText('// CORE TECHNOLOGIES', 24, 510);
+        // Core Technologies Header with left accent bar
+        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
+        ctx.fillRect(24, 497, 4, 16);
+        ctx.font = 'bold 13.5px monospace';
+        ctx.fillText('// CORE TECHNOLOGIES', 36, 510);
 
         const allTags = proj.tags || ['React', 'Node.js', 'Express'];
         // Row 1
         const row1 = allTags.slice(0, 4);
         let rx1 = 24;
         row1.forEach(tag => {
-          ctx.font = 'bold 12px monospace';
-          const tw = ctx.measureText(tag).width + 18;
-          ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
-          ctx.fillRect(rx1, 524, tw, 26);
-          ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
+          ctx.font = 'bold 13.5px monospace';
+          const tw = ctx.measureText(tag).width + 20;
+          drawRoundRect(ctx, rx1, 522, tw, 28, 7);
+          ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(15, 23, 42, 0.95)';
+          ctx.fill();
+          ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.50)';
           ctx.lineWidth = 1.2;
-          ctx.strokeRect(rx1, 524, tw, 26);
-          ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
-          ctx.fillText(tag, rx1 + 9, 542);
-          rx1 += tw + 8;
+          ctx.stroke();
+          ctx.fillStyle = isLight ? '#1e40af' : '#f8fafc';
+          ctx.fillText(tag, rx1 + 10, 541);
+          rx1 += tw + 9;
         });
 
         // Row 2
@@ -436,27 +524,35 @@ export const Projects = () => {
         if (row2.length > 0) {
           let rx2 = 24;
           row2.forEach(tag => {
-            ctx.font = 'bold 12px monospace';
-            const tw = ctx.measureText(tag).width + 18;
-            ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
-            ctx.fillRect(rx2, 558, tw, 26);
-            ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
+            ctx.font = 'bold 13.5px monospace';
+            const tw = ctx.measureText(tag).width + 20;
+            drawRoundRect(ctx, rx2, 558, tw, 28, 7);
+            ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(15, 23, 42, 0.95)';
+            ctx.fill();
+            ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.50)';
             ctx.lineWidth = 1.2;
-            ctx.strokeRect(rx2, 558, tw, 26);
-            ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
-            ctx.fillText(tag, rx2 + 9, 576);
-            rx2 += tw + 8;
+            ctx.stroke();
+            ctx.fillStyle = isLight ? '#1e40af' : '#f8fafc';
+            ctx.fillText(tag, rx2 + 10, 577);
+            rx2 += tw + 9;
           });
         }
 
         // Action Buttons
         drawActionButtons(ctx, isLight, 645, 52);
 
-        // Helpful hint at bottom
-        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-        ctx.font = 'bold 11px monospace';
+        // Click to expand capsule hint
+        drawRoundRect(ctx, 110, 725, 420, 32, 16);
+        ctx.fillStyle = isLight ? 'rgba(37, 99, 235, 0.08)' : 'rgba(56, 189, 248, 0.12)';
+        ctx.fill();
+        ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.45)';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
+        ctx.font = 'bold 13px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText('✦ CLICK CARD TO EXPAND ARCHITECTURE & DETAILS', 320, 735);
+        ctx.fillText('✦ CLICK CARD TO EXPAND ARCHITECTURE & DETAILS', 320, 746);
         ctx.textAlign = 'left';
 
       } else {
@@ -464,37 +560,47 @@ export const Projects = () => {
         // EXPANDED VIEW: Deep Details, Architecture, Highlights & Full Stack!
         // ==========================================
         const fw = 592;
-        const fh = 220;
+        const fh = 195;
         const fx = 24;
-        const fy = 18;
+        const fy = 16;
 
         ctx.fillStyle = isLight ? '#f8fafc' : '#030712';
         ctx.fillRect(fx, fy, fw, fh);
 
-        const barH = 26;
-        ctx.fillStyle = isLight ? '#f1f5f9' : '#0b1326';
+        const barH = 28;
+        ctx.fillStyle = isLight ? '#f1f5f9' : '#0e1830';
         ctx.fillRect(fx, fy, fw, barH);
 
-        ctx.strokeStyle = isLight ? '#e2e8f0' : '#1e293b';
+        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(56, 189, 248, 0.25)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(fx, fy + barH);
         ctx.lineTo(fx + fw, fy + barH);
         ctx.stroke();
 
-        const dots = ['#ef4444', '#eab308', '#22c55e'];
+        const dots = ['#ff5f56', '#ffbd2e', '#27c93f'];
         dots.forEach((color, i) => {
           ctx.fillStyle = color;
           ctx.beginPath();
-          ctx.arc(fx + 16 + i * 14, fy + barH / 2, 3.5, 0, Math.PI * 2);
+          ctx.arc(fx + 18 + i * 16, fy + barH / 2, 4.5, 0, Math.PI * 2);
           ctx.fill();
         });
 
-        ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.06)';
-        ctx.fillRect(fx + 70, fy + 5, fw - 90, barH - 10);
-        ctx.fillStyle = isLight ? '#94a3b8' : '#64748b';
-        ctx.font = '10px monospace';
-        ctx.fillText(`https://${proj.id}.mohankumar.dev · EXPANDED VIEW`, fx + 80, fy + 17);
+        drawRoundRect(ctx, fx + 80, fy + 4, fw - 100, barH - 8, 6);
+        ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.07)';
+        ctx.fill();
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.30)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillStyle = '#22c55e';
+        ctx.beginPath();
+        ctx.arc(fx + 96, fy + barH / 2, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText(`https://${proj.id}.mohankumar.dev · ARCHITECTURE EXPANDED`, fx + 108, fy + 18);
 
         try {
           if (img.complete && img.naturalWidth > 0) {
@@ -518,76 +624,91 @@ export const Projects = () => {
           }
         } catch (e) {}
 
-        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.18)';
-        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.22)';
+        ctx.lineWidth = 1.8;
         ctx.strokeRect(fx, fy, fw, fh);
 
-        // Title & Status
+        // Title: 30px Bold
         ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
-        ctx.font = 'bold 26px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.title, 24, 276);
+        ctx.font = 'bold 30px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.title, 24, 244);
 
-        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-        ctx.font = 'bold 11px monospace';
-        ctx.fillText(`${proj.subtitle || '// ARCHITECTURE'} · ${proj.statusBadge || 'VERIFIED'}`, 24, 298);
+        // Status badge
+        const badgeText = `${proj.subtitle || '// ARCHITECTURE'} · ${proj.statusBadge || 'VERIFIED FULL-STACK'}`;
+        ctx.font = 'bold 13px monospace';
+        const badgeW = ctx.measureText(badgeText).width + 20;
+        drawRoundRect(ctx, 24, 254, badgeW, 24, 6);
+        ctx.fillStyle = isLight ? 'rgba(37, 99, 235, 0.10)' : 'rgba(56, 189, 248, 0.15)';
+        ctx.fill();
+        ctx.strokeStyle = isLight ? '#2563eb' : 'rgba(56, 189, 248, 0.50)';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
+        ctx.fillText(badgeText, 34, 271);
 
-        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.08)';
-        ctx.lineWidth = 1;
+        // Separator
+        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
+        ctx.lineWidth = 1.2;
         ctx.beginPath();
-        ctx.moveTo(24, 308);
-        ctx.lineTo(616, 308);
+        ctx.moveTo(24, 287);
+        ctx.lineTo(616, 287);
         ctx.stroke();
 
-        // 1. WHY I BUILT THIS
+        // 1. PROBLEM SOLVED (Header 13.5px bold, text 15.5px)
         ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-        ctx.font = 'bold 11px monospace';
-        ctx.fillText('// WHY I BUILT THIS (PROBLEM SOLVED)', 24, 328);
+        ctx.fillRect(24, 298, 4, 15);
+        ctx.font = 'bold 13.5px monospace';
+        ctx.fillText('// WHY I BUILT THIS (PROBLEM SOLVED)', 36, 310);
 
-        ctx.fillStyle = isLight ? '#1e293b' : '#f1f5f9';
-        ctx.font = '400 13.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.whyBuilt1 || '', 24, 348);
-        ctx.fillText(proj.whyBuilt2 || '', 24, 368);
+        ctx.fillStyle = isLight ? '#1e293b' : '#f8fafc';
+        ctx.font = '500 15.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.whyBuilt1 || '', 24, 331);
+        ctx.fillText(proj.whyBuilt2 || '', 24, 353);
 
-        // 2. SYSTEM ARCHITECTURE & HOW IT WORKS
-        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-        ctx.font = 'bold 11px monospace';
-        ctx.fillText('// SYSTEM ARCHITECTURE & HOW IT WORKS', 24, 396);
+        // 2. SYSTEM ARCHITECTURE
+        ctx.fillStyle = isLight ? '#2563eb' : '#c084fc';
+        ctx.fillRect(24, 370, 4, 15);
+        ctx.font = 'bold 13.5px monospace';
+        ctx.fillText('// SYSTEM ARCHITECTURE & DATA FLOW', 36, 382);
 
-        ctx.fillStyle = isLight ? '#1e293b' : '#f1f5f9';
-        ctx.font = '400 13.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.arch1 || '', 24, 416);
-        ctx.fillText(proj.arch2 || '', 24, 436);
+        ctx.fillStyle = isLight ? '#1e293b' : '#f8fafc';
+        ctx.font = '500 15.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.arch1 || '', 24, 403);
+        ctx.fillText(proj.arch2 || '', 24, 425);
 
         // 3. KEY ENGINEERING HIGHLIGHTS
-        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-        ctx.font = 'bold 11px monospace';
-        ctx.fillText('// KEY ENGINEERING HIGHLIGHTS', 24, 464);
+        ctx.fillStyle = isLight ? '#2563eb' : '#34d399';
+        ctx.fillRect(24, 442, 4, 15);
+        ctx.font = 'bold 13.5px monospace';
+        ctx.fillText('// KEY ENGINEERING HIGHLIGHTS', 36, 454);
 
-        ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
-        ctx.font = '500 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(`✦ ${proj.highlight1 || ''}`, 24, 484);
-        ctx.fillText(`✦ ${proj.highlight2 || ''}`, 24, 504);
-        ctx.fillText(`✦ ${proj.highlight3 || ''}`, 24, 524);
+        ctx.fillStyle = isLight ? '#334155' : '#e2e8f0';
+        ctx.font = '500 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(`✦ ${proj.highlight1 || ''}`, 24, 474);
+        ctx.fillText(`✦ ${proj.highlight2 || ''}`, 24, 495);
+        ctx.fillText(`✦ ${proj.highlight3 || ''}`, 24, 516);
 
-        // 4. COMPREHENSIVE TECH STACK
+        // 4. TECH STACK
         ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
-        ctx.font = 'bold 11px monospace';
-        ctx.fillText('// COMPREHENSIVE TECH STACK', 24, 552);
+        ctx.fillRect(24, 532, 4, 15);
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText('// COMPREHENSIVE TECH STACK', 36, 544);
 
         const allTags = proj.tags || ['React', 'Node.js', 'Express'];
         // Row 1
         const row1 = allTags.slice(0, 4);
         let rx1 = 24;
         row1.forEach(tag => {
-          ctx.font = 'bold 12px monospace';
+          ctx.font = 'bold 13px monospace';
           const tw = ctx.measureText(tag).width + 18;
-          ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
-          ctx.fillRect(rx1, 566, tw, 25);
-          ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
+          drawRoundRect(ctx, rx1, 556, tw, 26, 6);
+          ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(15, 23, 42, 0.95)';
+          ctx.fill();
+          ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.45)';
           ctx.lineWidth = 1.2;
-          ctx.strokeRect(rx1, 566, tw, 25);
-          ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
-          ctx.fillText(tag, rx1 + 9, 583);
+          ctx.stroke();
+          ctx.fillStyle = isLight ? '#1e40af' : '#f8fafc';
+          ctx.fillText(tag, rx1 + 9, 574);
           rx1 += tw + 8;
         });
 
@@ -596,15 +717,16 @@ export const Projects = () => {
         if (row2.length > 0) {
           let rx2 = 24;
           row2.forEach(tag => {
-            ctx.font = 'bold 12px monospace';
+            ctx.font = 'bold 13px monospace';
             const tw = ctx.measureText(tag).width + 18;
-            ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
-            ctx.fillRect(rx2, 598, tw, 25);
-            ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
+            drawRoundRect(ctx, rx2, 590, tw, 26, 6);
+            ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(15, 23, 42, 0.95)';
+            ctx.fill();
+            ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.45)';
             ctx.lineWidth = 1.2;
-            ctx.strokeRect(rx2, 598, tw, 25);
-            ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
-            ctx.fillText(tag, rx2 + 9, 615);
+            ctx.stroke();
+            ctx.fillStyle = isLight ? '#1e40af' : '#f8fafc';
+            ctx.fillText(tag, rx2 + 9, 608);
             rx2 += tw + 8;
           });
         }
@@ -612,11 +734,18 @@ export const Projects = () => {
         // Action Buttons
         drawActionButtons(ctx, isLight, 645, 52);
 
-        // Close hint at bottom
+        // Close hint capsule
+        drawRoundRect(ctx, 150, 725, 340, 32, 16);
+        ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.07)';
+        ctx.fill();
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.20)';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
         ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
-        ctx.font = 'bold 11px monospace';
+        ctx.font = 'bold 12.5px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText('✕ CLICK ANYWHERE ON CARD TO MINIMIZE', 320, 735);
+        ctx.fillText('✕ CLICK ANYWHERE ON CARD TO MINIMIZE', 320, 746);
         ctx.textAlign = 'left';
       }
     };
