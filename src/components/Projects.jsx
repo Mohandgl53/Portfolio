@@ -1371,10 +1371,18 @@ export const Projects = () => {
           while (rotDiff > Math.PI) rotDiff -= Math.PI * 2;
           while (rotDiff < -Math.PI) rotDiff += Math.PI * 2;
           card.rotation.y = trackRotY + rotDiff * pinT;
+
+          // PERFECT 90-DEGREE VIEWPLANE ALIGNMENT (Straight like flat paper):
+          // Eliminates perspective forward-tilt so the card faces the camera directly with zero keystoning
+          // Camera is at Y = 4.3, looking down at angle arctan(3.42/7.8) = -23.68 deg.
+          // Tilting back by matching pitch ensures the card's face is 100% perpendicular to the viewer!
+          const camPitchX = -0.4132;
+          card.rotation.x = camPitchX * pinT;
         } else {
           // Dynamic tracking: every card continuously adjusts its angle along the trajectory
           card.position.copy(defaultPos);
           card.scale.set(1, 1, 1);
+          card.rotation.x = 0;
           let diffRot = trackRotY - card.rotation.y;
           while (diffRot > Math.PI) diffRot -= Math.PI * 2;
           while (diffRot < -Math.PI) diffRot += Math.PI * 2;
@@ -1383,6 +1391,7 @@ export const Projects = () => {
 
         // Synchronize reflection mesh under floor
         refl.position.set(card.position.x, -card.position.y, card.position.z);
+        refl.rotation.x = -card.rotation.x;
         refl.rotation.y = card.rotation.y;
         refl.scale.set(card.scale.x, -card.scale.y * 0.65, card.scale.z);
       }
