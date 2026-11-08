@@ -796,6 +796,7 @@ export const Projects = () => {
 
       // Group for upright card
       const cardGroup = new THREE.Group();
+      cardGroup.rotation.order = 'YXZ';
       cardGroup.position.set(x, y, z);
 
       // Initial inward angle matching dynamic trajectory path
@@ -843,6 +844,7 @@ export const Projects = () => {
 
       // 4. Inverted Mirror Reflection under floor
       const reflGroup = new THREE.Group();
+      reflGroup.rotation.order = 'YXZ';
       reflGroup.position.set(x, -y, z);
       reflGroup.rotation.y = rotY;
       reflGroup.scale.set(1, -0.65, 1);
@@ -1382,15 +1384,18 @@ export const Projects = () => {
           scratchEuler.set(0, trackRotY, 0, 'YXZ');
           normalLocalQuat.setFromEuler(scratchEuler);
           targetLocalQuat.copy(carouselGroup.quaternion).invert().multiply(targetWorldQuat);
+          // Always ensure the shortest 4D geodesic arc so the card never spins 360 degrees when reducing!
+          if (normalLocalQuat.dot(targetLocalQuat) < 0) {
+            targetLocalQuat.set(-targetLocalQuat.x, -targetLocalQuat.y, -targetLocalQuat.z, -targetLocalQuat.w);
+          }
           card.quaternion.slerpQuaternions(normalLocalQuat, targetLocalQuat, pinT);
         } else {
           // Dynamic tracking: every card continuously adjusts its angle along the trajectory
           card.position.copy(defaultPos);
           card.scale.set(1, 1, 1);
-          let diffRot = trackRotY - card.rotation.y;
-          while (diffRot > Math.PI) diffRot -= Math.PI * 2;
-          while (diffRot < -Math.PI) diffRot += Math.PI * 2;
-          card.rotation.set(0, card.rotation.y + diffRot * 0.14, 0);
+          scratchEuler.set(0, trackRotY, 0, 'YXZ');
+          normalLocalQuat.setFromEuler(scratchEuler);
+          card.quaternion.copy(normalLocalQuat);
         }
 
         // Synchronize reflection mesh under floor
