@@ -912,8 +912,9 @@ export const Projects = () => {
       const fctx = fCanvas.getContext('2d');
       const radGrad = fctx.createRadialGradient(256, 256, 40, 256, 256, 256);
       if (isLight) {
-        radGrad.addColorStop(0, 'rgba(15, 23, 42, 0.08)');
-        radGrad.addColorStop(0.45, 'rgba(15, 23, 42, 0.03)');
+        radGrad.addColorStop(0, 'rgba(56, 189, 248, 0.16)');
+        radGrad.addColorStop(0.35, 'rgba(99, 102, 241, 0.08)');
+        radGrad.addColorStop(0.70, 'rgba(15, 23, 42, 0.03)');
         radGrad.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
       } else {
         radGrad.addColorStop(0, 'rgba(56, 189, 248, 0.09)');
@@ -962,9 +963,9 @@ export const Projects = () => {
 
     // Glowing border highlight matching reference
     const edgeMat = new THREE.LineBasicMaterial({
-      color: initialIsLight ? 0x94a3b8 : 0x7dd3fc,
+      color: initialIsLight ? 0x93c5fd : 0x7dd3fc,
       transparent: true,
-      opacity: initialIsLight ? 0.70 : 0.75
+      opacity: initialIsLight ? 0.75 : 0.75
     });
 
     // Lightweight floor reflection material
@@ -1075,11 +1076,11 @@ export const Projects = () => {
 
     // Smooth 3D Material & Light Interpolation Targets for Seamless Theme Transitions
     const targetGlassColor = new THREE.Color(initialIsLight ? 0xf8fafc : 0x0c1527);
-    const targetEdgeColor = new THREE.Color(initialIsLight ? 0xcfd8dc : 0x7dd3fc);
+    const targetEdgeColor = new THREE.Color(initialIsLight ? 0x93c5fd : 0x7dd3fc);
     const targetReflColor = new THREE.Color(initialIsLight ? 0xf8fafc : 0x070c18);
     let targetGlassRoughness = initialIsLight ? 0.25 : 0.15;
     let targetGlassOpacity = initialIsLight ? 0.98 : 0.90;
-    let targetEdgeOpacity = initialIsLight ? 0.55 : 0.75;
+    let targetEdgeOpacity = initialIsLight ? 0.75 : 0.75;
     let targetReflOpacity = initialIsLight ? 0.05 : 0.12;
     let targetCenterLightIntensity = initialIsLight ? 0.70 : 2.8;
     let targetAmbientLightIntensity = initialIsLight ? 0.85 : 0.50;
@@ -1087,11 +1088,11 @@ export const Projects = () => {
     // Dynamic Light / Dark Theme Sync with Smooth Lerp
     const updateThemeColors = (isLight) => {
       targetGlassColor.setHex(isLight ? 0xf8fafc : 0x0c1527);
-      targetEdgeColor.setHex(isLight ? 0xcfd8dc : 0x7dd3fc);
+      targetEdgeColor.setHex(isLight ? 0x93c5fd : 0x7dd3fc);
       targetReflColor.setHex(isLight ? 0xf8fafc : 0x070c18);
       targetGlassRoughness = isLight ? 0.25 : 0.15;
       targetGlassOpacity = isLight ? 0.98 : 0.90;
-      targetEdgeOpacity = isLight ? 0.55 : 0.75;
+      targetEdgeOpacity = isLight ? 0.75 : 0.75;
       targetReflOpacity = isLight ? 0.05 : 0.12;
       targetCenterLightIntensity = isLight ? 0.70 : 2.8;
       targetAmbientLightIntensity = isLight ? 0.85 : 0.50;

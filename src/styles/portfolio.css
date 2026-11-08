@@ -3123,6 +3123,7 @@ html, body {
   height: 100%;
   display: block;
   touch-action: pan-y;
+  z-index: 2;
 }
 
 .carousel-arrow-btn {
@@ -3424,6 +3425,25 @@ html, body {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+[data-theme="light"] .circle-carousel-stage::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  right: 5%;
+  bottom: 12%;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 48%,
+    rgba(56, 189, 248, 0.16) 0%,
+    rgba(99, 102, 241, 0.08) 36%,
+    rgba(248, 250, 252, 0) 72%
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+  filter: blur(28px);
 }
 
 [data-theme="light"] .carousel-interaction-hint span {
