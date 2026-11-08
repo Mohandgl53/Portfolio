@@ -688,7 +688,7 @@ export const Projects = () => {
         if (Math.abs(deltaX) > 3) {
           hasDraggedRef.current = true;
         }
-        targetRotationRef.current = dragStartRotRef.current - deltaX * 0.0055;
+        targetRotationRef.current = dragStartRotRef.current + deltaX * 0.0055;
         return;
       }
 
@@ -820,7 +820,7 @@ export const Projects = () => {
         setPinnedIdx(null);
       }
       const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      targetRotationRef.current -= delta * 0.0022;
+      targetRotationRef.current += delta * 0.0022;
 
       // Magnetic snap: when scrolling ends, snap to nearest card slot
       // This ensures every card settles into the crisp perpendicular center angle
