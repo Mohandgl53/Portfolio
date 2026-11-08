@@ -133,7 +133,13 @@ export const Projects = () => {
   const faceMeshesRef = useRef([]);
   const reflFaceMeshesRef = useRef([]);
   const animFrameRef = useRef(null);
-  const initialRot = initialPin !== null ? (Math.PI + initialPin * ((2 * Math.PI) / 7)) : 0;
+  const initialRot = (() => {
+    if (typeof window !== 'undefined') {
+      const r = new URLSearchParams(window.location.search).get('rot');
+      if (r !== null) return parseFloat(r);
+    }
+    return initialPin !== null ? (-(initialPin * 2 * Math.PI) / 7) : 0;
+  })();
   const targetRotationRef = useRef(initialRot);
   const currentRotationRef = useRef(initialRot);
   const hoveredIdxRef = useRef(null);
@@ -528,8 +534,12 @@ export const Projects = () => {
       const cardGroup = new THREE.Group();
       cardGroup.position.set(x, y, z);
 
-      // Initial inward angle
-      const rotY = -Math.sin(theta) * 0.95;
+      // Initial inward angle matching dynamic trajectory path
+      let initAlpha = (theta - Math.PI) % (Math.PI * 2);
+      while (initAlpha > Math.PI) initAlpha -= Math.PI * 2;
+      while (initAlpha < -Math.PI) initAlpha += Math.PI * 2;
+      const initSinA = Math.sin(initAlpha);
+      const rotY = -Math.sign(initSinA) * Math.pow(Math.abs(initSinA), 1.3) * 0.85;
       cardGroup.rotation.y = rotY;
 
       // 1. Frosted Glass Slab (Sharp Box)
@@ -560,7 +570,7 @@ export const Projects = () => {
         theta,
         proj,
         faceMesh,
-        pinAnim: 0
+        pinAnim: initialPin === i ? 1.0 : 0
       };
 
       carouselGroup.add(cardGroup);
@@ -678,7 +688,7 @@ export const Projects = () => {
         if (Math.abs(deltaX) > 3) {
           hasDraggedRef.current = true;
         }
-        targetRotationRef.current = dragStartRotRef.current + deltaX * 0.0055;
+        targetRotationRef.current = dragStartRotRef.current - deltaX * 0.0055;
         return;
       }
 
@@ -773,13 +783,13 @@ export const Projects = () => {
 
           // Smoothly rotate the clicked card directly to the front-center of the cylinder!
           // In our coordinate system, theta_i = -(i * 2 * PI) / 7.
-          // Front of the cylinder closest to camera (z = +circleR, x = 0) is at world angle = Math.PI.
-          // -i * slotAngle + carouselRot = PI  =>  carouselRot = PI + i * slotAngle.
-          const slotAngle = (2 * Math.PI) / 7;
+          // Center position closest to viewer (x = 0, z = -circleR) corresponds to currentWorldTheta = theta - rot = 0 => rot = theta.
           const currentRot = currentRotationRef.current;
-          const idealRot = Math.PI + hitIdx * slotAngle;
-          const turns = Math.round((currentRot - idealRot) / (2 * Math.PI));
-          targetRotationRef.current = idealRot + turns * (2 * Math.PI);
+          const idealRot = -(hitIdx * 2 * Math.PI) / 7;
+          let diff = (idealRot - currentRot) % (2 * Math.PI);
+          while (diff > Math.PI) diff -= 2 * Math.PI;
+          while (diff < -Math.PI) diff += 2 * Math.PI;
+          targetRotationRef.current = currentRot + diff;
 
           // Toggle expansion: if clicking currently pinned card, unpin it; otherwise pin it
           if (pinnedIdxRef.current === hitIdx) {
@@ -810,7 +820,7 @@ export const Projects = () => {
         setPinnedIdx(null);
       }
       const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      targetRotationRef.current += delta * 0.0028;
+      targetRotationRef.current -= delta * 0.0022;
 
       // Magnetic snap: when scrolling ends, snap to nearest card slot
       // This ensures every card settles into the crisp perpendicular center angle
@@ -870,14 +880,19 @@ export const Projects = () => {
         const refl = reflMeshes[i];
         const { defaultPos, theta } = card.userData;
 
-        // Strict spatial determinism:
+        // Strict spatial determinism & dynamic track turning:
         // Current world polar angle of the card along the circular track
-        const currentWorldTheta = theta + carouselGroup.rotation.y;
+        const currentWorldTheta = theta - carouselGroup.rotation.y;
 
         // The exact world rotation function:
-        // Any card reaching spatial angle currentWorldTheta has the EXACT same world orientation
-        // that LocalMind AI (index 0) has when it is at currentWorldTheta.
-        const targetWorldRotY = -Math.sin(currentWorldTheta) * 0.95;
+        // Every card traveling along the trajectory track follows the exact non-linear turning angle
+        // matching the path traversed by LocalMind AI (index 0).
+        let alpha = (currentWorldTheta - Math.PI) % (Math.PI * 2);
+        while (alpha > Math.PI) alpha -= Math.PI * 2;
+        while (alpha < -Math.PI) alpha += Math.PI * 2;
+
+        const sinA = Math.sin(alpha);
+        const targetWorldRotY = -Math.sign(sinA) * Math.pow(Math.abs(sinA), 1.3) * 0.85;
         const trackRotY = targetWorldRotY - carouselGroup.rotation.y;
 
         const isPinned = pinnedIdxRef.current === i;
@@ -893,15 +908,14 @@ export const Projects = () => {
 
         if (pinT > 0.0005) {
           // Desired world position for expanded card:
-          // Centered horizontally (X = 0), elevated in the open center of the project section (Y = 1.62),
-          // positioned forward (Z = 1.25) so it floats prominently in the open space.
-          // Bottom of card sits safely at Y ~ 0.35, well above the floor and viewport bottom, with buttons fully clickable.
-          const targetWorldPos = new THREE.Vector3(0, 1.62, 1.25);
+          // Elevated above into the open center of the project section (Y = 2.05, Z = -1.50)
+          // The whole card is 100% visible, lifted above the front rim and floor, and fully clickable.
+          const targetWorldPos = new THREE.Vector3(0, 2.05, -1.50);
           const targetLocalPos = targetWorldPos.clone();
           targetLocalPos.applyAxisAngle(new THREE.Vector3(0, 1, 0), -carouselGroup.rotation.y);
 
           card.position.lerpVectors(defaultPos, targetLocalPos, pinT);
-          const s = 1.0 + pinT * 0.28;
+          const s = 1.0 + pinT * 0.22;
           card.scale.set(s, s, s);
 
           // Card faces directly toward camera (world rotY = 0)
@@ -911,10 +925,16 @@ export const Projects = () => {
           while (rotDiff < -Math.PI) rotDiff += Math.PI * 2;
           card.rotation.y = trackRotY + rotDiff * pinT;
         } else {
-          // Pure, uncompromised track alignment: zero lag, zero drift, identical to LocalMind AI
-          card.position.copy(defaultPos);
+          // Dynamic tracking: every card continuously adjusts its angle along the trajectory
+          // When a card is pinned/expanded, other carousel cards lower slightly so the expanded card shines unobstructed
+          const isAnyPinned = pinnedIdxRef.current !== null;
+          const otherY = isAnyPinned ? defaultPos.y - 0.40 : defaultPos.y;
+          card.position.set(defaultPos.x, THREE.MathUtils.lerp(card.position.y, otherY, 0.12), defaultPos.z);
           card.scale.set(1, 1, 1);
-          card.rotation.y = trackRotY;
+          let diffRot = trackRotY - card.rotation.y;
+          while (diffRot > Math.PI) diffRot -= Math.PI * 2;
+          while (diffRot < -Math.PI) diffRot += Math.PI * 2;
+          card.rotation.y += diffRot * 0.14;
         }
 
         // Synchronize reflection mesh under floor
