@@ -138,7 +138,7 @@ export const Projects = () => {
       const r = new URLSearchParams(window.location.search).get('rot');
       if (r !== null) return parseFloat(r);
     }
-    return initialPin !== null ? (-(initialPin * 2 * Math.PI) / 7) : 0;
+    return initialPin !== null ? ((initialPin * 2 * Math.PI) / 7) : 0;
   })();
   const targetRotationRef = useRef(initialRot);
   const currentRotationRef = useRef(initialRot);
@@ -527,7 +527,7 @@ export const Projects = () => {
       // Exact equiangular 7-gon spacing around the cylinder: theta_0 = 0 (LocalMind AI)
       const theta = -(i * 2 * Math.PI) / 7;
       const x = circleR * Math.sin(theta);
-      const z = -circleR * Math.cos(theta);
+      const z = circleR * Math.cos(theta);
       const y = cardH / 2 + 0.02;
 
       // Group for upright card
@@ -535,11 +535,11 @@ export const Projects = () => {
       cardGroup.position.set(x, y, z);
 
       // Initial inward angle matching dynamic trajectory path
-      let initAlpha = (theta - Math.PI) % (Math.PI * 2);
+      let initAlpha = theta % (Math.PI * 2);
       while (initAlpha > Math.PI) initAlpha -= Math.PI * 2;
       while (initAlpha < -Math.PI) initAlpha += Math.PI * 2;
       const initSinA = Math.sin(initAlpha);
-      const rotY = -Math.sign(initSinA) * Math.pow(Math.abs(initSinA), 1.3) * 0.85;
+      const rotY = Math.sign(initSinA) * Math.pow(Math.abs(initSinA), 1.15) * 0.78;
       cardGroup.rotation.y = rotY;
 
       // 1. Frosted Glass Slab (Sharp Box)
@@ -719,8 +719,19 @@ export const Projects = () => {
 
     const handlePointerDown = (e) => {
       if (e.button !== 0) return;
-      // Only start drag inside the carousel cylinder
-      if (!isInsideCarouselZone(e.clientX, e.clientY)) {
+
+      getPointerNDC(e.clientX, e.clientY);
+      raycaster.setFromCamera(pointer, camera);
+
+      const hitCandidates = [];
+      for (const group of cardMeshes) {
+        hitCandidates.push(...group.children);
+      }
+      const intersects = raycaster.intersectObjects(hitCandidates, false);
+      const isCardHit = intersects.length > 0;
+
+      // Allow click on ANY card in 3D scene, or drag inside the carousel zone
+      if (!isCardHit && !isInsideCarouselZone(e.clientX, e.clientY)) {
         return;
       }
 
@@ -781,11 +792,11 @@ export const Projects = () => {
             }
           }
 
-          // Smoothly rotate the clicked card directly to the front-center of the cylinder!
+          // Smoothly rotate the clicked card directly to the FRONT CENTER of the cylinder!
           // In our coordinate system, theta_i = -(i * 2 * PI) / 7.
-          // Center position closest to viewer (x = 0, z = -circleR) corresponds to currentWorldTheta = theta - rot = 0 => rot = theta.
+          // FRONT CENTER closest to viewer (x = 0, z = +circleR) corresponds to currentWorldTheta = theta + rot = 0 => idealRot = -theta.
           const currentRot = currentRotationRef.current;
-          const idealRot = -(hitIdx * 2 * Math.PI) / 7;
+          const idealRot = (hitIdx * 2 * Math.PI) / 7;
           let diff = (idealRot - currentRot) % (2 * Math.PI);
           while (diff > Math.PI) diff -= 2 * Math.PI;
           while (diff < -Math.PI) diff += 2 * Math.PI;
@@ -882,17 +893,17 @@ export const Projects = () => {
 
         // Strict spatial determinism & dynamic track turning:
         // Current world polar angle of the card along the circular track
-        const currentWorldTheta = theta - carouselGroup.rotation.y;
+        const currentWorldTheta = theta + carouselGroup.rotation.y;
 
         // The exact world rotation function:
         // Every card traveling along the trajectory track follows the exact non-linear turning angle
         // matching the path traversed by LocalMind AI (index 0).
-        let alpha = (currentWorldTheta - Math.PI) % (Math.PI * 2);
+        let alpha = currentWorldTheta % (Math.PI * 2);
         while (alpha > Math.PI) alpha -= Math.PI * 2;
         while (alpha < -Math.PI) alpha += Math.PI * 2;
 
         const sinA = Math.sin(alpha);
-        const targetWorldRotY = -Math.sign(sinA) * Math.pow(Math.abs(sinA), 1.3) * 0.85;
+        const targetWorldRotY = Math.sign(sinA) * Math.pow(Math.abs(sinA), 1.15) * 0.78;
         const trackRotY = targetWorldRotY - carouselGroup.rotation.y;
 
         const isPinned = pinnedIdxRef.current === i;
@@ -907,15 +918,15 @@ export const Projects = () => {
         const pinT = card.userData.pinAnim;
 
         if (pinT > 0.0005) {
-          // Desired world position for expanded card:
-          // Elevated above into the open center of the project section (Y = 2.05, Z = -1.50)
-          // The whole card is 100% visible, lifted above the front rim and floor, and fully clickable.
-          const targetWorldPos = new THREE.Vector3(0, 2.05, -1.50);
+          // FRONT-CENTER EXPANSION (NOT AT THE BACK OF THE CYLINDER!):
+          // Positioned prominently at the front center of the cylinder (Z = circleR + 0.45, Y = 1.48)
+          // Directly closest to the viewer, completely in front, 100% visible, with buttons clickable.
+          const targetWorldPos = new THREE.Vector3(0, 1.48, circleR + 0.45);
           const targetLocalPos = targetWorldPos.clone();
           targetLocalPos.applyAxisAngle(new THREE.Vector3(0, 1, 0), -carouselGroup.rotation.y);
 
           card.position.lerpVectors(defaultPos, targetLocalPos, pinT);
-          const s = 1.0 + pinT * 0.22;
+          const s = 1.0 + pinT * 0.20;
           card.scale.set(s, s, s);
 
           // Card faces directly toward camera (world rotY = 0)
@@ -926,10 +937,7 @@ export const Projects = () => {
           card.rotation.y = trackRotY + rotDiff * pinT;
         } else {
           // Dynamic tracking: every card continuously adjusts its angle along the trajectory
-          // When a card is pinned/expanded, other carousel cards lower slightly so the expanded card shines unobstructed
-          const isAnyPinned = pinnedIdxRef.current !== null;
-          const otherY = isAnyPinned ? defaultPos.y - 0.40 : defaultPos.y;
-          card.position.set(defaultPos.x, THREE.MathUtils.lerp(card.position.y, otherY, 0.12), defaultPos.z);
+          card.position.copy(defaultPos);
           card.scale.set(1, 1, 1);
           let diffRot = trackRotY - card.rotation.y;
           while (diffRot > Math.PI) diffRot -= Math.PI * 2;
