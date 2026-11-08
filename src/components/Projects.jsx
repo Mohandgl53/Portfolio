@@ -199,7 +199,7 @@ export const Projects = () => {
   const targetRotationRef = useRef(initialRot);
   const currentRotationRef = useRef(initialRot);
   const hoveredIdxRef = useRef(null);
-  const pinnedIdxRef = useRef(null);
+  const pinnedIdxRef = useRef(initialPin);
   const isDraggingRef = useRef(false);
   const dragStartXRef = useRef(0);
   const dragStartYRef = useRef(0);
@@ -1292,6 +1292,16 @@ export const Projects = () => {
     // 10. Animation Loop with Dynamic Card Turning
     let isRunning = true;
 
+    // Mathematical orientation constants for true 90-degree flat paper viewplane alignment
+    // Camera is at Y = 4.3, looking down at angle arctan(3.42/7.8) = -23.68 deg (-0.4132 rad).
+    // In world space, ANY card enhanced at front center must have strictly:
+    // pitch = -0.4132 rad, yaw = 0 rad, roll = 0 rad.
+    const camPitchX = -0.4132;
+    const targetWorldQuat = new THREE.Quaternion().setFromEuler(new THREE.Euler(camPitchX, 0, 0, 'YXZ'));
+    const normalLocalQuat = new THREE.Quaternion();
+    const targetLocalQuat = new THREE.Quaternion();
+    const scratchEuler = new THREE.Euler(0, 0, 0, 'YXZ');
+
     const animate = () => {
       if (!isRunning) return;
       animFrameRef.current = requestAnimationFrame(animate);
@@ -1365,34 +1375,27 @@ export const Projects = () => {
           const s = 1.0 + pinT * 0.22;
           card.scale.set(s, s, s);
 
-          // Card faces directly toward camera (world rotY = 0)
-          const targetLocalRotY = -carouselGroup.rotation.y;
-          let rotDiff = targetLocalRotY - trackRotY;
-          while (rotDiff > Math.PI) rotDiff -= Math.PI * 2;
-          while (rotDiff < -Math.PI) rotDiff += Math.PI * 2;
-          card.rotation.y = trackRotY + rotDiff * pinT;
-
-          // PERFECT 90-DEGREE VIEWPLANE ALIGNMENT (Straight like flat paper):
-          // Eliminates perspective forward-tilt so the card faces the camera directly with zero keystoning
-          // Camera is at Y = 4.3, looking down at angle arctan(3.42/7.8) = -23.68 deg.
-          // Tilting back by matching pitch ensures the card's face is 100% perpendicular to the viewer!
-          const camPitchX = -0.4132;
-          card.rotation.x = camPitchX * pinT;
+          // PERFECT 90-DEGREE VIEWPLANE ALIGNMENT FOR ALL 7 CARDS:
+          // Uses World Quaternion orientation to guarantee that EVERY card (Card 0 through Card 6)
+          // has strictly 0.00° roll (ZERO sideways tilt to left or right), 0.00° yaw (facing screen dead center),
+          // and exact -23.68° pitch tilt to match the camera's viewplane like flat paper.
+          scratchEuler.set(0, trackRotY, 0, 'YXZ');
+          normalLocalQuat.setFromEuler(scratchEuler);
+          targetLocalQuat.copy(carouselGroup.quaternion).invert().multiply(targetWorldQuat);
+          card.quaternion.slerpQuaternions(normalLocalQuat, targetLocalQuat, pinT);
         } else {
           // Dynamic tracking: every card continuously adjusts its angle along the trajectory
           card.position.copy(defaultPos);
           card.scale.set(1, 1, 1);
-          card.rotation.x = 0;
           let diffRot = trackRotY - card.rotation.y;
           while (diffRot > Math.PI) diffRot -= Math.PI * 2;
           while (diffRot < -Math.PI) diffRot += Math.PI * 2;
-          card.rotation.y += diffRot * 0.14;
+          card.rotation.set(0, card.rotation.y + diffRot * 0.14, 0);
         }
 
         // Synchronize reflection mesh under floor
         refl.position.set(card.position.x, -card.position.y, card.position.z);
-        refl.rotation.x = -card.rotation.x;
-        refl.rotation.y = card.rotation.y;
+        refl.quaternion.copy(card.quaternion);
         refl.scale.set(card.scale.x, -card.scale.y * 0.65, card.scale.z);
       }
 
