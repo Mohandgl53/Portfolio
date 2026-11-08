@@ -1143,45 +1143,55 @@ export const Projects = () => {
         );
         raycaster.setFromCamera(pointerVec, camera);
 
-        // Check if user clicked an Action Button on the pinned card:
-        const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
-        if (faceHits.length > 0 && faceHits[0].uv) {
-          const uv = faceHits[0].uv;
-          if (uv.y >= 0.115 && uv.y <= 0.210) {
-            if (uv.x >= 0.030 && uv.x <= 0.490) {
-              const ghUrl = ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
-              window.open(ghUrl, '_blank', 'noopener,noreferrer');
-              return;
-            } else if (uv.x >= 0.510 && uv.x <= 0.970) {
-              const demoUrl = ORDERED_PROJECTS[currentPinned].demo || ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
-              window.open(demoUrl, '_blank', 'noopener,noreferrer');
-              return;
+        const pinnedCard = cardMeshes[currentPinned];
+        const pinnedHits = raycaster.intersectObjects(pinnedCard.children, true);
+
+        if (pinnedHits.length > 0) {
+          // Click was directly ON the pinned/expanded card!
+          // 1. Check if clicked the Complete GitHub or Live Demo action button:
+          const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
+          if (faceHits.length > 0 && faceHits[0].uv) {
+            const uv = faceHits[0].uv;
+            if (uv.y >= 0.115 && uv.y <= 0.210) {
+              if (uv.x >= 0.030 && uv.x <= 0.490) {
+                const ghUrl = ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
+                window.open(ghUrl, '_blank', 'noopener,noreferrer');
+                return;
+              } else if (uv.x >= 0.510 && uv.x <= 0.970) {
+                const demoUrl = ORDERED_PROJECTS[currentPinned].demo || ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
+                window.open(demoUrl, '_blank', 'noopener,noreferrer');
+                return;
+              }
             }
           }
-        }
 
-        // Check which card was clicked using screen-proximity resolved picking:
-        const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
-
-        if (hitIdx !== null && hitIdx !== currentPinned) {
-          // User clicked on ANOTHER card (side card, flank, or background card):
-          // Immediately rotate cylinder so that clicked card comes directly to FRONT CENTER and expands!
-          const currentRot = currentRotationRef.current;
-          const idealRot = (hitIdx * 2 * Math.PI) / 7;
-          let diff = (idealRot - currentRot) % (2 * Math.PI);
-          while (diff > Math.PI) diff -= 2 * Math.PI;
-          while (diff < -Math.PI) diff += 2 * Math.PI;
-          targetRotationRef.current = currentRot + diff;
-
-          pinnedIdxRef.current = hitIdx;
-          setPinnedIdx(hitIdx);
-          return;
-        } else {
-          // User re-clicked the current pinned card (header, screenshot, body, close hint) or empty space:
-          // MINIMIZE IT CLEANLY back into the carousel!
+          // 2. Clicked anywhere else on the pinned card (top header bar, screenshot, sides, body, close hint):
+          // MINIMIZE IT CLEANLY! Never trigger cards behind it or covered by it!
           pinnedIdxRef.current = null;
           setPinnedIdx(null);
           return;
+        } else {
+          // Click was completely OUTSIDE the pinned card:
+          // Check if user clicked on another visible card (e.g. flank card on left or right):
+          const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
+          if (hitIdx !== null && hitIdx !== currentPinned) {
+            // User clicked another card: rotate it directly to FRONT CENTER and expand it!
+            const currentRot = currentRotationRef.current;
+            const idealRot = (hitIdx * 2 * Math.PI) / 7;
+            let diff = (idealRot - currentRot) % (2 * Math.PI);
+            while (diff > Math.PI) diff -= 2 * Math.PI;
+            while (diff < -Math.PI) diff += 2 * Math.PI;
+            targetRotationRef.current = currentRot + diff;
+
+            pinnedIdxRef.current = hitIdx;
+            setPinnedIdx(hitIdx);
+            return;
+          } else {
+            // Clicked empty background: minimize current card!
+            pinnedIdxRef.current = null;
+            setPinnedIdx(null);
+            return;
+          }
         }
       }
 
