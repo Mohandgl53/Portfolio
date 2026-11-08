@@ -337,18 +337,31 @@ export const Projects = () => {
 
       // 1. Outer Plate with Creative Modern Gradients
       if (isLight) {
-        ctx.fillStyle = '#ffffff';
+        const bgGradLight = ctx.createLinearGradient(0, 0, 0, 800);
+        bgGradLight.addColorStop(0, '#ffffff');
+        bgGradLight.addColorStop(0.7, '#f8fafc');
+        bgGradLight.addColorStop(1, '#f1f5f9');
+        ctx.fillStyle = bgGradLight;
         ctx.fillRect(0, 0, 640, 800);
 
-        ctx.strokeStyle = '#94a3b8';
-        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 3.5;
         ctx.strokeRect(1.5, 1.5, 637, 797);
 
-        ctx.strokeStyle = '#2563eb';
-        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 1.2;
+        ctx.strokeRect(5.5, 5.5, 629, 789);
+
+        // Top vibrant royal blue neon horizon line
+        const topNeonLight = ctx.createLinearGradient(0, 0, 640, 0);
+        topNeonLight.addColorStop(0, '#2563eb');
+        topNeonLight.addColorStop(0.5, '#4f46e5');
+        topNeonLight.addColorStop(1, '#7c3aed');
+        ctx.strokeStyle = topNeonLight;
+        ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.moveTo(3, 3);
-        ctx.lineTo(637, 3);
+        ctx.moveTo(4, 3);
+        ctx.lineTo(636, 3);
         ctx.stroke();
       } else {
         const bgGrad = ctx.createLinearGradient(0, 0, 0, 800);
@@ -460,7 +473,7 @@ export const Projects = () => {
         ctx.strokeRect(fx, fy, fw, fh);
 
         // Title: BIGGER & BOLDER (34px)
-        ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
+        ctx.fillStyle = isLight ? '#020617' : '#ffffff';
         ctx.font = 'bold 34px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillText(proj.title, 24, 346);
 
@@ -469,16 +482,16 @@ export const Projects = () => {
         ctx.font = 'bold 13.5px monospace';
         const subW = ctx.measureText(subText).width + 20;
         drawRoundRect(ctx, 24, 360, subW, 26, 6);
-        ctx.fillStyle = isLight ? 'rgba(37, 99, 235, 0.10)' : 'rgba(56, 189, 248, 0.15)';
+        ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(56, 189, 248, 0.15)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#2563eb' : 'rgba(56, 189, 248, 0.50)';
-        ctx.lineWidth = 1.2;
+        ctx.lineWidth = 1.4;
         ctx.stroke();
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
         ctx.fillText(subText, 34, 378);
 
         // Separator line
-        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.10)';
         ctx.lineWidth = 1.2;
         ctx.beginPath();
         ctx.moveTo(24, 396);
@@ -486,11 +499,11 @@ export const Projects = () => {
         ctx.stroke();
 
         // Headline & Motivations (BIGGER: 18px & 16px)
-        ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
+        ctx.fillStyle = isLight ? '#020617' : '#f8fafc';
         ctx.font = 'bold 18px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 426);
 
-        ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
+        ctx.fillStyle = isLight ? '#0f172a' : '#cbd5e1';
         ctx.font = '500 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillText(proj.summary1 || proj.whyBuilt1 || '', 24, 453);
         ctx.fillText(proj.summary2 || proj.whyBuilt2 || '', 24, 477);
@@ -509,12 +522,12 @@ export const Projects = () => {
           ctx.font = 'bold 13.5px monospace';
           const tw = ctx.measureText(tag).width + 20;
           drawRoundRect(ctx, rx1, 522, tw, 28, 7);
-          ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(15, 23, 42, 0.95)';
+          ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
           ctx.fill();
-          ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.50)';
-          ctx.lineWidth = 1.2;
+          ctx.strokeStyle = isLight ? '#0284c7' : 'rgba(56, 189, 248, 0.50)';
+          ctx.lineWidth = 1.4;
           ctx.stroke();
-          ctx.fillStyle = isLight ? '#1e40af' : '#f8fafc';
+          ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
           ctx.fillText(tag, rx1 + 10, 541);
           rx1 += tw + 9;
         });
@@ -527,12 +540,12 @@ export const Projects = () => {
             ctx.font = 'bold 13.5px monospace';
             const tw = ctx.measureText(tag).width + 20;
             drawRoundRect(ctx, rx2, 558, tw, 28, 7);
-            ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(15, 23, 42, 0.95)';
+            ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
             ctx.fill();
-            ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.50)';
-            ctx.lineWidth = 1.2;
+            ctx.strokeStyle = isLight ? '#0284c7' : 'rgba(56, 189, 248, 0.50)';
+            ctx.lineWidth = 1.4;
             ctx.stroke();
-            ctx.fillStyle = isLight ? '#1e40af' : '#f8fafc';
+            ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
             ctx.fillText(tag, rx2 + 10, 577);
             rx2 += tw + 9;
           });
@@ -629,7 +642,7 @@ export const Projects = () => {
         ctx.strokeRect(fx, fy, fw, fh);
 
         // Title: 30px Bold
-        ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
+        ctx.fillStyle = isLight ? '#020617' : '#ffffff';
         ctx.font = 'bold 30px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillText(proj.title, 24, 244);
 
@@ -638,16 +651,16 @@ export const Projects = () => {
         ctx.font = 'bold 13px monospace';
         const badgeW = ctx.measureText(badgeText).width + 20;
         drawRoundRect(ctx, 24, 254, badgeW, 24, 6);
-        ctx.fillStyle = isLight ? 'rgba(37, 99, 235, 0.10)' : 'rgba(56, 189, 248, 0.15)';
+        ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(56, 189, 248, 0.15)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#2563eb' : 'rgba(56, 189, 248, 0.50)';
-        ctx.lineWidth = 1.2;
+        ctx.lineWidth = 1.4;
         ctx.stroke();
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
         ctx.fillText(badgeText, 34, 271);
 
         // Separator
-        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.10)';
         ctx.lineWidth = 1.2;
         ctx.beginPath();
         ctx.moveTo(24, 287);
@@ -655,41 +668,41 @@ export const Projects = () => {
         ctx.stroke();
 
         // 1. PROBLEM SOLVED (Header 13.5px bold, text 15.5px)
-        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
+        ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
         ctx.fillRect(24, 298, 4, 15);
         ctx.font = 'bold 13.5px monospace';
         ctx.fillText('// WHY I BUILT THIS (PROBLEM SOLVED)', 36, 310);
 
-        ctx.fillStyle = isLight ? '#1e293b' : '#f8fafc';
+        ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
         ctx.font = '500 15.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillText(proj.whyBuilt1 || '', 24, 331);
         ctx.fillText(proj.whyBuilt2 || '', 24, 353);
 
         // 2. SYSTEM ARCHITECTURE
-        ctx.fillStyle = isLight ? '#2563eb' : '#c084fc';
+        ctx.fillStyle = isLight ? '#7c3aed' : '#c084fc';
         ctx.fillRect(24, 370, 4, 15);
         ctx.font = 'bold 13.5px monospace';
         ctx.fillText('// SYSTEM ARCHITECTURE & DATA FLOW', 36, 382);
 
-        ctx.fillStyle = isLight ? '#1e293b' : '#f8fafc';
+        ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
         ctx.font = '500 15.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillText(proj.arch1 || '', 24, 403);
         ctx.fillText(proj.arch2 || '', 24, 425);
 
         // 3. KEY ENGINEERING HIGHLIGHTS
-        ctx.fillStyle = isLight ? '#2563eb' : '#34d399';
+        ctx.fillStyle = isLight ? '#059669' : '#34d399';
         ctx.fillRect(24, 442, 4, 15);
         ctx.font = 'bold 13.5px monospace';
         ctx.fillText('// KEY ENGINEERING HIGHLIGHTS', 36, 454);
 
-        ctx.fillStyle = isLight ? '#334155' : '#e2e8f0';
+        ctx.fillStyle = isLight ? '#0f172a' : '#e2e8f0';
         ctx.font = '500 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillText(`✦ ${proj.highlight1 || ''}`, 24, 474);
         ctx.fillText(`✦ ${proj.highlight2 || ''}`, 24, 495);
         ctx.fillText(`✦ ${proj.highlight3 || ''}`, 24, 516);
 
         // 4. TECH STACK
-        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+        ctx.fillStyle = isLight ? '#0284c7' : '#94a3b8';
         ctx.fillRect(24, 532, 4, 15);
         ctx.font = 'bold 13px monospace';
         ctx.fillText('// COMPREHENSIVE TECH STACK', 36, 544);
@@ -702,12 +715,12 @@ export const Projects = () => {
           ctx.font = 'bold 13px monospace';
           const tw = ctx.measureText(tag).width + 18;
           drawRoundRect(ctx, rx1, 556, tw, 26, 6);
-          ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(15, 23, 42, 0.95)';
+          ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
           ctx.fill();
-          ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.45)';
-          ctx.lineWidth = 1.2;
+          ctx.strokeStyle = isLight ? '#0284c7' : 'rgba(56, 189, 248, 0.45)';
+          ctx.lineWidth = 1.4;
           ctx.stroke();
-          ctx.fillStyle = isLight ? '#1e40af' : '#f8fafc';
+          ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
           ctx.fillText(tag, rx1 + 9, 574);
           rx1 += tw + 8;
         });
@@ -720,12 +733,12 @@ export const Projects = () => {
             ctx.font = 'bold 13px monospace';
             const tw = ctx.measureText(tag).width + 18;
             drawRoundRect(ctx, rx2, 590, tw, 26, 6);
-            ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(15, 23, 42, 0.95)';
+            ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
             ctx.fill();
-            ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.45)';
-            ctx.lineWidth = 1.2;
+            ctx.strokeStyle = isLight ? '#0284c7' : 'rgba(56, 189, 248, 0.45)';
+            ctx.lineWidth = 1.4;
             ctx.stroke();
-            ctx.fillStyle = isLight ? '#1e40af' : '#f8fafc';
+            ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
             ctx.fillText(tag, rx2 + 9, 608);
             rx2 += tw + 8;
           });
@@ -736,13 +749,13 @@ export const Projects = () => {
 
         // Close hint capsule
         drawRoundRect(ctx, 150, 725, 340, 32, 16);
-        ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.07)';
+        ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.07)';
         ctx.fill();
-        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.20)';
+        ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(255, 255, 255, 0.20)';
         ctx.lineWidth = 1.2;
         ctx.stroke();
 
-        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+        ctx.fillStyle = isLight ? '#334155' : '#94a3b8';
         ctx.font = 'bold 12.5px monospace';
         ctx.textAlign = 'center';
         ctx.fillText('✕ CLICK ANYWHERE ON CARD TO MINIMIZE', 320, 746);
