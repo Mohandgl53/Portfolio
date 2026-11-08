@@ -217,9 +217,9 @@ export const Projects = () => {
     pinnedIdxRef.current = pinnedIdx;
   }, [pinnedIdx]);
 
-  // Generate High-Res 2D Canvas Texture with Modern Typography, Sleek Buttons & Lucide Icons
+  // Generate High-Res 2D Canvas Texture with Clean Text-Wrapping & Bottom Action Buttons
   // isExpanded = false: In-Carousel View (Big bold typography, fills entire space, high impact)
-  // isExpanded = true: Clicked View (Deep architectural details, highlights, full tech stack, enlarged typography)
+  // isExpanded = true: Clicked View (Deep architectural details, highlights, full tech stack, wrapped lines)
   const createCardFaceTexture = useCallback((proj, isLight = false, isExpanded = false) => {
     const canvas = document.createElement('canvas');
     canvas.width = 640;
@@ -246,6 +246,28 @@ export const Projects = () => {
       ctx.lineTo(x, y + r);
       ctx.quadraticCurveTo(x, y, x + r, y);
       ctx.closePath();
+    };
+
+    // Helper: Wrap text cleanly into lines so it NEVER exceeds maxWidth
+    const wrapText = (ctx, text, maxWidth) => {
+      if (!text) return [];
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = '';
+      for (let i = 0; i < words.length; i++) {
+        const word = words[i];
+        const testLine = currentLine ? currentLine + ' ' + word : word;
+        if (ctx.measureText(testLine).width > maxWidth && currentLine) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = testLine;
+        }
+      }
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+      return lines;
     };
 
     const drawActionButtons = (ctx, isLight, btnY, btnH) => {
@@ -286,10 +308,10 @@ export const Projects = () => {
       // Text: "GitHub repo"
       ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
       ctx.font = `bold 16.5px ${FONT_HEAD}`;
-      ctx.fillText('GitHub repo', b1X + 58, btnY + 34);
+      ctx.fillText('GitHub repo', b1X + 58, btnY + 34.5);
       ctx.fillStyle = isLight ? '#64748b' : 'rgba(255, 255, 255, 0.65)';
       ctx.font = `bold 16px ${FONT_HEAD}`;
-      ctx.fillText('↗', b1X + b1W - 26, btnY + 34);
+      ctx.fillText('↗', b1X + b1W - 26, btnY + 34.5);
 
       // ==========================================
       // BUTTON 2: Live Demo
@@ -332,10 +354,10 @@ export const Projects = () => {
       // Text: "Live Demo"
       ctx.fillStyle = '#ffffff';
       ctx.font = `bold 16.5px ${FONT_HEAD}`;
-      ctx.fillText('Live Demo', b2X + 58, btnY + 34);
+      ctx.fillText('Live Demo', b2X + 58, btnY + 34.5);
       ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
       ctx.font = `bold 16px ${FONT_HEAD}`;
-      ctx.fillText('↗', b2X + b2W - 26, btnY + 34);
+      ctx.fillText('↗', b2X + b2W - 26, btnY + 34.5);
     };
 
     const drawContent = () => {
@@ -409,10 +431,10 @@ export const Projects = () => {
 
       if (!isExpanded) {
         // ==========================================
-        // 2. CAROUSEL VIEW: Sleek 2026 Showcase
+        // 2. CAROUSEL VIEW: Sleek 2026 Showcase with Clean Text-Wrapping
         // ==========================================
         const fw = 596;
-        const fh = 275;
+        const fh = 265;
         const fx = 22;
         const fy = 18;
         const r = 12;
@@ -497,17 +519,17 @@ export const Projects = () => {
 
         // Title: Bold stylish display typography
         ctx.fillStyle = isLight ? '#020617' : '#ffffff';
-        ctx.font = `bold 32px ${FONT_HEAD}`;
-        ctx.fillText(proj.title, 24, 335);
+        ctx.font = `bold 31px ${FONT_HEAD}`;
+        ctx.fillText(proj.title, 24, 324);
 
         // Tagline / Headline
         ctx.fillStyle = isLight ? '#0f172a' : '#94a3b8';
-        ctx.font = `600 16px ${FONT_BODY}`;
-        ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 362);
+        ctx.font = `600 15.5px ${FONT_BODY}`;
+        ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 350);
 
-        // Bento Tile 1: Problem & Purpose Card
-        const bentoY = 380;
-        const bentoH = 104;
+        // Bento Tile 1: Problem & Purpose Card with Wrapped Lines
+        const bentoY = 368;
+        const bentoH = 112;
         drawRoundRect(ctx, 24, bentoY, 592, bentoH, 10);
         ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(15, 23, 42, 0.65)';
         ctx.fill();
@@ -521,21 +543,31 @@ export const Projects = () => {
 
         // Tile Header Label
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
-        ctx.font = `bold 12.5px ${FONT_HEAD}`;
-        ctx.fillText('PROBLEM SOLVED & PURPOSE', 38, bentoY + 28);
+        ctx.font = `bold 12px ${FONT_HEAD}`;
+        ctx.fillText('PROBLEM SOLVED & PURPOSE', 38, bentoY + 24);
 
-        // Tile Body Lines (WCAG AAA High Contrast)
+        // Primary line (wrapped safely within 538px)
         ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
-        ctx.font = `bold 15px ${FONT_BODY}`;
-        ctx.fillText(proj.summary1 || proj.whyBuilt1 || '', 38, bentoY + 54);
-        ctx.fillStyle = isLight ? '#1e293b' : '#cbd5e1';
-        ctx.font = `500 15px ${FONT_BODY}`;
-        ctx.fillText(proj.summary2 || proj.whyBuilt2 || '', 38, bentoY + 80);
+        ctx.font = `bold 14.5px ${FONT_BODY}`;
+        const sum1Lines = wrapText(ctx, proj.summary1 || proj.whyBuilt1 || '', 538);
+        let sY = bentoY + 48;
+        sum1Lines.slice(0, 2).forEach(line => {
+          ctx.fillText(line, 38, sY);
+          sY += 20;
+        });
+
+        // Secondary line (wrapped safely)
+        ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
+        ctx.font = `500 14px ${FONT_BODY}`;
+        const sum2Lines = wrapText(ctx, proj.summary2 || proj.whyBuilt2 || '', 538);
+        sum2Lines.slice(0, 1).forEach(line => {
+          ctx.fillText(line, 38, sY);
+        });
 
         // Technologies Header
         ctx.fillStyle = isLight ? '#0369a1' : '#38bdf8';
-        ctx.font = `bold 12.5px ${FONT_HEAD}`;
-        ctx.fillText('CORE TECHNOLOGIES', 26, 514);
+        ctx.font = `bold 12px ${FONT_HEAD}`;
+        ctx.fillText('CORE TECHNOLOGIES', 26, 504);
 
         // Tech Tags
         const allTags = proj.tags || ['React', 'Node.js', 'Express'];
@@ -544,14 +576,14 @@ export const Projects = () => {
         row1.forEach(tag => {
           ctx.font = `bold 13px ${FONT_BODY}`;
           const tw = ctx.measureText(tag).width + 20;
-          drawRoundRect(ctx, rx1, 526, tw, 28, 7);
+          drawRoundRect(ctx, rx1, 516, tw, 28, 7);
           ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
           ctx.fill();
           ctx.strokeStyle = isLight ? '#bae6fd' : 'rgba(56, 189, 248, 0.45)';
           ctx.lineWidth = 1.2;
           ctx.stroke();
           ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
-          ctx.fillText(tag, rx1 + 10, 545);
+          ctx.fillText(tag, rx1 + 10, 535);
           rx1 += tw + 9;
         });
 
@@ -561,23 +593,20 @@ export const Projects = () => {
           row2.forEach(tag => {
             ctx.font = `bold 13px ${FONT_BODY}`;
             const tw = ctx.measureText(tag).width + 20;
-            drawRoundRect(ctx, rx2, 562, tw, 28, 7);
+            drawRoundRect(ctx, rx2, 552, tw, 28, 7);
             ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
             ctx.fill();
             ctx.strokeStyle = isLight ? '#bae6fd' : 'rgba(56, 189, 248, 0.45)';
             ctx.lineWidth = 1.2;
             ctx.stroke();
             ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
-            ctx.fillText(tag, rx2 + 10, 581);
+            ctx.fillText(tag, rx2 + 10, 571);
             rx2 += tw + 9;
           });
         }
 
-        // Action Buttons
-        drawActionButtons(ctx, isLight, 638, 54);
-
         // Click to expand capsule hint
-        drawRoundRect(ctx, 110, 714, 420, 32, 16);
+        drawRoundRect(ctx, 110, 646, 420, 34, 17);
         ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(56, 189, 248, 0.10)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#bfdbfe' : 'rgba(56, 189, 248, 0.35)';
@@ -587,17 +616,20 @@ export const Projects = () => {
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
         ctx.font = `bold 12.5px ${FONT_HEAD}`;
         ctx.textAlign = 'center';
-        ctx.fillText('CLICK CARD TO EXPAND ARCHITECTURE & DETAILS →', 320, 735);
+        ctx.fillText('CLICK CARD TO EXPAND ARCHITECTURE & DETAILS →', 320, 668);
         ctx.textAlign = 'left';
+
+        // Action Buttons at the bottom of the card
+        drawActionButtons(ctx, isLight, 712, 56);
 
       } else {
         // ==========================================
-        // 3. EXPANDED VIEW: High-Density Bento Architecture with Larger Typography
+        // 3. EXPANDED VIEW: Extra Space, Clean Text-Wrapping & Bottom Buttons
         // ==========================================
         const fw = 596;
-        const fh = 160;
+        const fh = 146;
         const fx = 22;
-        const fy = 16;
+        const fy = 14;
         const r = 10;
 
         ctx.save();
@@ -673,62 +705,63 @@ export const Projects = () => {
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
         ctx.fillText(catTextExp, catXExp + 12, chipY + 17);
 
-        // Title: 33px Bold Display Font
+        // Title: 32px Bold Display Font
         ctx.fillStyle = isLight ? '#020617' : '#ffffff';
-        ctx.font = `bold 33px ${FONT_HEAD}`;
-        ctx.fillText(proj.title, 24, 208);
+        ctx.font = `bold 32px ${FONT_HEAD}`;
+        ctx.fillText(proj.title, 24, 192);
 
-        // Bento 1: Problem Solved Tile (Taller height + Bigger Font)
-        const t1Y = 222;
-        const t1H = 88;
-        drawRoundRect(ctx, 24, t1Y, 592, t1H, 9);
-        ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(15, 23, 42, 0.65)';
-        ctx.fill();
-        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
+        // Helper: Draw Bento Tile with automatic line wrapping
+        const drawBentoBox = (y, h, accentColor, headerText, primaryText, secondaryText) => {
+          drawRoundRect(ctx, 24, y, 592, h, 9);
+          ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(15, 23, 42, 0.65)';
+          ctx.fill();
+          ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
 
-        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-        ctx.fillRect(24, t1Y + 10, 4, t1H - 20);
+          // Left indicator
+          ctx.fillStyle = accentColor;
+          ctx.fillRect(24, y + 10, 4, h - 20);
 
-        ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
-        ctx.font = `bold 13px ${FONT_HEAD}`;
-        ctx.fillText('WHY I BUILT THIS (THE PROBLEM)', 38, t1Y + 24);
+          // Header
+          ctx.fillStyle = accentColor;
+          ctx.font = `bold 12px ${FONT_HEAD}`;
+          ctx.fillText(headerText, 38, y + 22);
 
-        ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
-        ctx.font = `bold 16.5px ${FONT_BODY}`;
-        ctx.fillText(proj.whyBuilt1 || '', 38, t1Y + 50);
-        ctx.fillStyle = isLight ? '#1e293b' : '#cbd5e1';
-        ctx.font = `500 15.5px ${FONT_BODY}`;
-        ctx.fillText(proj.whyBuilt2 || '', 38, t1Y + 74);
+          // Primary line (bold)
+          ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
+          ctx.font = `bold 14.5px ${FONT_BODY}`;
+          const l1 = wrapText(ctx, primaryText || '', 538);
+          let curY = y + 43;
+          l1.slice(0, 2).forEach(line => {
+            ctx.fillText(line, 38, curY);
+            curY += 20;
+          });
 
-        // Bento 2: Architecture & Data Flow (Taller height + Bigger Font)
-        const t2Y = 320;
-        const t2H = 88;
-        drawRoundRect(ctx, 24, t2Y, 592, t2H, 9);
-        ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(15, 23, 42, 0.65)';
-        ctx.fill();
-        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
+          // Secondary line (medium)
+          if (secondaryText) {
+            ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
+            ctx.font = `500 13.5px ${FONT_BODY}`;
+            const l2 = wrapText(ctx, secondaryText, 538);
+            l2.slice(0, 1).forEach(line => {
+              ctx.fillText(line, 38, curY);
+            });
+          }
+        };
 
-        ctx.fillStyle = isLight ? '#6d28d9' : '#c084fc';
-        ctx.fillRect(24, t2Y + 10, 4, t2H - 20);
+        // Bento 1: Problem Solved Tile with clean wrapping
+        const t1Y = 208;
+        const t1H = 96;
+        drawBentoBox(t1Y, t1H, isLight ? '#2563eb' : '#38bdf8', 'WHY I BUILT THIS (THE PROBLEM)', proj.whyBuilt1, proj.whyBuilt2);
 
-        ctx.fillStyle = isLight ? '#6d28d9' : '#c084fc';
-        ctx.font = `bold 13px ${FONT_HEAD}`;
-        ctx.fillText('SYSTEM ARCHITECTURE & DATA FLOW', 38, t2Y + 24);
+        // Bento 2: Architecture & Data Flow with clean wrapping
+        const t2Y = 314;
+        const t2H = 96;
+        drawBentoBox(t2Y, t2H, isLight ? '#6d28d9' : '#c084fc', 'SYSTEM ARCHITECTURE & DATA FLOW', proj.arch1, proj.arch2);
 
-        ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
-        ctx.font = `bold 16.5px ${FONT_BODY}`;
-        ctx.fillText(proj.arch1 || '', 38, t2Y + 50);
-        ctx.fillStyle = isLight ? '#1e293b' : '#cbd5e1';
-        ctx.font = `500 15.5px ${FONT_BODY}`;
-        ctx.fillText(proj.arch2 || '', 38, t2Y + 74);
-
-        // Bento 3: Key Highlights (Taller height + Bigger Font)
-        const t3Y = 418;
-        const t3H = 108;
+        // Bento 3: Key Highlights with clean wrapping
+        const t3Y = 420;
+        const t3H = 126;
         drawRoundRect(ctx, 24, t3Y, 592, t3H, 9);
         ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(15, 23, 42, 0.65)';
         ctx.fill();
@@ -740,35 +773,41 @@ export const Projects = () => {
         ctx.fillRect(24, t3Y + 10, 4, t3H - 20);
 
         ctx.fillStyle = isLight ? '#047857' : '#34d399';
-        ctx.font = `bold 13px ${FONT_HEAD}`;
-        ctx.fillText('KEY ENGINEERING HIGHLIGHTS', 38, t3Y + 24);
+        ctx.font = `bold 12px ${FONT_HEAD}`;
+        ctx.fillText('KEY ENGINEERING HIGHLIGHTS', 38, t3Y + 22);
 
         ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
-        ctx.font = `bold 15.5px ${FONT_BODY}`;
-        ctx.fillText(`✦ ${proj.highlight1 || ''}`, 38, t3Y + 49);
-        ctx.fillText(`✦ ${proj.highlight2 || ''}`, 38, t3Y + 72);
-        ctx.fillText(`✦ ${proj.highlight3 || ''}`, 38, t3Y + 95);
+        ctx.font = `bold 13.5px ${FONT_BODY}`;
+        let hY = t3Y + 44;
+        [proj.highlight1, proj.highlight2, proj.highlight3].filter(Boolean).forEach(hl => {
+          const lines = wrapText(ctx, `✦ ${hl}`, 538);
+          lines.forEach((l, idx) => {
+            ctx.fillText(l, idx === 0 ? 38 : 50, hY);
+            hY += 19;
+          });
+          hY += 4;
+        });
 
         // Tech Stack Header
         ctx.fillStyle = isLight ? '#0369a1' : '#38bdf8';
-        ctx.font = `bold 13px ${FONT_HEAD}`;
-        ctx.fillText('COMPREHENSIVE TECH STACK', 26, 544);
+        ctx.font = `bold 12px ${FONT_HEAD}`;
+        ctx.fillText('COMPREHENSIVE TECH STACK', 26, 560);
 
-        // Tags (Taller 30px badges + 14px Font)
+        // Tags (Taller 30px badges + 13.5px Font)
         const allTags = proj.tags || ['React', 'Node.js', 'Express'];
         const row1 = allTags.slice(0, 4);
         let rx1 = 24;
         row1.forEach(tag => {
-          ctx.font = `bold 14px ${FONT_BODY}`;
+          ctx.font = `bold 13.5px ${FONT_BODY}`;
           const tw = ctx.measureText(tag).width + 20;
-          drawRoundRect(ctx, rx1, 556, tw, 30, 7);
+          drawRoundRect(ctx, rx1, 572, tw, 30, 7);
           ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
           ctx.fill();
           ctx.strokeStyle = isLight ? '#bae6fd' : 'rgba(56, 189, 248, 0.45)';
           ctx.lineWidth = 1.2;
           ctx.stroke();
           ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
-          ctx.fillText(tag, rx1 + 10, 577);
+          ctx.fillText(tag, rx1 + 10, 592.5);
           rx1 += tw + 9;
         });
 
@@ -776,36 +815,22 @@ export const Projects = () => {
         if (row2.length > 0) {
           let rx2 = 24;
           row2.forEach(tag => {
-            ctx.font = `bold 14px ${FONT_BODY}`;
+            ctx.font = `bold 13.5px ${FONT_BODY}`;
             const tw = ctx.measureText(tag).width + 20;
-            drawRoundRect(ctx, rx2, 594, tw, 30, 7);
+            drawRoundRect(ctx, rx2, 610, tw, 30, 7);
             ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
             ctx.fill();
             ctx.strokeStyle = isLight ? '#bae6fd' : 'rgba(56, 189, 248, 0.45)';
             ctx.lineWidth = 1.2;
             ctx.stroke();
             ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
-            ctx.fillText(tag, rx2 + 10, 615);
+            ctx.fillText(tag, rx2 + 10, 630.5);
             rx2 += tw + 9;
           });
         }
 
-        // Action Buttons: Modern GitHub repo and Live Demo
-        drawActionButtons(ctx, isLight, 638, 54);
-
-        // Close hint capsule (Framing bottom with zero awkward gap)
-        drawRoundRect(ctx, 130, 708, 380, 36, 18);
-        ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.07)';
-        ctx.fill();
-        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.20)';
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
-
-        ctx.fillStyle = isLight ? '#334155' : '#94a3b8';
-        ctx.font = `bold 13px ${FONT_HEAD}`;
-        ctx.textAlign = 'center';
-        ctx.fillText('✕ CLICK ANYWHERE ON CARD TO MINIMIZE', 320, 731);
-        ctx.textAlign = 'left';
+        // Action Buttons moved directly to the bottom of the card!
+        drawActionButtons(ctx, isLight, 712, 56);
       }
     };
 
@@ -817,7 +842,6 @@ export const Projects = () => {
         tex.needsUpdate = true;
       };
     }
-
     const tex = new THREE.CanvasTexture(canvas);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.minFilter = THREE.LinearFilter;
@@ -1258,7 +1282,7 @@ export const Projects = () => {
           const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
           if (faceHits.length > 0 && faceHits[0].uv) {
             const uv = faceHits[0].uv;
-            if (uv.y >= 0.125 && uv.y <= 0.210) {
+            if (uv.y >= 0.030 && uv.y <= 0.118) {
               if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
                 canvas.style.cursor = 'pointer';
                 return;
@@ -1296,7 +1320,7 @@ export const Projects = () => {
         const faceHits = raycaster.intersectObject(faceMeshes[hitIdx], false);
         if (faceHits.length > 0 && faceHits[0].uv) {
           const uv = faceHits[0].uv;
-          if (uv.y >= 0.125 && uv.y <= 0.210) {
+          if (uv.y >= 0.030 && uv.y <= 0.118) {
             if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
               canvas.style.cursor = 'pointer';
               return;
@@ -1370,7 +1394,7 @@ export const Projects = () => {
           const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
           if (faceHits.length > 0 && faceHits[0].uv) {
             const uv = faceHits[0].uv;
-            if (uv.y >= 0.125 && uv.y <= 0.210) {
+            if (uv.y >= 0.030 && uv.y <= 0.118) {
               if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
                 const ghUrl = ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
                 const demoUrl = ORDERED_PROJECTS[currentPinned].demo || ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
@@ -1419,7 +1443,7 @@ export const Projects = () => {
         const faceHits = raycaster.intersectObject(faceMeshes[hitIdx], false);
         if (faceHits.length > 0 && faceHits[0].uv) {
           const uv = faceHits[0].uv;
-          if (uv.y >= 0.125 && uv.y <= 0.210) {
+          if (uv.y >= 0.030 && uv.y <= 0.118) {
             if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
               const ghUrl = proj.github || 'https://github.com/Mohandgl53';
               const demoUrl = proj.demo || proj.github || 'https://github.com/Mohandgl53';
