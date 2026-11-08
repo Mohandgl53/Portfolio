@@ -872,11 +872,12 @@ export const Projects = () => {
       alpha: true,
       powerPreference: 'high-performance'
     });
+    const initialIsLight = !isDark || document.documentElement.getAttribute('data-theme') === 'light';
     renderer.setClearColor(0x000000, 0);
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMapping = initialIsLight ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = initialIsLight ? 1.0 : 1.15;
     rendererRef.current = renderer;
 
     // 3. Carousel Groups
@@ -927,7 +928,6 @@ export const Projects = () => {
       return new THREE.CanvasTexture(fCanvas);
     };
 
-    const initialIsLight = !isDark || document.documentElement.getAttribute('data-theme') === 'light';
     const floorGeo = new THREE.PlaneGeometry(8.6, 8.6);
     const floorMat = new THREE.MeshBasicMaterial({
       map: createFloorSheenTexture(initialIsLight),
@@ -1087,6 +1087,8 @@ export const Projects = () => {
 
     // Dynamic Light / Dark Theme Sync with Smooth Lerp
     const updateThemeColors = (isLight) => {
+      renderer.toneMapping = isLight ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = isLight ? 1.0 : 1.15;
       targetGlassColor.setHex(isLight ? 0xf8fafc : 0x0c1527);
       targetEdgeColor.setHex(isLight ? 0x93c5fd : 0x7dd3fc);
       targetReflColor.setHex(isLight ? 0xf8fafc : 0x070c18);
