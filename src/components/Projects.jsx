@@ -217,9 +217,9 @@ export const Projects = () => {
     pinnedIdxRef.current = pinnedIdx;
   }, [pinnedIdx]);
 
-  // Generate High-Res 2D Canvas Texture with Sharp Edges, Rich Content & Official Icons
+  // Generate High-Res 2D Canvas Texture with Modern Typography, Sleek Buttons & Lucide Icons
   // isExpanded = false: In-Carousel View (Big bold typography, fills entire space, high impact)
-  // isExpanded = true: Clicked View (Deep architectural details, highlights, full tech stack)
+  // isExpanded = true: Clicked View (Deep architectural details, highlights, full tech stack, enlarged typography)
   const createCardFaceTexture = useCallback((proj, isLight = false, isExpanded = false) => {
     const canvas = document.createElement('canvas');
     canvas.width = 640;
@@ -229,6 +229,10 @@ export const Projects = () => {
 
     const img = new Image();
     img.src = proj.image;
+
+    // Modern Stylish Font Stacks
+    const FONT_HEAD = '"Space Grotesk", "Plus Jakarta Sans", -apple-system, sans-serif';
+    const FONT_BODY = '"Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
     const drawRoundRect = (ctx, x, y, w, h, r) => {
       ctx.beginPath();
@@ -245,57 +249,55 @@ export const Projects = () => {
     };
 
     const drawActionButtons = (ctx, isLight, btnY, btnH) => {
-      // Button 1: GitHub (Official Octocat Icon + Text)
       const b1X = 24;
       const b1W = 285;
-      const r = 10;
+      const b2X = 331;
+      const b2W = 285;
+      const r = 12;
 
+      // ==========================================
+      // BUTTON 1: GitHub repo
+      // ==========================================
       drawRoundRect(ctx, b1X, btnY, b1W, btnH, r);
       if (isLight) {
+        // Modern elevated white card with crisp slate border
         ctx.fillStyle = '#ffffff';
         ctx.fill();
-        ctx.strokeStyle = '#0f172a';
+        ctx.strokeStyle = '#cbd5e1';
         ctx.lineWidth = 1.4;
         ctx.stroke();
       } else {
-        const btnGrad = ctx.createLinearGradient(b1X, btnY, b1X, btnY + btnH);
-        btnGrad.addColorStop(0, 'rgba(30, 41, 59, 0.92)');
-        btnGrad.addColorStop(1, 'rgba(15, 23, 42, 0.98)');
-        ctx.fillStyle = btnGrad;
+        // Modern obsidian card: clean deep slate without outdated glossy split-shades
+        ctx.fillStyle = '#090e17';
         ctx.fill();
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
-        ctx.lineWidth = 1.6;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+        ctx.lineWidth = 1.4;
         ctx.stroke();
-
-        ctx.save();
-        ctx.beginPath();
-        drawRoundRect(ctx, b1X + 2, btnY + 2, b1W - 4, btnH / 2 - 2, 8);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
-        ctx.fill();
-        ctx.restore();
       }
 
-      // Official GitHub Octocat
+      // Official GitHub Octocat Icon (Crisp vector fill)
       ctx.save();
-      ctx.translate(b1X + 22, btnY + 14);
+      ctx.translate(b1X + 22, btnY + 16);
       ctx.scale(1.35, 1.35);
       ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
       ctx.fill(new Path2D('M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z'));
       ctx.restore();
 
-      ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
-      ctx.font = 'bold 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText('Complete GitHub', b1X + 58, btnY + 32);
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('↗', b1X + b1W - 26, btnY + 32);
+      // Text: "GitHub repo"
+      ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
+      ctx.font = `bold 16.5px ${FONT_HEAD}`;
+      ctx.fillText('GitHub repo', b1X + 58, btnY + 34);
+      ctx.fillStyle = isLight ? '#64748b' : 'rgba(255, 255, 255, 0.65)';
+      ctx.font = `bold 16px ${FONT_HEAD}`;
+      ctx.fillText('↗', b1X + b1W - 26, btnY + 34);
 
-      // Button 2: Live Demo (Official Globe Icon + Text)
-      const b2X = 331;
-      const b2W = 285;
-
+      // ==========================================
+      // BUTTON 2: Live Demo
+      // ==========================================
       drawRoundRect(ctx, b2X, btnY, b2W, btnH, r);
       if (isLight) {
-        const demoGradLight = ctx.createLinearGradient(b2X, btnY, b2X, btnY + btnH);
+        // Clean modern sapphire gradient
+        const demoGradLight = ctx.createLinearGradient(b2X, btnY, b2X + b2W, btnY + btnH);
         demoGradLight.addColorStop(0, '#2563eb');
         demoGradLight.addColorStop(1, '#1d4ed8');
         ctx.fillStyle = demoGradLight;
@@ -303,44 +305,37 @@ export const Projects = () => {
         ctx.strokeStyle = '#1e40af';
         ctx.lineWidth = 1.4;
         ctx.stroke();
-
-        ctx.save();
-        ctx.beginPath();
-        drawRoundRect(ctx, b2X + 2, btnY + 2, b2W - 4, btnH / 2 - 2, 8);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
-        ctx.fill();
-        ctx.restore();
       } else {
-        const demoGrad = ctx.createLinearGradient(b2X, btnY, b2X, btnY + btnH);
+        // Modern electric cyber cyan-to-indigo gradient
+        const demoGrad = ctx.createLinearGradient(b2X, btnY, b2X + b2W, btnY + btnH);
         demoGrad.addColorStop(0, '#0284c7');
-        demoGrad.addColorStop(1, '#1d4ed8');
+        demoGrad.addColorStop(0.55, '#2563eb');
+        demoGrad.addColorStop(1, '#4f46e5');
         ctx.fillStyle = demoGrad;
         ctx.fill();
-        ctx.strokeStyle = '#38bdf8';
-        ctx.lineWidth = 1.8;
+        ctx.strokeStyle = 'rgba(147, 197, 253, 0.50)';
+        ctx.lineWidth = 1.4;
         ctx.stroke();
-
-        ctx.save();
-        ctx.beginPath();
-        drawRoundRect(ctx, b2X + 2, btnY + 2, b2W - 4, btnH / 2 - 2, 8);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
-        ctx.fill();
-        ctx.restore();
       }
 
-      // Official Globe Icon
+      // Modern Lucide External Link Icon (App Window + Dynamic Launch Arrow)
       ctx.save();
-      ctx.translate(b2X + 26, btnY + 15);
-      ctx.scale(1.20, 1.20);
-      ctx.fillStyle = '#ffffff';
-      ctx.fill(new Path2D('M10 2a8 8 0 100 16 8 8 0 000-16zm6.93 7h-2.95a12.7 12.7 0 00-1.18-4.2A6.02 6.02 0 0116.93 9zM10 3.05c.87 1.42 1.5 3.54 1.7 5.95H8.3c.2-2.41.83-4.53 1.7-5.95zM4.02 9h2.95c.24-1.6.66-3.08 1.18-4.2A6.02 6.02 0 004.02 9zm-.95 2c0 .34.03.67.08 1h3.1c-.05-.33-.08-.66-.08-1s.03-.67.08-1h-3.1c-.05.33-.08.66-.08 1zm1.15 3h2.95c.42 1.35.95 2.5 1.58 3.38A6.02 6.02 0 014.22 14zm4.08 0h3.4c-.2 2.41-.83 4.53-1.7 5.95-.87-1.42-1.5-3.54-1.7-5.95zm5.55 3.38c.63-.88 1.16-2.03 1.58-3.38h2.95a6.02 6.02 0 01-4.53 3.38zM15.83 12c.05.33.08.66.08 1s-.03.67-.08 1h3.1c.05-.33.08-.66.08-1s-.03-.67-.08-1h-3.1z'));
+      ctx.translate(b2X + 22, btnY + 16);
+      ctx.scale(0.92, 0.92);
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2.4;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke(new Path2D('M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6 M15 3h6v6 M10 14L21 3'));
       ctx.restore();
 
+      // Text: "Live Demo"
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 16.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText('Live Demo', b2X + 62, btnY + 32);
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('↗', b2X + b2W - 26, btnY + 32);
+      ctx.font = `bold 16.5px ${FONT_HEAD}`;
+      ctx.fillText('Live Demo', b2X + 58, btnY + 34);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+      ctx.font = `bold 16px ${FONT_HEAD}`;
+      ctx.fillText('↗', b2X + b2W - 26, btnY + 34);
     };
 
     const drawContent = () => {
@@ -356,7 +351,7 @@ export const Projects = () => {
         ctx.fillStyle = bgGradLight;
         ctx.fillRect(0, 0, 640, 800);
 
-        // Soft ambient perimeter shadow (physical separation from #f8fafc page background)
+        // Soft ambient perimeter shadow (physical separation from page background)
         ctx.strokeStyle = 'rgba(15, 23, 42, 0.07)';
         ctx.lineWidth = 1;
         ctx.strokeRect(0.5, 0.5, 639, 799);
@@ -483,12 +478,12 @@ export const Projects = () => {
         ctx.arc(chipX + 14, chipY + 14, 4.5, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
-        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 12px ${FONT_HEAD}`;
         ctx.fillText('LIVE DEPLOYMENT', chipX + 26, chipY + 18.5);
 
         // Floating Category Chip (Top-Right)
         const catText = (proj.subtitle || 'FULL-STACK SYSTEM').replace(/^\/\/\s*/, '');
-        ctx.font = 'bold 11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 11.5px ${FONT_HEAD}`;
         const catW = ctx.measureText(catText).width + 24;
         const catX = fx + fw - catW - 14;
         drawRoundRect(ctx, catX, chipY, catW, 28, 14);
@@ -500,14 +495,14 @@ export const Projects = () => {
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
         ctx.fillText(catText, catX + 12, chipY + 18.5);
 
-        // Title: 32px Bold (High Contrast)
+        // Title: Bold stylish display typography
         ctx.fillStyle = isLight ? '#020617' : '#ffffff';
-        ctx.font = 'bold 32px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 32px ${FONT_HEAD}`;
         ctx.fillText(proj.title, 24, 335);
 
-        // Tagline / Headline: 16px font
+        // Tagline / Headline
         ctx.fillStyle = isLight ? '#0f172a' : '#94a3b8';
-        ctx.font = '600 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `600 16px ${FONT_BODY}`;
         ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 362);
 
         // Bento Tile 1: Problem & Purpose Card
@@ -526,20 +521,20 @@ export const Projects = () => {
 
         // Tile Header Label
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
-        ctx.font = 'bold 12.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 12.5px ${FONT_HEAD}`;
         ctx.fillText('PROBLEM SOLVED & PURPOSE', 38, bentoY + 28);
 
         // Tile Body Lines (WCAG AAA High Contrast)
         ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
-        ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 15px ${FONT_BODY}`;
         ctx.fillText(proj.summary1 || proj.whyBuilt1 || '', 38, bentoY + 54);
         ctx.fillStyle = isLight ? '#1e293b' : '#cbd5e1';
-        ctx.font = '500 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `500 15px ${FONT_BODY}`;
         ctx.fillText(proj.summary2 || proj.whyBuilt2 || '', 38, bentoY + 80);
 
         // Technologies Header
         ctx.fillStyle = isLight ? '#0369a1' : '#38bdf8';
-        ctx.font = 'bold 12.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 12.5px ${FONT_HEAD}`;
         ctx.fillText('CORE TECHNOLOGIES', 26, 514);
 
         // Tech Tags
@@ -547,7 +542,7 @@ export const Projects = () => {
         const row1 = allTags.slice(0, 4);
         let rx1 = 24;
         row1.forEach(tag => {
-          ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+          ctx.font = `bold 13px ${FONT_BODY}`;
           const tw = ctx.measureText(tag).width + 20;
           drawRoundRect(ctx, rx1, 526, tw, 28, 7);
           ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
@@ -564,7 +559,7 @@ export const Projects = () => {
         if (row2.length > 0) {
           let rx2 = 24;
           row2.forEach(tag => {
-            ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.font = `bold 13px ${FONT_BODY}`;
             const tw = ctx.measureText(tag).width + 20;
             drawRoundRect(ctx, rx2, 562, tw, 28, 7);
             ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
@@ -579,10 +574,10 @@ export const Projects = () => {
         }
 
         // Action Buttons
-        drawActionButtons(ctx, isLight, 636, 50);
+        drawActionButtons(ctx, isLight, 638, 54);
 
         // Click to expand capsule hint
-        drawRoundRect(ctx, 110, 712, 420, 32, 16);
+        drawRoundRect(ctx, 110, 714, 420, 32, 16);
         ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(56, 189, 248, 0.10)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#bfdbfe' : 'rgba(56, 189, 248, 0.35)';
@@ -590,17 +585,17 @@ export const Projects = () => {
         ctx.stroke();
 
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
-        ctx.font = 'bold 12.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 12.5px ${FONT_HEAD}`;
         ctx.textAlign = 'center';
-        ctx.fillText('CLICK CARD TO EXPAND ARCHITECTURE & DETAILS →', 320, 733);
+        ctx.fillText('CLICK CARD TO EXPAND ARCHITECTURE & DETAILS →', 320, 735);
         ctx.textAlign = 'left';
 
       } else {
         // ==========================================
-        // 3. EXPANDED VIEW: High-Density Bento Architecture
+        // 3. EXPANDED VIEW: High-Density Bento Architecture with Larger Typography
         // ==========================================
         const fw = 596;
-        const fh = 165;
+        const fh = 160;
         const fx = 22;
         const fy = 16;
         const r = 10;
@@ -661,12 +656,12 @@ export const Projects = () => {
         ctx.arc(chipX + 13, chipY + 13, 4, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
-        ctx.font = 'bold 11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 11.5px ${FONT_HEAD}`;
         ctx.fillText('SYSTEM ARCHITECTURE VIEW', chipX + 24, chipY + 17);
 
         // Floating Chip (Right: Category)
         const catTextExp = (proj.subtitle || 'PRODUCTION READY').replace(/^\/\/\s*/, '');
-        ctx.font = 'bold 11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 11.5px ${FONT_HEAD}`;
         const catWExp = ctx.measureText(catTextExp).width + 24;
         const catXExp = fx + fw - catWExp - 12;
         drawRoundRect(ctx, catXExp, chipY, catWExp, 26, 13);
@@ -678,15 +673,15 @@ export const Projects = () => {
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
         ctx.fillText(catTextExp, catXExp + 12, chipY + 17);
 
-        // Title: 30px Bold (Full width, no overlapping badge)
+        // Title: 33px Bold Display Font
         ctx.fillStyle = isLight ? '#020617' : '#ffffff';
-        ctx.font = 'bold 30px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.title, 24, 212);
+        ctx.font = `bold 33px ${FONT_HEAD}`;
+        ctx.fillText(proj.title, 24, 208);
 
-        // Bento 1: Problem Solved Tile
-        const t1Y = 226;
-        const t1H = 76;
-        drawRoundRect(ctx, 24, t1Y, 592, t1H, 8);
+        // Bento 1: Problem Solved Tile (Taller height + Bigger Font)
+        const t1Y = 222;
+        const t1H = 88;
+        drawRoundRect(ctx, 24, t1Y, 592, t1H, 9);
         ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(15, 23, 42, 0.65)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
@@ -697,20 +692,20 @@ export const Projects = () => {
         ctx.fillRect(24, t1Y + 10, 4, t1H - 20);
 
         ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
-        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText('WHY I BUILT THIS (THE PROBLEM)', 38, t1Y + 22);
+        ctx.font = `bold 13px ${FONT_HEAD}`;
+        ctx.fillText('WHY I BUILT THIS (THE PROBLEM)', 38, t1Y + 24);
 
         ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
-        ctx.font = 'bold 14.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.whyBuilt1 || '', 38, t1Y + 44);
+        ctx.font = `bold 16.5px ${FONT_BODY}`;
+        ctx.fillText(proj.whyBuilt1 || '', 38, t1Y + 50);
         ctx.fillStyle = isLight ? '#1e293b' : '#cbd5e1';
-        ctx.font = '500 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.whyBuilt2 || '', 38, t1Y + 64);
+        ctx.font = `500 15.5px ${FONT_BODY}`;
+        ctx.fillText(proj.whyBuilt2 || '', 38, t1Y + 74);
 
-        // Bento 2: Architecture & Data Flow
-        const t2Y = 310;
-        const t2H = 76;
-        drawRoundRect(ctx, 24, t2Y, 592, t2H, 8);
+        // Bento 2: Architecture & Data Flow (Taller height + Bigger Font)
+        const t2Y = 320;
+        const t2H = 88;
+        drawRoundRect(ctx, 24, t2Y, 592, t2H, 9);
         ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(15, 23, 42, 0.65)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
@@ -721,20 +716,20 @@ export const Projects = () => {
         ctx.fillRect(24, t2Y + 10, 4, t2H - 20);
 
         ctx.fillStyle = isLight ? '#6d28d9' : '#c084fc';
-        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText('SYSTEM ARCHITECTURE & DATA FLOW', 38, t2Y + 22);
+        ctx.font = `bold 13px ${FONT_HEAD}`;
+        ctx.fillText('SYSTEM ARCHITECTURE & DATA FLOW', 38, t2Y + 24);
 
         ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
-        ctx.font = 'bold 14.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.arch1 || '', 38, t2Y + 44);
+        ctx.font = `bold 16.5px ${FONT_BODY}`;
+        ctx.fillText(proj.arch1 || '', 38, t2Y + 50);
         ctx.fillStyle = isLight ? '#1e293b' : '#cbd5e1';
-        ctx.font = '500 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(proj.arch2 || '', 38, t2Y + 64);
+        ctx.font = `500 15.5px ${FONT_BODY}`;
+        ctx.fillText(proj.arch2 || '', 38, t2Y + 74);
 
-        // Bento 3: Key Highlights
-        const t3Y = 392;
-        const t3H = 96;
-        drawRoundRect(ctx, 24, t3Y, 592, t3H, 8);
+        // Bento 3: Key Highlights (Taller height + Bigger Font)
+        const t3Y = 418;
+        const t3H = 108;
+        drawRoundRect(ctx, 24, t3Y, 592, t3H, 9);
         ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(15, 23, 42, 0.65)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.10)';
@@ -745,61 +740,61 @@ export const Projects = () => {
         ctx.fillRect(24, t3Y + 10, 4, t3H - 20);
 
         ctx.fillStyle = isLight ? '#047857' : '#34d399';
-        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText('KEY ENGINEERING HIGHLIGHTS', 38, t3Y + 22);
+        ctx.font = `bold 13px ${FONT_HEAD}`;
+        ctx.fillText('KEY ENGINEERING HIGHLIGHTS', 38, t3Y + 24);
 
         ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
-        ctx.font = 'bold 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText(`✦ ${proj.highlight1 || ''}`, 38, t3Y + 43);
-        ctx.fillText(`✦ ${proj.highlight2 || ''}`, 38, t3Y + 63);
-        ctx.fillText(`✦ ${proj.highlight3 || ''}`, 38, t3Y + 83);
+        ctx.font = `bold 15.5px ${FONT_BODY}`;
+        ctx.fillText(`✦ ${proj.highlight1 || ''}`, 38, t3Y + 49);
+        ctx.fillText(`✦ ${proj.highlight2 || ''}`, 38, t3Y + 72);
+        ctx.fillText(`✦ ${proj.highlight3 || ''}`, 38, t3Y + 95);
 
         // Tech Stack Header
         ctx.fillStyle = isLight ? '#0369a1' : '#38bdf8';
-        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText('COMPREHENSIVE TECH STACK', 26, 508);
+        ctx.font = `bold 13px ${FONT_HEAD}`;
+        ctx.fillText('COMPREHENSIVE TECH STACK', 26, 544);
 
-        // Tags
+        // Tags (Taller 30px badges + 14px Font)
         const allTags = proj.tags || ['React', 'Node.js', 'Express'];
         const row1 = allTags.slice(0, 4);
         let rx1 = 24;
         row1.forEach(tag => {
-          ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-          const tw = ctx.measureText(tag).width + 18;
-          drawRoundRect(ctx, rx1, 520, tw, 26, 6);
+          ctx.font = `bold 14px ${FONT_BODY}`;
+          const tw = ctx.measureText(tag).width + 20;
+          drawRoundRect(ctx, rx1, 556, tw, 30, 7);
           ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
           ctx.fill();
           ctx.strokeStyle = isLight ? '#bae6fd' : 'rgba(56, 189, 248, 0.45)';
           ctx.lineWidth = 1.2;
           ctx.stroke();
           ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
-          ctx.fillText(tag, rx1 + 9, 538);
-          rx1 += tw + 8;
+          ctx.fillText(tag, rx1 + 10, 577);
+          rx1 += tw + 9;
         });
 
         const row2 = allTags.slice(4, 8);
         if (row2.length > 0) {
           let rx2 = 24;
           row2.forEach(tag => {
-            ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-            const tw = ctx.measureText(tag).width + 18;
-            drawRoundRect(ctx, rx2, 554, tw, 26, 6);
+            ctx.font = `bold 14px ${FONT_BODY}`;
+            const tw = ctx.measureText(tag).width + 20;
+            drawRoundRect(ctx, rx2, 594, tw, 30, 7);
             ctx.fillStyle = isLight ? '#f0f9ff' : 'rgba(15, 23, 42, 0.95)';
             ctx.fill();
             ctx.strokeStyle = isLight ? '#bae6fd' : 'rgba(56, 189, 248, 0.45)';
             ctx.lineWidth = 1.2;
             ctx.stroke();
             ctx.fillStyle = isLight ? '#0369a1' : '#f8fafc';
-            ctx.fillText(tag, rx2 + 9, 572);
-            rx2 += tw + 8;
+            ctx.fillText(tag, rx2 + 10, 615);
+            rx2 += tw + 9;
           });
         }
 
-        // Action Buttons
-        drawActionButtons(ctx, isLight, 636, 50);
+        // Action Buttons: Modern GitHub repo and Live Demo
+        drawActionButtons(ctx, isLight, 638, 54);
 
-        // Close hint capsule
-        drawRoundRect(ctx, 150, 712, 340, 32, 16);
+        // Close hint capsule (Framing bottom with zero awkward gap)
+        drawRoundRect(ctx, 130, 708, 380, 36, 18);
         ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.07)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.20)';
@@ -807,9 +802,9 @@ export const Projects = () => {
         ctx.stroke();
 
         ctx.fillStyle = isLight ? '#334155' : '#94a3b8';
-        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.font = `bold 13px ${FONT_HEAD}`;
         ctx.textAlign = 'center';
-        ctx.fillText('✕ CLICK ANYWHERE ON CARD TO MINIMIZE', 320, 732.5);
+        ctx.fillText('✕ CLICK ANYWHERE ON CARD TO MINIMIZE', 320, 731);
         ctx.textAlign = 'left';
       }
     };
@@ -1106,6 +1101,14 @@ export const Projects = () => {
       }
     };
     updateThemeColorsRef.current = updateThemeColors;
+
+    if (typeof document !== 'undefined' && document.fonts) {
+      document.fonts.ready.then(() => {
+        if (updateThemeColorsRef.current) {
+          updateThemeColorsRef.current(document.documentElement.getAttribute('data-theme') === 'light');
+        }
+      });
+    }
     updateThemeColors(initialIsLight);
 
     const themeObserver = new MutationObserver((mutations) => {
@@ -1255,7 +1258,7 @@ export const Projects = () => {
           const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
           if (faceHits.length > 0 && faceHits[0].uv) {
             const uv = faceHits[0].uv;
-            if (uv.y >= 0.115 && uv.y <= 0.210) {
+            if (uv.y >= 0.125 && uv.y <= 0.210) {
               if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
                 canvas.style.cursor = 'pointer';
                 return;
@@ -1293,7 +1296,7 @@ export const Projects = () => {
         const faceHits = raycaster.intersectObject(faceMeshes[hitIdx], false);
         if (faceHits.length > 0 && faceHits[0].uv) {
           const uv = faceHits[0].uv;
-          if (uv.y >= 0.115 && uv.y <= 0.210) {
+          if (uv.y >= 0.125 && uv.y <= 0.210) {
             if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
               canvas.style.cursor = 'pointer';
               return;
@@ -1363,11 +1366,11 @@ export const Projects = () => {
 
         if (pinnedHits.length > 0) {
           // Click was directly ON the pinned/expanded card!
-          // 1. Check if clicked the Complete GitHub or Live Demo action button:
+          // 1. Check if clicked GitHub repo or Live Demo action button:
           const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
           if (faceHits.length > 0 && faceHits[0].uv) {
             const uv = faceHits[0].uv;
-            if (uv.y >= 0.115 && uv.y <= 0.210) {
+            if (uv.y >= 0.125 && uv.y <= 0.210) {
               if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
                 const ghUrl = ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
                 const demoUrl = ORDERED_PROJECTS[currentPinned].demo || ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
@@ -1416,7 +1419,7 @@ export const Projects = () => {
         const faceHits = raycaster.intersectObject(faceMeshes[hitIdx], false);
         if (faceHits.length > 0 && faceHits[0].uv) {
           const uv = faceHits[0].uv;
-          if (uv.y >= 0.115 && uv.y <= 0.210) {
+          if (uv.y >= 0.125 && uv.y <= 0.210) {
             if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
               const ghUrl = proj.github || 'https://github.com/Mohandgl53';
               const demoUrl = proj.demo || proj.github || 'https://github.com/Mohandgl53';
