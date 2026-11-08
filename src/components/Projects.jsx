@@ -3,17 +3,16 @@ import * as THREE from 'three';
 import { PROJECTS_DATA } from '../data/projectsData';
 import { useTheme } from '../context/ThemeContext';
 
-// Map projects into the exact 7 spatial slots with rich, valuable engineering breakdowns
+// Map projects into the exact 7 spatial slots with clear, plain-English storytelling
 const ENHANCED_PROJECTS = [
   {
     id: 'proj-3',
     title: 'LocalMind AI',
-    subtitle: '// AUTONOMOUS AI AGENT',
-    whatIs: 'Privacy-first autonomous desktop agent for offline code synthesis & terminal tools.',
-    problem1: 'Stops intellectual property leaks to third-party cloud LLMs',
-    problem2: 'by running completely offline with local model weights.',
-    arch1: 'Ollama local runtime (Qwen 2.5) with strict human approval gates',
-    arch2: 'before filesystem writes & bash executions via MCP protocol.',
+    subtitle: '// OFFLINE AUTONOMOUS AI AGENT',
+    whyBuilt1: 'Source code and company secrets often leak when using cloud AI.',
+    whyBuilt2: 'I built this so developers can run an AI assistant 100% locally.',
+    whatDoes1: 'Inspects code, executes terminal tasks, and automates workflows.',
+    whatDoes2: 'Requires human approval before modifying files or running commands.',
     tags: ['Python', 'Ollama', 'Qwen 2.5', 'MCP'],
     github: 'https://github.com/Mohandgl53/LocalMind-AI',
     demo: 'https://github.com/Mohandgl53/LocalMind-AI'
@@ -21,25 +20,23 @@ const ENHANCED_PROJECTS = [
   {
     id: 'proj-4',
     title: 'AptIQ (AppIQ)',
-    subtitle: '// EVALUATION PLATFORM',
-    whatIs: 'High-concurrency aptitude assessment & proctored testing engine.',
-    problem1: 'Prevents cheating and test state loss during unstable campus',
-    problem2: 'Wi-Fi networks with automated ACID grading pipeline.',
-    arch1: 'Sub-50ms test state persistence, granular role-based JWT auth',
-    arch2: 'and dynamic question-set generation with analytics dashboard.',
-    tags: ['React', 'TypeScript', 'Node.js', 'Express'],
+    subtitle: '// ONLINE TESTING & ASSESSMENT ENGINE',
+    whyBuilt1: 'Campus recruitment exams crash on weak Wi-Fi, losing student answers.',
+    whyBuilt2: 'I built this to guarantee zero data loss and automated grading.',
+    whatDoes1: 'Delivers timed coding & aptitude tests with sub-50ms auto-saving.',
+    whatDoes2: 'Detects anti-cheat tab switches and gives teachers instant analytics.',
+    tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
   },
   {
     id: 'proj-1',
     title: 'Zugora',
-    subtitle: '// AI CHESS ENGINE',
-    whatIs: 'AI-powered tactical chess coach & opening move analysis suite.',
-    problem1: 'Provides instant, zero-latency grandmaster move analysis',
-    problem2: 'without recurring cloud server compute expenses.',
-    arch1: 'Stockfish 19 Lite offloaded to browser Web Worker for non-blocking',
-    arch2: '60 FPS UI with interactive lesson viewer and puzzle engine.',
+    subtitle: '// AI CHESS COACH & ANALYSIS SUITE',
+    whyBuilt1: 'Online chess analysis tools often require slow cloud servers or fees.',
+    whyBuilt2: 'I built this to give students free, instant grandmaster analysis.',
+    whatDoes1: 'Runs Stockfish 19 locally in browser Web Workers with zero UI lag.',
+    whatDoes2: 'Includes interactive tactics lessons, puzzle challenges, and match review.',
     tags: ['React', 'TypeScript', 'Stockfish 19', 'Workers'],
     github: 'https://github.com/Mohandgl53/zugora-chess',
     demo: 'https://github.com/Mohandgl53/zugora-chess'
@@ -47,12 +44,11 @@ const ENHANCED_PROJECTS = [
   {
     id: 'proj-2',
     title: 'MahathRishi Traders',
-    subtitle: '// BILINGUAL COMMERCE',
-    whatIs: 'Regional wholesale & retail distribution commerce platform.',
-    problem1: 'Handles intense seasonal festival shopping volume with dynamic',
-    problem2: 'bulk-tiered pricing and real-time inventory locking.',
-    arch1: 'Native Tamil/English localization, stock reservation pipeline,',
-    arch2: 'and secure UPI & Razorpay payment gateway integrations.',
+    subtitle: '// BILINGUAL REGIONAL WHOLESALE STORE',
+    whyBuilt1: 'Wholesalers struggle with manual ledgers and chaotic festival demand.',
+    whyBuilt2: 'I built this to automate bulk ordering and prevent stock shortages.',
+    whatDoes1: 'Offers tiered volume pricing, real-time stock locking, and UPI payments.',
+    whatDoes2: 'Features native Tamil and English support tailored for local merchants.',
     tags: ['React', 'Vite', 'Tailwind', 'Razorpay'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
@@ -60,38 +56,35 @@ const ENHANCED_PROJECTS = [
   {
     id: 'proj-7',
     title: 'Focus YT',
-    subtitle: '// ACADEMIC WORKSPACE',
-    whatIs: 'Distraction-free YouTube academic study & lecture workspace.',
-    problem1: 'Eliminates addictive recommendation rabbit holes, shorts,',
-    problem2: 'and comment noise during focused university lecture viewing.',
-    arch1: 'Manifest V3 content scripts strip algorithmic distraction elements',
-    arch2: 'while injecting timestamped markdown lecture notes.',
+    subtitle: '// DISTRACTION-FREE STUDY WORKSPACE',
+    whyBuilt1: 'Students get distracted by clickbait, shorts, and comments on YouTube.',
+    whyBuilt2: 'I built this to turn YouTube into a calm, focused learning environment.',
+    whatDoes1: 'Hides distracting sidebars, recommended feeds, and comment sections.',
+    whatDoes2: 'Integrates a clean markdown notepad synced to video timestamps.',
     tags: ['TypeScript', 'Manifest V3', 'Chrome API', 'Vite'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
   },
   {
-    id: 'proj-6',
+    id: 'proj-5',
     title: 'Real-Time Chat',
-    subtitle: '// WEBSOCKET MESSENGER',
-    whatIs: 'High-concurrency live messaging app with Apple iMessage aesthetic.',
-    problem1: 'Delivers sub-second bidirectional message sync with zero dropped',
-    problem2: 'packets and real-time typing indicators & presence states.',
-    arch1: 'Socket.io event routing, ImageKit CDN media pipeline,',
-    arch2: 'Clerk session management, and MongoDB message persistence.',
+    subtitle: '// WEBSOCKET MESSENGER (iMESSAGE STYLE)',
+    whyBuilt1: 'Most chat apps are heavy and slow with delayed notification sync.',
+    whyBuilt2: 'I built this to deliver instant messaging with an Apple iMessage feel.',
+    whatDoes1: 'Provides sub-second live chat, typing indicators, and user presence.',
+    whatDoes2: 'Handles fast image uploads via CDN and secure session authentication.',
     tags: ['React', 'Socket.io', 'Node.js', 'ImageKit'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
   },
   {
-    id: 'proj-5',
+    id: 'proj-6',
     title: 'TaskFlow',
-    subtitle: '// COMMERCE LIFECYCLE',
-    whatIs: 'Production-ready commerce engine with shopping cart & order fulfillment.',
-    problem1: 'Prevents race conditions in concurrent inventory reduction',
-    problem2: 'and guarantees idempotent checkout transaction safety.',
-    arch1: 'Prisma ORM transactions with row-level locks, JWT auth sessions,',
-    arch2: 'and atomic MongoDB order state lifecycle management.',
+    subtitle: '// COMMERCE & ORDER MANAGEMENT ENGINE',
+    whyBuilt1: 'Online stores often oversell stock and fail checkouts during flash sales.',
+    whyBuilt2: 'I built this to ensure rock-solid order fulfillment and data safety.',
+    whatDoes1: 'Manages shopping carts, atomic checkout transactions, and order states.',
+    whatDoes2: 'Uses row-level database locking to prevent inventory race conditions.',
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
@@ -204,9 +197,9 @@ export const Projects = () => {
         ctx.strokeRect(5, 5, 630, 790);
       }
 
-      // 2. Sharp Device Viewport for Project Screenshot
+      // 2. Sharp Device Viewport for Project Screenshot (Larger, prominent & clear!)
       const fw = 592;
-      const fh = 240;
+      const fh = 280;
       const fx = 24;
       const fy = 20;
 
@@ -214,7 +207,7 @@ export const Projects = () => {
       ctx.fillRect(fx, fy, fw, fh);
 
       // Mini browser window header bar
-      const barH = 28;
+      const barH = 26;
       ctx.fillStyle = isLight ? '#f1f5f9' : '#0b1326';
       ctx.fillRect(fx, fy, fw, barH);
 
@@ -230,20 +223,36 @@ export const Projects = () => {
       dots.forEach((color, i) => {
         ctx.fillStyle = color;
         ctx.beginPath();
-        ctx.arc(fx + 18 + i * 14, fy + barH / 2, 3.5, 0, Math.PI * 2);
+        ctx.arc(fx + 16 + i * 14, fy + barH / 2, 3.5, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // Screenshot image
+      // Browser URL bar simulation inside header
+      ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.06)';
+      ctx.fillRect(fx + 70, fy + 5, fw - 90, barH - 10);
+      ctx.fillStyle = isLight ? '#94a3b8' : '#64748b';
+      ctx.font = '10px monospace';
+      ctx.fillText(`https://${proj.id}.mohankumar.dev`, fx + 80, fy + 17);
+
+      // Screenshot image: draw large, sharp and centered!
       try {
         if (img.complete && img.naturalWidth > 0) {
-          const availW = fw - 16;
+          const availW = fw - 12;
           const availH = fh - barH - 8;
-          const scale = Math.min(availW / img.naturalWidth, availH / img.naturalHeight);
-          const dw = img.naturalWidth * scale;
-          const dh = img.naturalHeight * scale;
-          const dx = fx + (fw - dw) / 2;
-          const dy = fy + barH + (availH - dh) / 2 + 4;
+          const imgAspect = img.naturalWidth / img.naturalHeight;
+          const frameAspect = availW / availH;
+          let dw, dh, dx, dy;
+          if (imgAspect > frameAspect) {
+            dw = availW;
+            dh = availW / imgAspect;
+            dx = fx + 6;
+            dy = fy + barH + 4 + (availH - dh) / 2;
+          } else {
+            dh = availH;
+            dw = availH * imgAspect;
+            dx = fx + 6 + (availW - dw) / 2;
+            dy = fy + barH + 4;
+          }
           ctx.drawImage(img, dx, dy, dw, dh);
         }
       } catch (e) {}
@@ -252,48 +261,51 @@ export const Projects = () => {
       ctx.lineWidth = 1.5;
       ctx.strokeRect(fx, fy, fw, fh);
 
-      // 3. Project Title & Category
+      // 3. Project Title & Domain Subtitle
       ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
-      ctx.font = 'bold 26px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText(proj.title, 24, 296);
+      ctx.font = 'bold 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillText(proj.title, 24, 335);
 
       ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-      ctx.font = 'bold 12px monospace';
-      ctx.fillText(proj.subtitle || '// FEATURED PROJECT', 24, 320);
-
-      // 4. What It Is (Clear definition)
-      ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
-      ctx.font = '600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText(proj.whatIs || proj.desc1 || '', 24, 350);
-
-      // 5. The Challenge / Problem Solved
-      ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
       ctx.font = 'bold 11px monospace';
-      ctx.fillText('// PROBLEM SOLVED', 24, 384);
+      ctx.fillText(proj.subtitle || '// FEATURED PROJECT', 24, 356);
 
-      ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
+      // Subtle dividing line
+      ctx.strokeStyle = isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.08)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(24, 368);
+      ctx.lineTo(616, 368);
+      ctx.stroke();
+
+      // 4. WHY I BUILT THIS (The Real-World Motivation)
+      ctx.fillStyle = isLight ? '#475569' : '#38bdf8';
+      ctx.font = 'bold 11px monospace';
+      ctx.fillText('// WHY I BUILT THIS', 24, 390);
+
+      ctx.fillStyle = isLight ? '#1e293b' : '#e2e8f0';
       ctx.font = '400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      if (proj.problem1) ctx.fillText(proj.problem1, 24, 406);
-      if (proj.problem2) ctx.fillText(proj.problem2, 24, 426);
+      if (proj.whyBuilt1) ctx.fillText(proj.whyBuilt1, 24, 412);
+      if (proj.whyBuilt2) ctx.fillText(proj.whyBuilt2, 24, 432);
 
-      // 6. Architecture & How it Works
-      ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+      // 5. WHAT IT DOES & MAIN FOCUS (Practical Value & Main Capability)
+      ctx.fillStyle = isLight ? '#475569' : '#38bdf8';
       ctx.font = 'bold 11px monospace';
-      ctx.fillText('// ARCHITECTURE & EXECUTION', 24, 458);
+      ctx.fillText('// WHAT IT DOES & MAIN FOCUS', 24, 466);
 
-      ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
+      ctx.fillStyle = isLight ? '#1e293b' : '#e2e8f0';
       ctx.font = '400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      if (proj.arch1) ctx.fillText(proj.arch1, 24, 480);
-      if (proj.arch2) ctx.fillText(proj.arch2, 24, 500);
+      if (proj.whatDoes1) ctx.fillText(proj.whatDoes1, 24, 488);
+      if (proj.whatDoes2) ctx.fillText(proj.whatDoes2, 24, 508);
 
-      // 7. Tech Stack Badges
+      // 6. KEY TECHNOLOGIES
       ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
       ctx.font = 'bold 11px monospace';
-      ctx.fillText('// CORE TECH', 24, 532);
+      ctx.fillText('// CORE TECHNOLOGIES', 24, 542);
 
       const tags = proj.tags && proj.tags.length > 0 ? proj.tags.slice(0, 4) : ['React', 'Node.js'];
       let tx = 24;
-      const ty = 548;
+      const ty = 556;
 
       tags.forEach((tag) => {
         ctx.font = 'bold 12px monospace';
@@ -301,17 +313,17 @@ export const Projects = () => {
         ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
         ctx.fillRect(tx, ty, tw, 28);
 
-        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.35)';
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
         ctx.lineWidth = 1.2;
         ctx.strokeRect(tx, ty, tw, 28);
 
-        ctx.fillStyle = isLight ? '#0f172a' : '#e2e8f0';
+        ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
         ctx.fillText(tag, tx + 10, ty + 18);
         tx += tw + 10;
       });
 
-      // 8. Professional Action Buttons with Official Vector Icons (Lifted well above floor!)
-      const btnY = 630;
+      // 7. Professional Action Buttons with Official Vector Icons
+      const btnY = 618;
       const btnH = 48;
 
       // Button 1: Official GitHub Octocat Icon + Text
@@ -321,7 +333,7 @@ export const Projects = () => {
       ctx.fillStyle = isLight ? '#ffffff' : 'rgba(255, 255, 255, 0.08)';
       ctx.fillRect(b1X, btnY, b1W, btnH);
 
-      ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(255, 255, 255, 0.25)';
+      ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(255, 255, 255, 0.28)';
       ctx.lineWidth = 1.5;
       ctx.strokeRect(b1X, btnY, b1W, btnH);
 
@@ -813,7 +825,7 @@ export const Projects = () => {
           const proj = ORDERED_PROJECTS[hitIdx];
 
           // Check if clicked the small GitHub or Live Demo button directly on the card
-          if (hit && hit.uv && hit.uv.y >= 0.145 && hit.uv.y <= 0.225) {
+          if (hit && hit.uv && hit.uv.y >= 0.150 && hit.uv.y <= 0.245) {
             if (hit.uv.x >= 0.035 && hit.uv.x <= 0.295) {
               const ghUrl = proj.github || 'https://github.com/Mohandgl53';
               window.open(ghUrl, '_blank', 'noopener,noreferrer');
@@ -951,15 +963,15 @@ export const Projects = () => {
         const pinT = card.userData.pinAnim;
 
         if (pinT > 0.0005) {
-          // FRONT-CENTER EXPANSION (NOT AT THE BACK OF THE CYLINDER!):
-          // Positioned prominently at the front center of the cylinder (Z = circleR + 0.45, Y = 1.48)
-          // Directly closest to the viewer, completely in front, 100% visible, with buttons clickable.
-          const targetWorldPos = new THREE.Vector3(0, 1.48, circleR + 0.45);
+          // FRONT-CENTER ELEVATED EXPANSION (EXPANDS UPWARD ABOVE THE FLOOR!):
+          // Positioned prominently at front center and elevated upward (Z = circleR + 0.40, Y = 1.95)
+          // Eliminates bottom canvas clipping, keeping all text, content, and buttons comfortably in view.
+          const targetWorldPos = new THREE.Vector3(0, 1.95, circleR + 0.40);
           const targetLocalPos = targetWorldPos.clone();
           targetLocalPos.applyAxisAngle(new THREE.Vector3(0, 1, 0), -carouselGroup.rotation.y);
 
           card.position.lerpVectors(defaultPos, targetLocalPos, pinT);
-          const s = 1.0 + pinT * 0.20;
+          const s = 1.0 + pinT * 0.22;
           card.scale.set(s, s, s);
 
           // Card faces directly toward camera (world rotY = 0)
