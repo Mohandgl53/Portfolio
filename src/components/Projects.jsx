@@ -682,6 +682,69 @@ export const Projects = () => {
       return true;
     };
 
+    // Precise card picking: combines 3D raycasting with projected screen center proximity.
+    // Guarantees that ANY card clicked anywhere on the carousel is accurately selected without front-card interference.
+    const getCardAtPointer = (clientX, clientY) => {
+      const rect = canvas.getBoundingClientRect();
+      const pointerVec = new THREE.Vector2(
+        ((clientX - rect.left) / rect.width) * 2 - 1,
+        -(((clientY - rect.top) / rect.height) * 2 - 1)
+      );
+      raycaster.setFromCamera(pointerVec, camera);
+
+      const hitCandidates = [];
+      for (const group of cardMeshes) {
+        hitCandidates.push(...group.children);
+      }
+      const intersects = raycaster.intersectObjects(hitCandidates, false);
+
+      const hitCardIndices = new Set();
+      for (const h of intersects) {
+        if (h.object && h.object.parent && typeof h.object.parent.userData.index === 'number') {
+          hitCardIndices.add(h.object.parent.userData.index);
+        }
+      }
+
+      let bestIdx = null;
+      let bestDist = Infinity;
+      let bestHit = null;
+
+      // 1. If ray directly penetrates cards: pick the one whose 2D screen center is closest to user click
+      if (hitCardIndices.size > 0) {
+        for (const idx of hitCardIndices) {
+          const card = cardMeshes[idx];
+          const pos = new THREE.Vector3();
+          card.getWorldPosition(pos);
+          pos.project(camera);
+          const sx = (pos.x + 1) * 0.5 * rect.width;
+          const sy = (1 - pos.y) * 0.5 * rect.height;
+          const dist = Math.hypot(sx - (clientX - rect.left), sy - (clientY - rect.top));
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestIdx = idx;
+          }
+        }
+        bestHit = intersects.find(h => h.object.parent && h.object.parent.userData.index === bestIdx);
+      } else {
+        // 2. Fallback for border/flank clicks: pick closest card within generous screen radius
+        for (let idx = 0; idx < 7; idx++) {
+          const card = cardMeshes[idx];
+          const pos = new THREE.Vector3();
+          card.getWorldPosition(pos);
+          pos.project(camera);
+          const sx = (pos.x + 1) * 0.5 * rect.width;
+          const sy = (1 - pos.y) * 0.5 * rect.height;
+          const dist = Math.hypot(sx - (clientX - rect.left), sy - (clientY - rect.top));
+          if (dist < bestDist && dist < 200) {
+            bestDist = dist;
+            bestIdx = idx;
+          }
+        }
+      }
+
+      return { hitIdx: bestIdx, hit: bestHit };
+    };
+
     const handlePointerMove = (e) => {
       if (isDraggingRef.current) {
         const deltaX = e.clientX - dragStartXRef.current;
@@ -692,18 +755,9 @@ export const Projects = () => {
         return;
       }
 
-      getPointerNDC(e.clientX, e.clientY);
-      raycaster.setFromCamera(pointer, camera);
+      const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
 
-      const hitCandidates = [];
-      for (const group of cardMeshes) {
-        hitCandidates.push(...group.children);
-      }
-      const intersects = raycaster.intersectObjects(hitCandidates, false);
-
-      if (intersects.length > 0) {
-        const parentGroup = intersects[0].object.parent;
-        const hitIdx = parentGroup.userData.index;
+      if (hitIdx !== null) {
         if (hoveredIdxRef.current !== hitIdx) {
           setHoveredIdx(hitIdx);
         }
@@ -720,23 +774,12 @@ export const Projects = () => {
     const handlePointerDown = (e) => {
       if (e.button !== 0) return;
 
-      getPointerNDC(e.clientX, e.clientY);
-      raycaster.setFromCamera(pointer, camera);
-
-      const hitCandidates = [];
-      for (const group of cardMeshes) {
-        hitCandidates.push(...group.children);
-      }
-      const intersects = raycaster.intersectObjects(hitCandidates, false);
-      const isCardHit = intersects.length > 0;
+      const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
+      const isCardHit = hitIdx !== null;
 
       // Allow click on ANY card in 3D scene, or drag inside the carousel zone
       if (!isCardHit && !isInsideCarouselZone(e.clientX, e.clientY)) {
         return;
-      }
-
-      if (pinnedIdxRef.current !== null) {
-        setPinnedIdx(null);
       }
 
       isDraggingRef.current = true;
@@ -764,23 +807,13 @@ export const Projects = () => {
         const nearestSlot = Math.round(targetRotationRef.current / slotAngle);
         targetRotationRef.current = nearestSlot * slotAngle;
       } else {
-        getPointerNDC(e.clientX, e.clientY);
-        raycaster.setFromCamera(pointer, camera);
+        const { hitIdx, hit } = getCardAtPointer(e.clientX, e.clientY);
 
-        const hitCandidates = [];
-        for (const group of cardMeshes) {
-          hitCandidates.push(...group.children);
-        }
-        const intersects = raycaster.intersectObjects(hitCandidates, false);
-
-        if (intersects.length > 0) {
-          const hit = intersects[0];
-          const parentGroup = hit.object.parent;
-          const hitIdx = parentGroup.userData.index;
+        if (hitIdx !== null) {
           const proj = ORDERED_PROJECTS[hitIdx];
 
           // Check if clicked the small GitHub or Live Demo button directly on the card
-          if (hit.uv && hit.uv.y >= 0.145 && hit.uv.y <= 0.225) {
+          if (hit && hit.uv && hit.uv.y >= 0.145 && hit.uv.y <= 0.225) {
             if (hit.uv.x >= 0.035 && hit.uv.x <= 0.295) {
               const ghUrl = proj.github || 'https://github.com/Mohandgl53';
               window.open(ghUrl, '_blank', 'noopener,noreferrer');
