@@ -3,41 +3,68 @@ import * as THREE from 'three';
 import { PROJECTS_DATA } from '../data/projectsData';
 import { useTheme } from '../context/ThemeContext';
 
-// Map projects into the exact 7 spatial slots with clear, plain-English storytelling
+// Map projects into the exact 7 spatial slots with dual Carousel (punchy) & Expanded (deep) storytelling
 const ENHANCED_PROJECTS = [
   {
     id: 'proj-3',
     title: 'LocalMind AI',
-    subtitle: '// OFFLINE AUTONOMOUS AI AGENT',
-    whyBuilt1: 'Source code and company secrets often leak when using cloud AI.',
-    whyBuilt2: 'I built this so developers can run an AI assistant 100% locally.',
-    whatDoes1: 'Inspects code, executes terminal tasks, and automates workflows.',
-    whatDoes2: 'Requires human approval before modifying files or running commands.',
-    tags: ['Python', 'Ollama', 'Qwen 2.5', 'MCP'],
+    subtitle: '// PRIVACY-FIRST AUTONOMOUS AI AGENT',
+    statusBadge: 'ARCHITECTURE FINALIZED',
+    // Carousel View (Big, punchy typography)
+    headline: 'Offline Autonomous AI Desktop Assistant',
+    summary1: 'Runs local Ollama & Qwen 2.5 models directly on device.',
+    summary2: 'Guarantees 100% code privacy with strict human-in-the-loop tool gates.',
+    // Expanded View (Deep engineering details)
+    whyBuilt1: 'Source code and company secrets often leak when using cloud AI providers.',
+    whyBuilt2: 'I built this so developers can run an autonomous AI assistant 100% locally.',
+    arch1: 'Local Ollama runtime with Qwen 2.5 weights integrated with MCP protocol.',
+    arch2: 'Enforces strict interactive human approval before bash execution or file writes.',
+    highlight1: '100% offline code synthesis with zero telemetry or API token costs',
+    highlight2: 'Model Context Protocol (MCP) tool integration for developer environments',
+    highlight3: 'Human approval gates prevent accidental filesystem or command mutations',
+    tags: ['Python', 'Ollama', 'Qwen 2.5', 'FastAPI', 'LangGraph', 'MCP Protocol'],
     github: 'https://github.com/Mohandgl53/LocalMind-AI',
     demo: 'https://github.com/Mohandgl53/LocalMind-AI'
   },
   {
     id: 'proj-4',
     title: 'AptIQ (AppIQ)',
-    subtitle: '// ONLINE TESTING & ASSESSMENT ENGINE',
+    subtitle: '// ONLINE ASSESSMENT & EXAM SYSTEM',
+    statusBadge: 'PRODUCTION READY',
+    // Carousel View
+    headline: 'High-Concurrency Timed Examination Platform',
+    summary1: 'Sub-50ms test state persistence & anti-cheat tab-switch tracking.',
+    summary2: 'Guarantees zero answer loss during unstable college campus Wi-Fi.',
+    // Expanded View
     whyBuilt1: 'Campus recruitment exams crash on weak Wi-Fi, losing student answers.',
     whyBuilt2: 'I built this to guarantee zero data loss and automated grading.',
-    whatDoes1: 'Delivers timed coding & aptitude tests with sub-50ms auto-saving.',
-    whatDoes2: 'Detects anti-cheat tab switches and gives teachers instant analytics.',
-    tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
+    arch1: 'Sub-50ms auto-saving telemetry via WebSockets and REST persistence in PostgreSQL.',
+    arch2: 'Role-based JWT access for students/instructors with dynamic question generation.',
+    highlight1: 'Sub-50ms continuous auto-save prevents student test loss on disconnects',
+    highlight2: 'Anti-cheat tab-switch detection & real-time telemetry monitoring',
+    highlight3: 'Instant automated grading engine with instructor analytics dashboards',
+    tags: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Prisma ORM', 'Socket.io', 'JWT Auth'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
   },
   {
     id: 'proj-1',
     title: 'Zugora',
-    subtitle: '// AI CHESS COACH & ANALYSIS SUITE',
+    subtitle: '// AI CHESS COACH & TACTICAL ANALYSIS',
+    statusBadge: 'EVOLVING BUILD',
+    // Carousel View
+    headline: 'Browser-Based AI Chess Coach & Tactical Suite',
+    summary1: 'Runs Stockfish 19 Lite locally in Web Workers with zero UI lag.',
+    summary2: 'Provides instant grandmaster position analysis without cloud subscriptions.',
+    // Expanded View
     whyBuilt1: 'Online chess analysis tools often require slow cloud servers or fees.',
     whyBuilt2: 'I built this to give students free, instant grandmaster analysis.',
-    whatDoes1: 'Runs Stockfish 19 locally in browser Web Workers with zero UI lag.',
-    whatDoes2: 'Includes interactive tactics lessons, puzzle challenges, and match review.',
-    tags: ['React', 'TypeScript', 'Stockfish 19', 'Workers'],
+    arch1: 'Stockfish 19 Lite compiled to WASM and offloaded to an isolated Web Worker.',
+    arch2: 'Non-blocking 60 FPS UI with interactive lessons, puzzles, and game history.',
+    highlight1: 'Web Worker offloaded engine prevents UI thread locks during deep search',
+    highlight2: 'Sub-50ms move evaluations with blunder detection & tactical lessons',
+    highlight3: 'PostgreSQL + Prisma ORM game persistence with Redis cache layer',
+    tags: ['React', 'TypeScript', 'Stockfish 19', 'Web Workers', 'Node.js', 'PostgreSQL', 'Redis', 'chess.js'],
     github: 'https://github.com/Mohandgl53/zugora-chess',
     demo: 'https://github.com/Mohandgl53/zugora-chess'
   },
@@ -45,11 +72,20 @@ const ENHANCED_PROJECTS = [
     id: 'proj-2',
     title: 'MahathRishi Traders',
     subtitle: '// BILINGUAL REGIONAL WHOLESALE STORE',
+    statusBadge: 'PRODUCTION READY',
+    // Carousel View
+    headline: 'High-Throughput Regional Commerce Platform',
+    summary1: 'Handles peak festival order surges with real-time stock locking.',
+    summary2: 'Full Tamil and English localization with secure UPI & Razorpay payments.',
+    // Expanded View
     whyBuilt1: 'Wholesalers struggle with manual ledgers and chaotic festival demand.',
     whyBuilt2: 'I built this to automate bulk ordering and prevent stock shortages.',
-    whatDoes1: 'Offers tiered volume pricing, real-time stock locking, and UPI payments.',
-    whatDoes2: 'Features native Tamil and English support tailored for local merchants.',
-    tags: ['React', 'Vite', 'Tailwind', 'Razorpay'],
+    arch1: 'React frontend with Node/Express API, Redis inventory locks, and PostgreSQL.',
+    arch2: 'Razorpay and direct UPI payment gateway integrations with SMS alerts.',
+    highlight1: 'Native English and Tamil bilingual localization for regional merchants',
+    highlight2: 'Atomic inventory reservation pipeline stops festival overselling',
+    highlight3: 'Tiered wholesale bulk discounts & automated invoice generation',
+    tags: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'Razorpay & UPI'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
   },
@@ -57,23 +93,41 @@ const ENHANCED_PROJECTS = [
     id: 'proj-7',
     title: 'Focus YT',
     subtitle: '// DISTRACTION-FREE STUDY WORKSPACE',
+    statusBadge: 'PRODUCTION READY',
+    // Carousel View
+    headline: 'Academic Chrome Extension for Focused Study',
+    summary1: 'Manifest V3 scripts hide recommendation rabbit holes & shorts.',
+    summary2: 'Embeds a clean markdown note-taking notebook synced to video timestamps.',
+    // Expanded View
     whyBuilt1: 'Students get distracted by clickbait, shorts, and comments on YouTube.',
     whyBuilt2: 'I built this to turn YouTube into a calm, focused learning environment.',
-    whatDoes1: 'Hides distracting sidebars, recommended feeds, and comment sections.',
-    whatDoes2: 'Integrates a clean markdown notepad synced to video timestamps.',
-    tags: ['TypeScript', 'Manifest V3', 'Chrome API', 'Vite'],
+    arch1: 'Zero-latency Manifest V3 content scripts strip algorithmic UI elements.',
+    arch2: 'Injects an interactive timestamp-synced markdown note editor into the DOM.',
+    highlight1: 'Strips recommendations, shorts, and comments without slowing browser',
+    highlight2: 'Timestamp-synced markdown lecture notes exported to study files',
+    highlight3: 'Lightweight memory footprint built with TypeScript and Vite bundler',
+    tags: ['TypeScript', 'Manifest V3', 'Chrome APIs', 'Vite', 'Markdown Engine', 'CSS3'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
   },
   {
     id: 'proj-5',
     title: 'Real-Time Chat',
-    subtitle: '// WEBSOCKET MESSENGER (iMESSAGE STYLE)',
+    subtitle: '// HIGH-CONCURRENCY WEBSOCKET MESSENGER',
+    statusBadge: 'PRODUCTION READY',
+    // Carousel View
+    headline: 'Live Instant Messaging with Apple iMessage Aesthetic',
+    summary1: 'Sub-second WebSocket messaging, Clerk auth & ImageKit CDN.',
+    summary2: 'Instant live typing indicators, presence tracking & fluid responsive UI.',
+    // Expanded View
     whyBuilt1: 'Most chat apps are heavy and slow with delayed notification sync.',
     whyBuilt2: 'I built this to deliver instant messaging with an Apple iMessage feel.',
-    whatDoes1: 'Provides sub-second live chat, typing indicators, and user presence.',
-    whatDoes2: 'Handles fast image uploads via CDN and secure session authentication.',
-    tags: ['React', 'Socket.io', 'Node.js', 'ImageKit'],
+    arch1: 'Socket.io bidirectional event routing with Clerk enterprise session auth.',
+    arch2: 'ImageKit CDN for real-time media compression and MongoDB message history.',
+    highlight1: 'Sub-second WebSocket bi-directional messaging with zero dropped frames',
+    highlight2: 'Enterprise user authentication & route security powered by Clerk',
+    highlight3: 'ImageKit CDN for instantaneous photo optimization and delivery',
+    tags: ['React', 'Socket.io', 'Clerk Auth', 'ImageKit CDN', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
   },
@@ -81,11 +135,20 @@ const ENHANCED_PROJECTS = [
     id: 'proj-6',
     title: 'TaskFlow',
     subtitle: '// COMMERCE & ORDER MANAGEMENT ENGINE',
+    statusBadge: 'PRODUCTION READY',
+    // Carousel View
+    headline: 'Full-Stack Commerce & Order Fulfillment Engine',
+    summary1: 'Shopping cart persistence, atomic checkouts & order fulfillment.',
+    summary2: 'Row-level database locking eliminates inventory race conditions.',
+    // Expanded View
     whyBuilt1: 'Online stores often oversell stock and fail checkouts during flash sales.',
     whyBuilt2: 'I built this to ensure rock-solid order fulfillment and data safety.',
-    whatDoes1: 'Manages shopping carts, atomic checkout transactions, and order states.',
-    whatDoes2: 'Uses row-level database locking to prevent inventory race conditions.',
-    tags: ['React', 'Node.js', 'Express', 'MongoDB'],
+    arch1: 'React stateful cart persistence with Node/Express RESTful micro-controllers.',
+    arch2: 'Row-level inventory database locks and atomic MongoDB order state lifecycle.',
+    highlight1: 'Row-level database locking prevents race conditions and overselling',
+    highlight2: 'Persistent shopping cart state preserved across sessions & tabs',
+    highlight3: 'Comprehensive order tracking pipeline from placement to delivery',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'REST APIs', 'JWT Sessions', 'Tailwind CSS', 'MERN Stack'],
     github: 'https://github.com/Mohandgl53',
     demo: 'https://github.com/Mohandgl53'
   }
@@ -139,6 +202,7 @@ export const Projects = () => {
   const pinnedIdxRef = useRef(null);
   const isDraggingRef = useRef(false);
   const dragStartXRef = useRef(0);
+  const dragStartYRef = useRef(0);
   const dragStartRotRef = useRef(0);
   const hasDraggedRef = useRef(false);
   const wheelSnapTimerRef = useRef(null);
@@ -153,7 +217,9 @@ export const Projects = () => {
   }, [pinnedIdx]);
 
   // Generate High-Res 2D Canvas Texture with Sharp Edges, Rich Content & Official Icons
-  const createCardFaceTexture = useCallback((proj, isLight = false) => {
+  // isExpanded = false: In-Carousel View (Big bold typography, fills entire space, high impact)
+  // isExpanded = true: Clicked View (Deep architectural details, highlights, full tech stack)
+  const createCardFaceTexture = useCallback((proj, isLight = false, isExpanded = false) => {
     const canvas = document.createElement('canvas');
     canvas.width = 640;
     canvas.height = 800;
@@ -163,10 +229,62 @@ export const Projects = () => {
     const img = new Image();
     img.src = proj.image;
 
+    const drawActionButtons = (ctx, isLight, btnY, btnH) => {
+      // Button 1: GitHub (Official Octocat Icon + Text)
+      const b1X = 24;
+      const b1W = 285;
+
+      ctx.fillStyle = isLight ? '#ffffff' : 'rgba(255, 255, 255, 0.08)';
+      ctx.fillRect(b1X, btnY, b1W, btnH);
+
+      ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(255, 255, 255, 0.30)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(b1X, btnY, b1W, btnH);
+
+      // Official GitHub Octocat
+      ctx.save();
+      ctx.translate(b1X + 24, btnY + 16);
+      ctx.scale(1.25, 1.25);
+      ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
+      ctx.fill(new Path2D('M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z'));
+      ctx.restore();
+
+      ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
+      ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillText('Complete GitHub', b1X + 56, btnY + 33);
+      ctx.font = 'bold 15px sans-serif';
+      ctx.fillText('↗', b1X + b1W - 28, btnY + 32);
+
+      // Button 2: Live Demo (Official Globe Icon + Text)
+      const b2X = 331;
+      const b2W = 285;
+
+      ctx.fillStyle = isLight ? '#2563eb' : '#0284c7';
+      ctx.fillRect(b2X, btnY, b2W, btnH);
+
+      ctx.strokeStyle = isLight ? '#1d4ed8' : '#38bdf8';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(b2X, btnY, b2W, btnH);
+
+      // Official Globe Icon
+      ctx.save();
+      ctx.translate(b2X + 28, btnY + 16);
+      ctx.scale(1.10, 1.10);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill(new Path2D('M10 2a8 8 0 100 16 8 8 0 000-16zm6.93 7h-2.95a12.7 12.7 0 00-1.18-4.2A6.02 6.02 0 0116.93 9zM10 3.05c.87 1.42 1.5 3.54 1.7 5.95H8.3c.2-2.41.83-4.53 1.7-5.95zM4.02 9h2.95c.24-1.6.66-3.08 1.18-4.2A6.02 6.02 0 004.02 9zm-.95 2c0 .34.03.67.08 1h3.1c-.05-.33-.08-.66-.08-1s.03-.67.08-1h-3.1c-.05.33-.08.66-.08 1zm1.15 3h2.95c.42 1.35.95 2.5 1.58 3.38A6.02 6.02 0 014.22 14zm4.08 0h3.4c-.2 2.41-.83 4.53-1.7 5.95-.87-1.42-1.5-3.54-1.7-5.95zm5.55 3.38c.63-.88 1.16-2.03 1.58-3.38h2.95a6.02 6.02 0 01-4.53 3.38zM15.83 12c.05.33.08.66.08 1s-.03.67-.08 1h3.1c.05-.33.08-.66.08-1s-.03-.67-.08-1h-3.1z'));
+      ctx.restore();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillText('Live Demo', b2X + 62, btnY + 33);
+      ctx.font = 'bold 15px sans-serif';
+      ctx.fillText('↗', b2X + b2W - 28, btnY + 32);
+    };
+
     const drawContent = () => {
       ctx.clearRect(0, 0, 640, 800);
 
-      // 1. Sharp Outer Plate with Matching Theme Colors
+      // 1. Outer Plate with Matching Theme Colors
       if (isLight) {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, 640, 800);
@@ -188,7 +306,7 @@ export const Projects = () => {
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, 640, 800);
 
-        ctx.strokeStyle = 'rgba(56, 189, 248, 0.75)';
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.85)';
         ctx.lineWidth = 3.5;
         ctx.strokeRect(1.5, 1.5, 637, 797);
 
@@ -197,184 +315,310 @@ export const Projects = () => {
         ctx.strokeRect(5, 5, 630, 790);
       }
 
-      // 2. Sharp Device Viewport for Project Screenshot (Larger, prominent & clear!)
-      const fw = 592;
-      const fh = 280;
-      const fx = 24;
-      const fy = 20;
+      if (!isExpanded) {
+        // ==========================================
+        // CAROUSEL VIEW: Big Typography, Bold & Fills Entire Space!
+        // ==========================================
+        const fw = 592;
+        const fh = 300;
+        const fx = 24;
+        const fy = 20;
 
-      ctx.fillStyle = isLight ? '#f8fafc' : '#030712';
-      ctx.fillRect(fx, fy, fw, fh);
+        // Viewport background
+        ctx.fillStyle = isLight ? '#f8fafc' : '#030712';
+        ctx.fillRect(fx, fy, fw, fh);
 
-      // Mini browser window header bar
-      const barH = 26;
-      ctx.fillStyle = isLight ? '#f1f5f9' : '#0b1326';
-      ctx.fillRect(fx, fy, fw, barH);
+        // Header bar
+        const barH = 28;
+        ctx.fillStyle = isLight ? '#f1f5f9' : '#0b1326';
+        ctx.fillRect(fx, fy, fw, barH);
 
-      ctx.strokeStyle = isLight ? '#e2e8f0' : '#1e293b';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(fx, fy + barH);
-      ctx.lineTo(fx + fw, fy + barH);
-      ctx.stroke();
-
-      // Window control dots
-      const dots = ['#ef4444', '#eab308', '#22c55e'];
-      dots.forEach((color, i) => {
-        ctx.fillStyle = color;
+        ctx.strokeStyle = isLight ? '#e2e8f0' : '#1e293b';
+        ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.arc(fx + 16 + i * 14, fy + barH / 2, 3.5, 0, Math.PI * 2);
-        ctx.fill();
-      });
+        ctx.moveTo(fx, fy + barH);
+        ctx.lineTo(fx + fw, fy + barH);
+        ctx.stroke();
 
-      // Browser URL bar simulation inside header
-      ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.06)';
-      ctx.fillRect(fx + 70, fy + 5, fw - 90, barH - 10);
-      ctx.fillStyle = isLight ? '#94a3b8' : '#64748b';
-      ctx.font = '10px monospace';
-      ctx.fillText(`https://${proj.id}.mohankumar.dev`, fx + 80, fy + 17);
+        // Control dots
+        const dots = ['#ef4444', '#eab308', '#22c55e'];
+        dots.forEach((color, i) => {
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(fx + 16 + i * 14, fy + barH / 2, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+        });
 
-      // Screenshot image: draw large, sharp and centered!
-      try {
-        if (img.complete && img.naturalWidth > 0) {
-          const availW = fw - 12;
-          const availH = fh - barH - 8;
-          const imgAspect = img.naturalWidth / img.naturalHeight;
-          const frameAspect = availW / availH;
-          let dw, dh, dx, dy;
-          if (imgAspect > frameAspect) {
-            dw = availW;
-            dh = availW / imgAspect;
-            dx = fx + 6;
-            dy = fy + barH + 4 + (availH - dh) / 2;
-          } else {
-            dh = availH;
-            dw = availH * imgAspect;
-            dx = fx + 6 + (availW - dw) / 2;
-            dy = fy + barH + 4;
+        // URL badge
+        ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.06)';
+        ctx.fillRect(fx + 70, fy + 5, fw - 90, barH - 10);
+        ctx.fillStyle = isLight ? '#94a3b8' : '#64748b';
+        ctx.font = '11px monospace';
+        ctx.fillText(`https://${proj.id}.mohankumar.dev`, fx + 80, fy + 18);
+
+        // Screenshot
+        try {
+          if (img.complete && img.naturalWidth > 0) {
+            const availW = fw - 12;
+            const availH = fh - barH - 8;
+            const imgAspect = img.naturalWidth / img.naturalHeight;
+            const frameAspect = availW / availH;
+            let dw, dh, dx, dy;
+            if (imgAspect > frameAspect) {
+              dw = availW;
+              dh = availW / imgAspect;
+              dx = fx + 6;
+              dy = fy + barH + 4 + (availH - dh) / 2;
+            } else {
+              dh = availH;
+              dw = availH * imgAspect;
+              dx = fx + 6 + (availW - dw) / 2;
+              dy = fy + barH + 4;
+            }
+            ctx.drawImage(img, dx, dy, dw, dh);
           }
-          ctx.drawImage(img, dx, dy, dw, dh);
+        } catch (e) {}
+
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.18)';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(fx, fy, fw, fh);
+
+        // Title & Category
+        ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
+        ctx.font = 'bold 28px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.title, 24, 358);
+
+        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
+        ctx.font = 'bold 12.5px monospace';
+        ctx.fillText(proj.subtitle || '// FEATURED PROJECT', 24, 384);
+
+        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.08)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(24, 398);
+        ctx.lineTo(616, 398);
+        ctx.stroke();
+
+        // Big Headline & Motivations
+        ctx.fillStyle = isLight ? '#0f172a' : '#f8fafc';
+        ctx.font = 'bold 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 428);
+
+        ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
+        ctx.font = '500 14.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.summary1 || proj.whyBuilt1 || '', 24, 455);
+        ctx.fillText(proj.summary2 || proj.whyBuilt2 || '', 24, 478);
+
+        // Core Technologies (2 rows of clean badge pills)
+        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('// CORE TECHNOLOGIES', 24, 510);
+
+        const allTags = proj.tags || ['React', 'Node.js', 'Express'];
+        // Row 1
+        const row1 = allTags.slice(0, 4);
+        let rx1 = 24;
+        row1.forEach(tag => {
+          ctx.font = 'bold 12px monospace';
+          const tw = ctx.measureText(tag).width + 18;
+          ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
+          ctx.fillRect(rx1, 524, tw, 26);
+          ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
+          ctx.lineWidth = 1.2;
+          ctx.strokeRect(rx1, 524, tw, 26);
+          ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
+          ctx.fillText(tag, rx1 + 9, 542);
+          rx1 += tw + 8;
+        });
+
+        // Row 2
+        const row2 = allTags.slice(4, 8);
+        if (row2.length > 0) {
+          let rx2 = 24;
+          row2.forEach(tag => {
+            ctx.font = 'bold 12px monospace';
+            const tw = ctx.measureText(tag).width + 18;
+            ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
+            ctx.fillRect(rx2, 558, tw, 26);
+            ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
+            ctx.lineWidth = 1.2;
+            ctx.strokeRect(rx2, 558, tw, 26);
+            ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
+            ctx.fillText(tag, rx2 + 9, 576);
+            rx2 += tw + 8;
+          });
         }
-      } catch (e) {}
 
-      ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.18)';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(fx, fy, fw, fh);
+        // Action Buttons
+        drawActionButtons(ctx, isLight, 645, 52);
 
-      // 3. Project Title & Domain Subtitle
-      ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
-      ctx.font = 'bold 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText(proj.title, 24, 335);
+        // Helpful hint at bottom
+        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('✦ CLICK CARD TO EXPAND ARCHITECTURE & DETAILS', 320, 735);
+        ctx.textAlign = 'left';
 
-      ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
-      ctx.font = 'bold 11px monospace';
-      ctx.fillText(proj.subtitle || '// FEATURED PROJECT', 24, 356);
+      } else {
+        // ==========================================
+        // EXPANDED VIEW: Deep Details, Architecture, Highlights & Full Stack!
+        // ==========================================
+        const fw = 592;
+        const fh = 220;
+        const fx = 24;
+        const fy = 18;
 
-      // Subtle dividing line
-      ctx.strokeStyle = isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.08)';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(24, 368);
-      ctx.lineTo(616, 368);
-      ctx.stroke();
+        ctx.fillStyle = isLight ? '#f8fafc' : '#030712';
+        ctx.fillRect(fx, fy, fw, fh);
 
-      // 4. WHY I BUILT THIS (The Real-World Motivation)
-      ctx.fillStyle = isLight ? '#475569' : '#38bdf8';
-      ctx.font = 'bold 11px monospace';
-      ctx.fillText('// WHY I BUILT THIS', 24, 390);
+        const barH = 26;
+        ctx.fillStyle = isLight ? '#f1f5f9' : '#0b1326';
+        ctx.fillRect(fx, fy, fw, barH);
 
-      ctx.fillStyle = isLight ? '#1e293b' : '#e2e8f0';
-      ctx.font = '400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      if (proj.whyBuilt1) ctx.fillText(proj.whyBuilt1, 24, 412);
-      if (proj.whyBuilt2) ctx.fillText(proj.whyBuilt2, 24, 432);
+        ctx.strokeStyle = isLight ? '#e2e8f0' : '#1e293b';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(fx, fy + barH);
+        ctx.lineTo(fx + fw, fy + barH);
+        ctx.stroke();
 
-      // 5. WHAT IT DOES & MAIN FOCUS (Practical Value & Main Capability)
-      ctx.fillStyle = isLight ? '#475569' : '#38bdf8';
-      ctx.font = 'bold 11px monospace';
-      ctx.fillText('// WHAT IT DOES & MAIN FOCUS', 24, 466);
+        const dots = ['#ef4444', '#eab308', '#22c55e'];
+        dots.forEach((color, i) => {
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(fx + 16 + i * 14, fy + barH / 2, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+        });
 
-      ctx.fillStyle = isLight ? '#1e293b' : '#e2e8f0';
-      ctx.font = '400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      if (proj.whatDoes1) ctx.fillText(proj.whatDoes1, 24, 488);
-      if (proj.whatDoes2) ctx.fillText(proj.whatDoes2, 24, 508);
+        ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.06)';
+        ctx.fillRect(fx + 70, fy + 5, fw - 90, barH - 10);
+        ctx.fillStyle = isLight ? '#94a3b8' : '#64748b';
+        ctx.font = '10px monospace';
+        ctx.fillText(`https://${proj.id}.mohankumar.dev · EXPANDED VIEW`, fx + 80, fy + 17);
 
-      // 6. KEY TECHNOLOGIES
-      ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
-      ctx.font = 'bold 11px monospace';
-      ctx.fillText('// CORE TECHNOLOGIES', 24, 542);
+        try {
+          if (img.complete && img.naturalWidth > 0) {
+            const availW = fw - 12;
+            const availH = fh - barH - 6;
+            const imgAspect = img.naturalWidth / img.naturalHeight;
+            const frameAspect = availW / availH;
+            let dw, dh, dx, dy;
+            if (imgAspect > frameAspect) {
+              dw = availW;
+              dh = availW / imgAspect;
+              dx = fx + 6;
+              dy = fy + barH + 3 + (availH - dh) / 2;
+            } else {
+              dh = availH;
+              dw = availH * imgAspect;
+              dx = fx + 6 + (availW - dw) / 2;
+              dy = fy + barH + 3;
+            }
+            ctx.drawImage(img, dx, dy, dw, dh);
+          }
+        } catch (e) {}
 
-      const tags = proj.tags && proj.tags.length > 0 ? proj.tags.slice(0, 4) : ['React', 'Node.js'];
-      let tx = 24;
-      const ty = 556;
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.18)';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(fx, fy, fw, fh);
 
-      tags.forEach((tag) => {
-        ctx.font = 'bold 12px monospace';
-        const tw = ctx.measureText(tag).width + 20;
-        ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
-        ctx.fillRect(tx, ty, tw, 28);
+        // Title & Status
+        ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
+        ctx.font = 'bold 26px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.title, 24, 276);
 
-        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
-        ctx.lineWidth = 1.2;
-        ctx.strokeRect(tx, ty, tw, 28);
+        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`${proj.subtitle || '// ARCHITECTURE'} · ${proj.statusBadge || 'VERIFIED'}`, 24, 298);
 
-        ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
-        ctx.fillText(tag, tx + 10, ty + 18);
-        tx += tw + 10;
-      });
+        ctx.strokeStyle = isLight ? '#e2e8f0' : 'rgba(255, 255, 255, 0.08)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(24, 308);
+        ctx.lineTo(616, 308);
+        ctx.stroke();
 
-      // 7. Professional Action Buttons with Official Vector Icons
-      const btnY = 618;
-      const btnH = 48;
+        // 1. WHY I BUILT THIS
+        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('// WHY I BUILT THIS (PROBLEM SOLVED)', 24, 328);
 
-      // Button 1: Official GitHub Octocat Icon + Text
-      const b1X = 24;
-      const b1W = 160;
+        ctx.fillStyle = isLight ? '#1e293b' : '#f1f5f9';
+        ctx.font = '400 13.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.whyBuilt1 || '', 24, 348);
+        ctx.fillText(proj.whyBuilt2 || '', 24, 368);
 
-      ctx.fillStyle = isLight ? '#ffffff' : 'rgba(255, 255, 255, 0.08)';
-      ctx.fillRect(b1X, btnY, b1W, btnH);
+        // 2. SYSTEM ARCHITECTURE & HOW IT WORKS
+        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('// SYSTEM ARCHITECTURE & HOW IT WORKS', 24, 396);
 
-      ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(255, 255, 255, 0.28)';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(b1X, btnY, b1W, btnH);
+        ctx.fillStyle = isLight ? '#1e293b' : '#f1f5f9';
+        ctx.font = '400 13.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(proj.arch1 || '', 24, 416);
+        ctx.fillText(proj.arch2 || '', 24, 436);
 
-      // Official GitHub Octocat Silhouette Path
-      ctx.save();
-      ctx.translate(b1X + 16, btnY + 14);
-      ctx.scale(1.25, 1.25);
-      ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
-      ctx.fill(new Path2D('M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z'));
-      ctx.restore();
+        // 3. KEY ENGINEERING HIGHLIGHTS
+        ctx.fillStyle = isLight ? '#2563eb' : '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('// KEY ENGINEERING HIGHLIGHTS', 24, 464);
 
-      ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
-      ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText('GitHub', b1X + 46, btnY + 30);
-      ctx.font = 'bold 14px sans-serif';
-      ctx.fillText('↗', b1X + 134, btnY + 29);
+        ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
+        ctx.font = '500 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText(`✦ ${proj.highlight1 || ''}`, 24, 484);
+        ctx.fillText(`✦ ${proj.highlight2 || ''}`, 24, 504);
+        ctx.fillText(`✦ ${proj.highlight3 || ''}`, 24, 524);
 
-      // Button 2: Official Live Demo / Globe Icon + Text
-      const b2X = 196;
-      const b2W = 175;
+        // 4. COMPREHENSIVE TECH STACK
+        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('// COMPREHENSIVE TECH STACK', 24, 552);
 
-      ctx.fillStyle = isLight ? '#2563eb' : '#0284c7';
-      ctx.fillRect(b2X, btnY, b2W, btnH);
+        const allTags = proj.tags || ['React', 'Node.js', 'Express'];
+        // Row 1
+        const row1 = allTags.slice(0, 4);
+        let rx1 = 24;
+        row1.forEach(tag => {
+          ctx.font = 'bold 12px monospace';
+          const tw = ctx.measureText(tag).width + 18;
+          ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
+          ctx.fillRect(rx1, 566, tw, 25);
+          ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
+          ctx.lineWidth = 1.2;
+          ctx.strokeRect(rx1, 566, tw, 25);
+          ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
+          ctx.fillText(tag, rx1 + 9, 583);
+          rx1 += tw + 8;
+        });
 
-      ctx.strokeStyle = isLight ? '#1d4ed8' : '#38bdf8';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(b2X, btnY, b2W, btnH);
+        // Row 2
+        const row2 = allTags.slice(4, 8);
+        if (row2.length > 0) {
+          let rx2 = 24;
+          row2.forEach(tag => {
+            ctx.font = 'bold 12px monospace';
+            const tw = ctx.measureText(tag).width + 18;
+            ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.90)';
+            ctx.fillRect(rx2, 598, tw, 25);
+            ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.40)';
+            ctx.lineWidth = 1.2;
+            ctx.strokeRect(rx2, 598, tw, 25);
+            ctx.fillStyle = isLight ? '#0f172a' : '#f1f5f9';
+            ctx.fillText(tag, rx2 + 9, 615);
+            rx2 += tw + 8;
+          });
+        }
 
-      // Official Globe / Live Launch Icon Path
-      ctx.save();
-      ctx.translate(b2X + 16, btnY + 14);
-      ctx.scale(1.05, 1.05);
-      ctx.fillStyle = '#ffffff';
-      ctx.fill(new Path2D('M10 2a8 8 0 100 16 8 8 0 000-16zm6.93 7h-2.95a12.7 12.7 0 00-1.18-4.2A6.02 6.02 0 0116.93 9zM10 3.05c.87 1.42 1.5 3.54 1.7 5.95H8.3c.2-2.41.83-4.53 1.7-5.95zM4.02 9h2.95c.24-1.6.66-3.08 1.18-4.2A6.02 6.02 0 004.02 9zm-.95 2c0 .34.03.67.08 1h3.1c-.05-.33-.08-.66-.08-1s.03-.67.08-1h-3.1c-.05.33-.08.66-.08 1zm1.15 3h2.95c.42 1.35.95 2.5 1.58 3.38A6.02 6.02 0 014.22 14zm4.08 0h3.4c-.2 2.41-.83 4.53-1.7 5.95-.87-1.42-1.5-3.54-1.7-5.95zm5.55 3.38c.63-.88 1.16-2.03 1.58-3.38h2.95a6.02 6.02 0 01-4.53 3.38zM15.83 12c.05.33.08.66.08 1s-.03.67-.08 1h3.1c.05-.33.08-.66.08-1s-.03-.67-.08-1h-3.1z'));
-      ctx.restore();
+        // Action Buttons
+        drawActionButtons(ctx, isLight, 645, 52);
 
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText('Live Demo', b2X + 46, btnY + 30);
-      ctx.font = 'bold 14px sans-serif';
-      ctx.fillText('↗', b2X + 150, btnY + 29);
+        // Close hint at bottom
+        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('✕ CLICK ANYWHERE ON CARD TO MINIMIZE', 320, 735);
+        ctx.textAlign = 'left';
+      }
     };
 
     if (img.complete) {
@@ -532,6 +776,14 @@ export const Projects = () => {
     const reflMeshes = [];
     const faceMeshes = [];
     const reflFaceMeshes = [];
+    const carouselTextures = [];
+    const expandedTextures = [];
+
+    // Pre-create both Carousel (bold/space-filling) and Expanded (deep architectural) textures
+    for (let i = 0; i < 7; i++) {
+      carouselTextures.push(createCardFaceTexture(ORDERED_PROJECTS[i], initialIsLight, false));
+      expandedTextures.push(createCardFaceTexture(ORDERED_PROJECTS[i], initialIsLight, true));
+    }
 
     // 7. Place Exactly Seven Upright Cards in the circular arrangement
     for (let i = 0; i < 7; i++) {
@@ -563,9 +815,9 @@ export const Projects = () => {
       cardGroup.add(edgeMesh);
 
       // 3. Project Face Canvas Texture
-      const faceTex = createCardFaceTexture(proj, initialIsLight);
+      const initialTex = (initialPin === i) ? expandedTextures[i] : carouselTextures[i];
       const faceMat = new THREE.MeshBasicMaterial({
-        map: faceTex,
+        map: initialTex,
         transparent: true,
         opacity: 0.98,
         side: THREE.FrontSide
@@ -582,7 +834,8 @@ export const Projects = () => {
         theta,
         proj,
         faceMesh,
-        pinAnim: initialPin === i ? 1.0 : 0
+        pinAnim: initialPin === i ? 1.0 : 0,
+        currentMode: initialPin === i ? 'expanded' : 'carousel'
       };
 
       carouselGroup.add(cardGroup);
@@ -598,7 +851,7 @@ export const Projects = () => {
       reflGroup.add(reflGlass);
 
       const reflFaceMat = new THREE.MeshBasicMaterial({
-        map: faceTex,
+        map: initialTex,
         transparent: true,
         opacity: initialIsLight ? 0.08 : 0.18,
         side: THREE.FrontSide
@@ -645,11 +898,13 @@ export const Projects = () => {
       }
 
       for (let i = 0; i < faceMeshes.length; i++) {
-        const tex = createCardFaceTexture(ORDERED_PROJECTS[i], isLight);
-        faceMeshes[i].material.map = tex;
+        carouselTextures[i] = createCardFaceTexture(ORDERED_PROJECTS[i], isLight, false);
+        expandedTextures[i] = createCardFaceTexture(ORDERED_PROJECTS[i], isLight, true);
+        const activeTex = (pinnedIdxRef.current === i) ? expandedTextures[i] : carouselTextures[i];
+        faceMeshes[i].material.map = activeTex;
         faceMeshes[i].material.needsUpdate = true;
         if (reflFaceMeshes[i]) {
-          reflFaceMeshes[i].material.map = tex;
+          reflFaceMeshes[i].material.map = activeTex;
           reflFaceMeshes[i].material.opacity = isLight ? 0.08 : 0.18;
           reflFaceMeshes[i].material.needsUpdate = true;
         }
@@ -694,8 +949,8 @@ export const Projects = () => {
       return true;
     };
 
-    // Precise card picking: combines 3D raycasting with projected screen center proximity.
-    // Guarantees that ANY card clicked anywhere on the carousel is accurately selected without front-card interference.
+    // Precise card picking: prioritizes the closest card along the ray (intersects[0]).
+    // Fallback selects the nearest card in screen proximity for flank clicks.
     const getCardAtPointer = (clientX, clientY) => {
       const rect = canvas.getBoundingClientRect();
       const pointerVec = new THREE.Vector2(
@@ -710,35 +965,21 @@ export const Projects = () => {
       }
       const intersects = raycaster.intersectObjects(hitCandidates, false);
 
-      const hitCardIndices = new Set();
-      for (const h of intersects) {
-        if (h.object && h.object.parent && typeof h.object.parent.userData.index === 'number') {
-          hitCardIndices.add(h.object.parent.userData.index);
+      let bestIdx = null;
+      let bestHit = null;
+
+      // 1. If ray penetrates card(s): pick the closest card to the camera along the ray!
+      if (intersects.length > 0) {
+        const firstCardHit = intersects.find(h => h.object.parent && typeof h.object.parent.userData.index === 'number');
+        if (firstCardHit) {
+          bestIdx = firstCardHit.object.parent.userData.index;
+          bestHit = firstCardHit;
         }
       }
 
-      let bestIdx = null;
-      let bestDist = Infinity;
-      let bestHit = null;
-
-      // 1. If ray directly penetrates cards: pick the one whose 2D screen center is closest to user click
-      if (hitCardIndices.size > 0) {
-        for (const idx of hitCardIndices) {
-          const card = cardMeshes[idx];
-          const pos = new THREE.Vector3();
-          card.getWorldPosition(pos);
-          pos.project(camera);
-          const sx = (pos.x + 1) * 0.5 * rect.width;
-          const sy = (1 - pos.y) * 0.5 * rect.height;
-          const dist = Math.hypot(sx - (clientX - rect.left), sy - (clientY - rect.top));
-          if (dist < bestDist) {
-            bestDist = dist;
-            bestIdx = idx;
-          }
-        }
-        bestHit = intersects.find(h => h.object.parent && h.object.parent.userData.index === bestIdx);
-      } else {
-        // 2. Fallback for border/flank clicks: pick closest card within generous screen radius
+      // 2. Fallback for border/flank clicks: pick closest card within generous screen radius
+      if (bestIdx === null) {
+        let bestDist = Infinity;
         for (let idx = 0; idx < 7; idx++) {
           const card = cardMeshes[idx];
           const pos = new THREE.Vector3();
@@ -760,26 +1001,68 @@ export const Projects = () => {
     const handlePointerMove = (e) => {
       if (isDraggingRef.current) {
         const deltaX = e.clientX - dragStartXRef.current;
-        if (Math.abs(deltaX) > 3) {
+        const deltaY = e.clientY - dragStartYRef.current;
+        if (Math.hypot(deltaX, deltaY) > 8) {
           hasDraggedRef.current = true;
         }
         targetRotationRef.current = dragStartRotRef.current + deltaX * 0.0055;
         return;
       }
 
+      const rect = canvas.getBoundingClientRect();
+      const pointerVec = new THREE.Vector2(
+        ((e.clientX - rect.left) / rect.width) * 2 - 1,
+        -(((e.clientY - rect.top) / rect.height) * 2 - 1)
+      );
+      raycaster.setFromCamera(pointerVec, camera);
+
+      // If a card is pinned: check if hovering over button or card
+      const currentPinned = pinnedIdxRef.current;
+      if (currentPinned !== null) {
+        const pinnedHits = raycaster.intersectObjects(cardMeshes[currentPinned].children, true);
+        if (pinnedHits.length > 0) {
+          const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
+          if (faceHits.length > 0 && faceHits[0].uv) {
+            const uv = faceHits[0].uv;
+            if (uv.y >= 0.115 && uv.y <= 0.210) {
+              if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
+                canvas.style.cursor = 'pointer';
+                return;
+              }
+            }
+          }
+          canvas.style.cursor = 'pointer'; // indicates click-to-minimize
+          return;
+        } else {
+          canvas.style.cursor = 'default';
+          return;
+        }
+      }
+
+      // Normal carousel mode:
+      if (!isInsideCarouselZone(e.clientX, e.clientY)) {
+        setHoveredIdx(null);
+        canvas.style.cursor = 'default';
+        return;
+      }
+
       const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
+      setHoveredIdx(hitIdx);
 
       if (hitIdx !== null) {
-        if (hoveredIdxRef.current !== hitIdx) {
-          setHoveredIdx(hitIdx);
+        const faceHits = raycaster.intersectObject(faceMeshes[hitIdx], false);
+        if (faceHits.length > 0 && faceHits[0].uv) {
+          const uv = faceHits[0].uv;
+          if (uv.y >= 0.115 && uv.y <= 0.210) {
+            if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
+              canvas.style.cursor = 'pointer';
+              return;
+            }
+          }
         }
         canvas.style.cursor = 'pointer';
       } else {
-        if (hoveredIdxRef.current !== null) {
-          setHoveredIdx(null);
-        }
-        // Strict cursor feedback: 'grab' inside the cylinder, 'default' outside
-        canvas.style.cursor = isInsideCarouselZone(e.clientX, e.clientY) ? 'grab' : 'default';
+        canvas.style.cursor = 'grab';
       }
     };
 
@@ -797,6 +1080,7 @@ export const Projects = () => {
       isDraggingRef.current = true;
       hasDraggedRef.current = false;
       dragStartXRef.current = e.clientX;
+      dragStartYRef.current = e.clientY;
       dragStartRotRef.current = currentRotationRef.current;
       setIsDragging(true);
       canvas.style.cursor = 'grabbing';
@@ -818,44 +1102,82 @@ export const Projects = () => {
         const slotAngle = (2 * Math.PI) / 7;
         const nearestSlot = Math.round(targetRotationRef.current / slotAngle);
         targetRotationRef.current = nearestSlot * slotAngle;
-      } else {
-        const { hitIdx, hit } = getCardAtPointer(e.clientX, e.clientY);
+        return;
+      }
 
-        if (hitIdx !== null) {
-          const proj = ORDERED_PROJECTS[hitIdx];
+      // CRITICAL FIX: If a card is currently pinned/expanded, check if click was on it
+      const currentPinned = pinnedIdxRef.current;
+      if (currentPinned !== null) {
+        const rect = canvas.getBoundingClientRect();
+        const pointerVec = new THREE.Vector2(
+          ((e.clientX - rect.left) / rect.width) * 2 - 1,
+          -(((e.clientY - rect.top) / rect.height) * 2 - 1)
+        );
+        raycaster.setFromCamera(pointerVec, camera);
 
-          // Check if clicked the small GitHub or Live Demo button directly on the card
-          if (hit && hit.uv && hit.uv.y >= 0.150 && hit.uv.y <= 0.245) {
-            if (hit.uv.x >= 0.035 && hit.uv.x <= 0.295) {
+        const pinnedCard = cardMeshes[currentPinned];
+        const pinnedHits = raycaster.intersectObjects(pinnedCard.children, true);
+
+        if (pinnedHits.length > 0) {
+          // Click was directly ON the pinned card!
+          // 1. Check if clicked the Complete GitHub or Live Demo button:
+          const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
+          if (faceHits.length > 0 && faceHits[0].uv) {
+            const uv = faceHits[0].uv;
+            if (uv.y >= 0.115 && uv.y <= 0.210) {
+              if (uv.x >= 0.030 && uv.x <= 0.490) {
+                const ghUrl = ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
+                window.open(ghUrl, '_blank', 'noopener,noreferrer');
+                return;
+              } else if (uv.x >= 0.510 && uv.x <= 0.970) {
+                const demoUrl = ORDERED_PROJECTS[currentPinned].demo || ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
+                window.open(demoUrl, '_blank', 'noopener,noreferrer');
+                return;
+              }
+            }
+          }
+          // 2. Clicked anywhere else on the pinned card (top header bar, screenshot, body, text) -> MINIMIZE IT!
+          setPinnedIdx(null);
+          return;
+        } else {
+          // Clicked outside the pinned card into empty space -> MINIMIZE IT!
+          setPinnedIdx(null);
+          return;
+        }
+      }
+
+      // No card is pinned: pick clicked card from carousel
+      const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
+      if (hitIdx !== null) {
+        const proj = ORDERED_PROJECTS[hitIdx];
+
+        // Check if directly clicked the button while rotating
+        const faceHits = raycaster.intersectObject(faceMeshes[hitIdx], false);
+        if (faceHits.length > 0 && faceHits[0].uv) {
+          const uv = faceHits[0].uv;
+          if (uv.y >= 0.115 && uv.y <= 0.210) {
+            if (uv.x >= 0.030 && uv.x <= 0.490) {
               const ghUrl = proj.github || 'https://github.com/Mohandgl53';
               window.open(ghUrl, '_blank', 'noopener,noreferrer');
               return;
-            } else if (hit.uv.x >= 0.300 && hit.uv.x <= 0.590) {
+            } else if (uv.x >= 0.510 && uv.x <= 0.970) {
               const demoUrl = proj.demo || proj.github || 'https://github.com/Mohandgl53';
               window.open(demoUrl, '_blank', 'noopener,noreferrer');
               return;
             }
           }
-
-          // Smoothly rotate the clicked card directly to the FRONT CENTER of the cylinder!
-          // In our coordinate system, theta_i = -(i * 2 * PI) / 7.
-          // FRONT CENTER closest to viewer (x = 0, z = +circleR) corresponds to currentWorldTheta = theta + rot = 0 => idealRot = -theta.
-          const currentRot = currentRotationRef.current;
-          const idealRot = (hitIdx * 2 * Math.PI) / 7;
-          let diff = (idealRot - currentRot) % (2 * Math.PI);
-          while (diff > Math.PI) diff -= 2 * Math.PI;
-          while (diff < -Math.PI) diff += 2 * Math.PI;
-          targetRotationRef.current = currentRot + diff;
-
-          // Toggle expansion: if clicking currently pinned card, unpin it; otherwise pin it
-          if (pinnedIdxRef.current === hitIdx) {
-            setPinnedIdx(null);
-          } else {
-            setPinnedIdx(hitIdx);
-          }
-        } else {
-          setPinnedIdx(null);
         }
+
+        // Smoothly rotate the clicked card directly to the FRONT CENTER of the cylinder!
+        const currentRot = currentRotationRef.current;
+        const idealRot = (hitIdx * 2 * Math.PI) / 7;
+        let diff = (idealRot - currentRot) % (2 * Math.PI);
+        while (diff > Math.PI) diff -= 2 * Math.PI;
+        while (diff < -Math.PI) diff += 2 * Math.PI;
+        targetRotationRef.current = currentRot + diff;
+
+        // Pin and expand the card
+        setPinnedIdx(hitIdx);
       }
     };
 
@@ -953,6 +1275,25 @@ export const Projects = () => {
 
         const isPinned = pinnedIdxRef.current === i;
         if (card.userData.pinAnim === undefined) card.userData.pinAnim = 0;
+
+        // Dynamic Texture Swap: In Carousel (bold/space-filling) vs Expanded (deep details/tech stack)
+        if (isPinned && card.userData.currentMode !== 'expanded') {
+          faceMeshes[i].material.map = expandedTextures[i];
+          faceMeshes[i].material.needsUpdate = true;
+          if (reflFaceMeshes[i]) {
+            reflFaceMeshes[i].material.map = expandedTextures[i];
+            reflFaceMeshes[i].material.needsUpdate = true;
+          }
+          card.userData.currentMode = 'expanded';
+        } else if (!isPinned && card.userData.currentMode === 'expanded') {
+          faceMeshes[i].material.map = carouselTextures[i];
+          faceMeshes[i].material.needsUpdate = true;
+          if (reflFaceMeshes[i]) {
+            reflFaceMeshes[i].material.map = carouselTextures[i];
+            reflFaceMeshes[i].material.needsUpdate = true;
+          }
+          card.userData.currentMode = 'carousel';
+        }
 
         if (isPinned) {
           card.userData.pinAnim += (1 - card.userData.pinAnim) * 0.14;
