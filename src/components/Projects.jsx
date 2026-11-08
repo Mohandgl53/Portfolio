@@ -933,24 +933,24 @@ export const Projects = () => {
       pointer.y = -(((clientY - rect.top) / rect.height) * 2 - 1);
     };
 
-    // STRICT CYLINDER ZONE: active ONLY where the cards cylinder revolves
+    // STRICT CYLINDER ZONE: active where the cards cylinder revolves (including background cards tops)
     const isInsideCarouselZone = (clientX, clientY) => {
       const rect = canvas.getBoundingClientRect();
       const relY = (clientY - rect.top) / rect.height;
-      // Outside vertical cylinder range -> allow page scroll!
-      if (relY < 0.25 || relY > 0.82) return false;
+      // Entire cylinder vertical range (tops of background cards at ~0.10 to bottom at ~0.88)
+      if (relY < 0.10 || relY > 0.88) return false;
 
-      // Outside horizontal cylinder range -> allow page scroll!
+      // Horizontal cylinder range
       const relX = (clientX - rect.left) / rect.width;
       const w = rect.width;
-      let sideMargin = w >= 1400 ? 0.14 : 0.06;
+      let sideMargin = w >= 1400 ? 0.08 : 0.04;
       if (relX < sideMargin || relX > (1 - sideMargin)) return false;
 
       return true;
     };
 
-    // Precise card picking: prioritizes the closest card along the ray (intersects[0]).
-    // Fallback selects the nearest card in screen proximity for flank clicks.
+    // Precise card picking: combines 3D raycasting with projected screen center proximity.
+    // Handles overlapping cards (e.g. front card and back card) by picking the one closest to pointer!
     const getCardAtPointer = (clientX, clientY) => {
       const rect = canvas.getBoundingClientRect();
       const pointerVec = new THREE.Vector2(
@@ -965,20 +965,42 @@ export const Projects = () => {
       }
       const intersects = raycaster.intersectObjects(hitCandidates, false);
 
-      let bestIdx = null;
-      let bestHit = null;
-
-      // 1. If ray penetrates card(s): pick the closest card to the camera along the ray!
-      if (intersects.length > 0) {
-        const firstCardHit = intersects.find(h => h.object.parent && typeof h.object.parent.userData.index === 'number');
-        if (firstCardHit) {
-          bestIdx = firstCardHit.object.parent.userData.index;
-          bestHit = firstCardHit;
+      const hitCardIndices = [];
+      for (const h of intersects) {
+        if (h.object && h.object.parent && typeof h.object.parent.userData.index === 'number') {
+          const idx = h.object.parent.userData.index;
+          if (!hitCardIndices.includes(idx)) {
+            hitCardIndices.push(idx);
+          }
         }
       }
 
-      // 2. Fallback for border/flank clicks: pick closest card within generous screen radius
-      if (bestIdx === null) {
+      let bestIdx = null;
+      let bestHit = null;
+
+      if (hitCardIndices.length === 1) {
+        bestIdx = hitCardIndices[0];
+        bestHit = intersects.find(h => h.object.parent && h.object.parent.userData.index === bestIdx);
+      } else if (hitCardIndices.length > 1) {
+        // When ray penetrates multiple cards (e.g. front card and back card overlapping along line of sight):
+        // Pick the card whose 2D projected screen center is closest to user click!
+        let bestDist = Infinity;
+        for (const idx of hitCardIndices) {
+          const card = cardMeshes[idx];
+          const pos = new THREE.Vector3();
+          card.getWorldPosition(pos);
+          pos.project(camera);
+          const sx = (pos.x + 1) * 0.5 * rect.width;
+          const sy = (1 - pos.y) * 0.5 * rect.height;
+          const dist = Math.hypot(sx - (clientX - rect.left), sy - (clientY - rect.top));
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestIdx = idx;
+          }
+        }
+        bestHit = intersects.find(h => h.object.parent && h.object.parent.userData.index === bestIdx);
+      } else {
+        // Fallback for border/flank/background clicks: pick closest card within generous screen radius
         let bestDist = Infinity;
         for (let idx = 0; idx < 7; idx++) {
           const card = cardMeshes[idx];
@@ -988,7 +1010,7 @@ export const Projects = () => {
           const sx = (pos.x + 1) * 0.5 * rect.width;
           const sy = (1 - pos.y) * 0.5 * rect.height;
           const dist = Math.hypot(sx - (clientX - rect.left), sy - (clientY - rect.top));
-          if (dist < bestDist && dist < 200) {
+          if (dist < bestDist && dist < 280) {
             bestDist = dist;
             bestIdx = idx;
           }
@@ -1002,10 +1024,10 @@ export const Projects = () => {
       if (isDraggingRef.current) {
         const deltaX = e.clientX - dragStartXRef.current;
         const deltaY = e.clientY - dragStartYRef.current;
-        if (Math.hypot(deltaX, deltaY) > 8) {
+        if (Math.hypot(deltaX, deltaY) > 12) {
           hasDraggedRef.current = true;
+          targetRotationRef.current = dragStartRotRef.current + deltaX * 0.0055;
         }
-        targetRotationRef.current = dragStartRotRef.current + deltaX * 0.0055;
         return;
       }
 
@@ -1034,6 +1056,12 @@ export const Projects = () => {
           canvas.style.cursor = 'pointer'; // indicates click-to-minimize
           return;
         } else {
+          // Check if hovering over another card while pinned
+          const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
+          if (hitIdx !== null && hitIdx !== currentPinned) {
+            canvas.style.cursor = 'pointer';
+            return;
+          }
           canvas.style.cursor = 'default';
           return;
         }
@@ -1105,7 +1133,7 @@ export const Projects = () => {
         return;
       }
 
-      // CRITICAL FIX: If a card is currently pinned/expanded, check if click was on it
+      // 1. If a card is currently pinned/expanded:
       const currentPinned = pinnedIdxRef.current;
       if (currentPinned !== null) {
         const rect = canvas.getBoundingClientRect();
@@ -1115,38 +1143,49 @@ export const Projects = () => {
         );
         raycaster.setFromCamera(pointerVec, camera);
 
-        const pinnedCard = cardMeshes[currentPinned];
-        const pinnedHits = raycaster.intersectObjects(pinnedCard.children, true);
-
-        if (pinnedHits.length > 0) {
-          // Click was directly ON the pinned card!
-          // 1. Check if clicked the Complete GitHub or Live Demo button:
-          const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
-          if (faceHits.length > 0 && faceHits[0].uv) {
-            const uv = faceHits[0].uv;
-            if (uv.y >= 0.115 && uv.y <= 0.210) {
-              if (uv.x >= 0.030 && uv.x <= 0.490) {
-                const ghUrl = ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
-                window.open(ghUrl, '_blank', 'noopener,noreferrer');
-                return;
-              } else if (uv.x >= 0.510 && uv.x <= 0.970) {
-                const demoUrl = ORDERED_PROJECTS[currentPinned].demo || ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
-                window.open(demoUrl, '_blank', 'noopener,noreferrer');
-                return;
-              }
+        // Check if user clicked an Action Button on the pinned card:
+        const faceHits = raycaster.intersectObject(faceMeshes[currentPinned], false);
+        if (faceHits.length > 0 && faceHits[0].uv) {
+          const uv = faceHits[0].uv;
+          if (uv.y >= 0.115 && uv.y <= 0.210) {
+            if (uv.x >= 0.030 && uv.x <= 0.490) {
+              const ghUrl = ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
+              window.open(ghUrl, '_blank', 'noopener,noreferrer');
+              return;
+            } else if (uv.x >= 0.510 && uv.x <= 0.970) {
+              const demoUrl = ORDERED_PROJECTS[currentPinned].demo || ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
+              window.open(demoUrl, '_blank', 'noopener,noreferrer');
+              return;
             }
           }
-          // 2. Clicked anywhere else on the pinned card (top header bar, screenshot, body, text) -> MINIMIZE IT!
-          setPinnedIdx(null);
+        }
+
+        // Check which card was clicked using screen-proximity resolved picking:
+        const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
+
+        if (hitIdx !== null && hitIdx !== currentPinned) {
+          // User clicked on ANOTHER card (side card, flank, or background card):
+          // Immediately rotate cylinder so that clicked card comes directly to FRONT CENTER and expands!
+          const currentRot = currentRotationRef.current;
+          const idealRot = (hitIdx * 2 * Math.PI) / 7;
+          let diff = (idealRot - currentRot) % (2 * Math.PI);
+          while (diff > Math.PI) diff -= 2 * Math.PI;
+          while (diff < -Math.PI) diff += 2 * Math.PI;
+          targetRotationRef.current = currentRot + diff;
+
+          pinnedIdxRef.current = hitIdx;
+          setPinnedIdx(hitIdx);
           return;
         } else {
-          // Clicked outside the pinned card into empty space -> MINIMIZE IT!
+          // User re-clicked the current pinned card (header, screenshot, body, close hint) or empty space:
+          // MINIMIZE IT CLEANLY back into the carousel!
+          pinnedIdxRef.current = null;
           setPinnedIdx(null);
           return;
         }
       }
 
-      // No card is pinned: pick clicked card from carousel
+      // 2. Normal carousel mode (no card is pinned):
       const { hitIdx } = getCardAtPointer(e.clientX, e.clientY);
       if (hitIdx !== null) {
         const proj = ORDERED_PROJECTS[hitIdx];
@@ -1176,7 +1215,8 @@ export const Projects = () => {
         while (diff < -Math.PI) diff += 2 * Math.PI;
         targetRotationRef.current = currentRot + diff;
 
-        // Pin and expand the card
+        // Pin and expand the card at front center
+        pinnedIdxRef.current = hitIdx;
         setPinnedIdx(hitIdx);
       }
     };
