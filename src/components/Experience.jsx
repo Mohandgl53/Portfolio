@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { EXPERIENCE_DATA } from '../data/experienceData';
 
 export const Experience = () => {
   const containerRef = useRef(null);
@@ -48,7 +49,6 @@ export const Experience = () => {
         const dRect = dot.getBoundingClientRect();
         const dotCenterY = dRect.top + dRect.height / 2 - cRect.top;
 
-        // Point is placed only when the sharp end reaches or passes the destination
         if (currentLineTipY >= dotCenterY - 1) {
           item.classList.add('active-passed');
         } else {
@@ -69,7 +69,7 @@ export const Experience = () => {
 
   return (
     <section id="experience" className="seamless-experience-section">
-      <div className="sec-tag">Academic & Industry History</div>
+      <div className="sec-tag">// Academic & Industry History</div>
       <h2 className="sec-head">Education & <span>Experience Timeline</span></h2>
       <p className="sec-sub">Chronological journey from foundational schooling to engineering degree, hackathons, and industrial data science internship.</p>
 
@@ -78,141 +78,172 @@ export const Experience = () => {
           <div className="timeline-rail-progress" id="timelineProgress" ref={progressRef}></div>
         </div>
 
-        {/* Item 1: HSC School */}
-        <div className="timeline-item" data-index="0">
-          <div className="timeline-node-dot"></div>
-          <div className="timeline-card-inner">
-            <div className="card-top-row">
-              <div>
-                <h3 className="card-title">Higher Secondary Certificate (HSC) — Computer Science</h3>
-                <div className="card-org">The Sivakasi Hindu Nadar's Higher Secondary School</div>
-                <div className="card-meta">Sivakasi, Tamil Nadu · 2021 – 2023</div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span className="node-badge node-badge-school">Score: 78.5%</span>
-                <div className="card-date">Jun 2021 – May 2023</div>
-              </div>
-            </div>
-            <p className="card-desc">
-              Completed higher secondary education with a rigorous core in Computer Science, Advanced Mathematics, and Physics, establishing foundational engineering acumen.
-            </p>
-            <div className="card-tag-row">
-              <span className="tech-badge">Computer Science</span>
-              <span className="tech-badge">Algorithms</span>
-              <span className="tech-badge">Physics</span>
-              <span className="tech-badge">Mathematics</span>
-            </div>
-          </div>
-        </div>
+        {EXPERIENCE_DATA.map((item, index) => {
+          const themeClass = `theme-${item.type}`;
 
-        {/* Item 2: College B.Tech */}
-        <div className="timeline-item" data-index="1">
-          <div className="timeline-node-dot"></div>
-          <div className="timeline-card-inner">
-            <div className="card-top-row">
-              <div>
-                <h3 className="card-title">B.Tech in Artificial Intelligence & Data Science</h3>
-                <div className="card-org">P.S.R.R. College of Engineering</div>
-                <div className="card-meta">Sivakasi, Tamil Nadu · 2023 – 2027 (Current 3rd Year)</div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span className="node-badge node-badge-college">85% / 8.5 CGPA</span>
-                <div className="card-date">Sep 2023 – May 2027</div>
-              </div>
-            </div>
-            <p className="card-desc">
-              Pursuing specialized degree in AI & Data Science with coursework spanning Machine Learning, Distributed Data Systems, Object-Oriented System Design, Cloud Deployments, and Resilient Software Architecture.
-            </p>
-            <div className="card-tag-row">
-              <span className="tech-badge">Machine Learning</span>
-              <span className="tech-badge">System Design</span>
-              <span className="tech-badge">Distributed Systems</span>
-              <span className="tech-badge">Full-Stack Development</span>
-            </div>
-          </div>
-        </div>
+          return (
+            <div className="timeline-item" data-index={index} key={item.id}>
+              <div className={`timeline-node-dot dot-${item.type}`}></div>
+              <div className={`timeline-card-inner ${themeClass}`}>
+                
+                {/* Themed Header Row with Category Pill & Milestone Status */}
+                <div className="card-theme-header">
+                  <div className="card-category-pill">
+                    {item.type === 'school' && (
+                      <>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        <span>Foundational Academics · Class 12</span>
+                      </>
+                    )}
+                    {item.type === 'college' && (
+                      <>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                        <span>Undergraduate Degree · B.Tech AI & DS</span>
+                      </>
+                    )}
+                    {item.type === 'hackathon' && (
+                      <>
+                        <span className="pulse-beacon" aria-hidden="true"></span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                        <span>24-Hour Rapid Prototyping Sprint</span>
+                      </>
+                    )}
+                    {item.type === 'internship' && (
+                      <>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                        </svg>
+                        <span>Industry Experience · Corporate Internship</span>
+                      </>
+                    )}
+                  </div>
 
-        {/* Item 3: Code Fury */}
-        <div className="timeline-item" data-index="2">
-          <div className="timeline-node-dot"></div>
-          <div className="timeline-card-inner">
-            <div className="card-top-row">
-              <div>
-                <h3 className="card-title">Code Fury National Hackathon — Finalist</h3>
-                <div className="card-org">Syed Ammal Engineering College · Ramanathapuram</div>
-                <div className="card-meta">Conducted by LEAP Success · 24-Hour Continuous Hackathon</div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span className="node-badge node-badge-hackathon">24h Hackathon Finalist</span>
-                <div className="card-date">Aug 2024</div>
-              </div>
-            </div>
-            <p className="card-desc">
-              Engineered a credit-based P2P digital library platform for community book sharing. Built a dynamic valuation system where users earn credits by contributing books to acquire literature, while sponsored educational books are provided free.
-            </p>
-            <div className="card-tag-row">
-              <span className="tech-badge">P2P Digital Library</span>
-              <span className="tech-badge">Credit Engine</span>
-              <span className="tech-badge">Full-Stack Web</span>
-              <span className="tech-badge">REST APIs</span>
-            </div>
-          </div>
-        </div>
+                  <div className="card-status-wrapper">
+                    <span className={`node-badge ${item.statusClass}`}>
+                      {item.type === 'hackathon' && <span className="trophy-icon">🏆 </span>}
+                      {item.type === 'internship' && <span className="check-icon">✓ </span>}
+                      {item.statusBadge}
+                    </span>
+                  </div>
+                </div>
 
-        {/* Item 4: Persevex Internship */}
-        <div className="timeline-item" data-index="3">
-          <div className="timeline-node-dot"></div>
-          <div className="timeline-card-inner">
-            <div className="card-top-row">
-              <div>
-                <h3 className="card-title">Data Science Intern</h3>
-                <div className="card-org">Persevex (Data Science & Analytics)</div>
-                <div className="card-meta">Remote / Hybrid · 3-Month Industry Internship</div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span className="node-badge node-badge-internship">Verified Internship</span>
-                <div className="card-date">Jul 2025 – Sep 2025</div>
-              </div>
-            </div>
-            <p className="card-desc">
-              Engineered automated data preprocessing pipelines, performed exploratory data analysis (EDA) across diverse enterprise datasets, and evaluated predictive scikit-learn models using Pandas, NumPy, and Matplotlib.
-            </p>
-            <div className="card-tag-row">
-              <span className="tech-badge">Python</span>
-              <span className="tech-badge">Pandas</span>
-              <span className="tech-badge">Scikit-Learn</span>
-              <span className="tech-badge">Data Pipelines</span>
-              <span className="tech-badge">EDA</span>
-            </div>
-          </div>
-        </div>
+                {/* Primary Card Title & Institution Info */}
+                <div className="card-top-row">
+                  <div className="card-title-group">
+                    <h3 className="card-title">{item.role}</h3>
+                    <div className="card-org-row">
+                      <span className="card-org">{item.org}</span>
+                      <span className="org-divider">•</span>
+                      <span className="card-location">{item.location}</span>
+                    </div>
+                  </div>
+                  <div className="card-timeline-date">
+                    <span className="date-icon" aria-hidden="true">📅 </span>
+                    <span>{item.date}</span>
+                  </div>
+                </div>
 
-        {/* Item 5: Hack Odyssey */}
-        <div className="timeline-item" data-index="4">
-          <div className="timeline-node-dot"></div>
-          <div className="timeline-card-inner">
-            <div className="card-top-row">
-              <div>
-                <h3 className="card-title">Hack Odyssey 3.0 Hackathon — Systems Developer</h3>
-                <div className="card-org">Kalasalingam Engineering College (KARE)</div>
-                <div className="card-meta">Krishnankoil, Tamil Nadu · 24-Hour Continuous Hackathon</div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span className="node-badge node-badge-hackathon">24h Hackathon Developer</span>
-                <div className="card-date">Oct 2025</div>
+                {/* Bespoke Themed Feature Block */}
+                {item.type === 'school' && (
+                  <div className="card-highlight-box theme-school-box">
+                    <div className="highlight-title">
+                      <span className="box-tag">Academic Stream</span>
+                      <strong>Higher Secondary Science Core (Computer Science & Mathematics)</strong>
+                    </div>
+                    <div className="highlight-detail">
+                      Graduated from <strong>Edustar International School</strong> with <strong>75%</strong> in HSLC board examinations, establishing computational reasoning and physics foundations.
+                    </div>
+                  </div>
+                )}
+
+                {item.type === 'college' && (
+                  <div className="card-highlight-box theme-college-box">
+                    <div className="highlight-title">
+                      <span className="box-tag">Degree Progression</span>
+                      <strong>B.Tech Engineering Track (2023 – 2027)</strong>
+                    </div>
+                    <div className="college-stepper">
+                      <div className="step-item step-done">
+                        <span className="step-marker">✓</span>
+                        <span className="step-text">Yr 1: Foundations</span>
+                      </div>
+                      <div className="step-divider done"></div>
+                      <div className="step-item step-done">
+                        <span className="step-marker">✓</span>
+                        <span className="step-text">Yr 2: Core DS & Algorithms</span>
+                      </div>
+                      <div className="step-divider active"></div>
+                      <div className="step-item step-active">
+                        <span className="step-marker">●</span>
+                        <span className="step-text">Yr 3: AI & System Design [Current]</span>
+                      </div>
+                      <div className="step-divider"></div>
+                      <div className="step-item step-upcoming">
+                        <span className="step-marker">○</span>
+                        <span className="step-text">Yr 4: Final Year / Capstone</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {item.type === 'hackathon' && (
+                  <div className="card-highlight-box theme-hackathon-box">
+                    <div className="highlight-title">
+                      <span className="box-tag">Sprint Architecture</span>
+                      <strong>{item.highlight}</strong>
+                    </div>
+                    <div className="highlight-detail">
+                      Delivered under non-stop 24-hour hackathon conditions, pitching to engineering panels and qualifying as a high-ranking finalist.
+                    </div>
+                  </div>
+                )}
+
+                {item.type === 'internship' && (
+                  <div className="card-highlight-box theme-internship-box">
+                    <div className="highlight-title">
+                      <span className="box-tag">Enterprise Role</span>
+                      <strong>Persevex Data Science & Analytics Division</strong>
+                    </div>
+                    <div className="highlight-detail">
+                      Delivered end-to-end data pipelines, automated exploratory analysis, and trained regression/classification models on production datasets.
+                    </div>
+                  </div>
+                )}
+
+                {/* Card Description */}
+                <p className="card-desc">{item.description}</p>
+
+                {/* Tags Section with Label and Distinct Badges */}
+                <div className="card-tags-container">
+                  <div className="card-tags-label">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                      <line x1="7" y1="7" x2="7.01" y2="7"/>
+                    </svg>
+                    <span>{item.type === 'hackathon' ? 'Hackathon Tech Stack:' : item.type === 'internship' ? 'Tools & Methodologies:' : 'Core Competencies:'}</span>
+                  </div>
+                  <div className="card-tag-row">
+                    {item.tags.map((tag, tIdx) => (
+                      <span className="tech-badge" key={tIdx}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
               </div>
             </div>
-            <p className="card-desc">
-              Architected an anti-tampering image protection shield on the Polygon blockchain. Implemented SHA-256 cryptographic digital signatures to verify image provenance, detect deepfake morphing, and prevent unauthorized social media leaks.
-            </p>
-            <div className="card-tag-row">
-              <span className="tech-badge">Polygon Blockchain</span>
-              <span className="tech-badge">SHA-256 Signatures</span>
-              <span className="tech-badge">Provenance Shield</span>
-              <span className="tech-badge">Smart Contracts</span>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </section>
   );
