@@ -518,11 +518,11 @@ export const Projects = () => {
         ctx.font = `bold 16px ${FONT_BODY}`;
         ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 350);
 
-        // Bento Tile 1: High-Contrast Container
+        // Bento Tile 1: High-Contrast Pure White Interior Container
         const bentoY = 368;
         const bentoH = 112;
         drawRoundRect(ctx, 24, bentoY, 592, bentoH, 10);
-        ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.65)';
+        ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.65)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.10)';
         ctx.lineWidth = 1.4;
@@ -568,9 +568,9 @@ export const Projects = () => {
           ctx.font = `bold 13.5px ${FONT_BODY}`;
           const tw = ctx.measureText(tag).width + 20;
           drawRoundRect(ctx, rx1, 516, tw, 28, 7);
-          ctx.fillStyle = isLight ? '#e2e8f0' : 'rgba(15, 23, 42, 0.95)';
+          ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.95)';
           ctx.fill();
-          ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(56, 189, 248, 0.45)';
+          ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.45)';
           ctx.lineWidth = 1.3;
           ctx.stroke();
           ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
@@ -585,9 +585,9 @@ export const Projects = () => {
             ctx.font = `bold 13.5px ${FONT_BODY}`;
             const tw = ctx.measureText(tag).width + 20;
             drawRoundRect(ctx, rx2, 552, tw, 28, 7);
-            ctx.fillStyle = isLight ? '#e2e8f0' : 'rgba(15, 23, 42, 0.95)';
+            ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.95)';
             ctx.fill();
-            ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(56, 189, 248, 0.45)';
+            ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.45)';
             ctx.lineWidth = 1.3;
             ctx.stroke();
             ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
@@ -598,9 +598,9 @@ export const Projects = () => {
 
         // Click to expand capsule hint: Solid high-contrast
         drawRoundRect(ctx, 110, 646, 420, 34, 17);
-        ctx.fillStyle = isLight ? '#e2e8f0' : 'rgba(56, 189, 248, 0.10)';
+        ctx.fillStyle = isLight ? '#ffffff' : 'rgba(56, 189, 248, 0.10)';
         ctx.fill();
-        ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(56, 189, 248, 0.35)';
+        ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.35)';
         ctx.lineWidth = 1.3;
         ctx.stroke();
 
@@ -704,7 +704,7 @@ export const Projects = () => {
         // Helper: Draw Bento Box with high contrast
         const drawBentoBox = (y, h, accentColor, headerColor, headerText, primaryText, secondaryText) => {
           drawRoundRect(ctx, 24, y, 592, h, 10);
-          ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.65)';
+          ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.65)';
           ctx.fill();
           ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.10)';
           ctx.lineWidth = 1.4;
@@ -754,7 +754,7 @@ export const Projects = () => {
         const t3Y = 420;
         const t3H = 126;
         drawRoundRect(ctx, 24, t3Y, 592, t3H, 10);
-        ctx.fillStyle = isLight ? '#f1f5f9' : 'rgba(15, 23, 42, 0.65)';
+        ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.65)';
         ctx.fill();
         ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.10)';
         ctx.lineWidth = 1.4;
@@ -792,9 +792,9 @@ export const Projects = () => {
           ctx.font = `bold 13.5px ${FONT_BODY}`;
           const tw = ctx.measureText(tag).width + 20;
           drawRoundRect(ctx, rx1, 572, tw, 30, 7);
-          ctx.fillStyle = isLight ? '#e2e8f0' : 'rgba(15, 23, 42, 0.95)';
+          ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.95)';
           ctx.fill();
-          ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(56, 189, 248, 0.45)';
+          ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.45)';
           ctx.lineWidth = 1.3;
           ctx.stroke();
           ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
@@ -809,9 +809,9 @@ export const Projects = () => {
             ctx.font = `bold 13.5px ${FONT_BODY}`;
             const tw = ctx.measureText(tag).width + 20;
             drawRoundRect(ctx, rx2, 610, tw, 30, 7);
-            ctx.fillStyle = isLight ? '#e2e8f0' : 'rgba(15, 23, 42, 0.95)';
+            ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.95)';
             ctx.fill();
-            ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(56, 189, 248, 0.45)';
+            ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.45)';
             ctx.lineWidth = 1.3;
             ctx.stroke();
             ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
