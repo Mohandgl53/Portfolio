@@ -1083,33 +1083,31 @@ export const Projects = () => {
     faceMeshesRef.current = faceMeshes;
     reflFaceMeshesRef.current = reflFaceMeshes;
 
-    // Dynamic Light / Dark Theme Sync
+    // Smooth 3D Material & Light Interpolation Targets for Seamless Theme Transitions
+    const targetGlassColor = new THREE.Color(initialIsLight ? 0xf8fafc : 0x0c1527);
+    const targetEdgeColor = new THREE.Color(initialIsLight ? 0xcfd8dc : 0x7dd3fc);
+    const targetReflColor = new THREE.Color(initialIsLight ? 0xf8fafc : 0x070c18);
+    let targetGlassRoughness = initialIsLight ? 0.25 : 0.15;
+    let targetGlassOpacity = initialIsLight ? 0.98 : 0.90;
+    let targetEdgeOpacity = initialIsLight ? 0.55 : 0.75;
+    let targetReflOpacity = initialIsLight ? 0.05 : 0.12;
+    let targetCenterLightIntensity = initialIsLight ? 2.4 : 2.8;
+    let targetAmbientLightIntensity = initialIsLight ? 1.0 : 0.50;
+
+    // Dynamic Light / Dark Theme Sync with Smooth Lerp
     const updateThemeColors = (isLight) => {
+      targetGlassColor.setHex(isLight ? 0xf8fafc : 0x0c1527);
+      targetEdgeColor.setHex(isLight ? 0xcfd8dc : 0x7dd3fc);
+      targetReflColor.setHex(isLight ? 0xf8fafc : 0x070c18);
+      targetGlassRoughness = isLight ? 0.25 : 0.15;
+      targetGlassOpacity = isLight ? 0.98 : 0.90;
+      targetEdgeOpacity = isLight ? 0.55 : 0.75;
+      targetReflOpacity = isLight ? 0.05 : 0.12;
+      targetCenterLightIntensity = isLight ? 2.4 : 2.8;
+      targetAmbientLightIntensity = isLight ? 1.0 : 0.50;
+
       floorMat.map = createFloorSheenTexture(isLight);
       floorMat.map.needsUpdate = true;
-      if (isLight) {
-        glassMat.color.setHex(0xf8fafc);
-        glassMat.roughness = 0.25;
-        glassMat.metalness = 0.04;
-        glassMat.opacity = 0.98;
-        edgeMat.color.setHex(0xcfd8dc);
-        edgeMat.opacity = 0.55;
-        reflMat.color.setHex(0xf8fafc);
-        reflMat.opacity = 0.05;
-        centerPointLight.intensity = 2.4;
-        ambientLight.intensity = 1.0;
-      } else {
-        glassMat.color.setHex(0x0c1527);
-        glassMat.roughness = 0.15;
-        glassMat.metalness = 0.08;
-        glassMat.opacity = 0.90;
-        edgeMat.color.setHex(0x7dd3fc);
-        edgeMat.opacity = 0.75;
-        reflMat.color.setHex(0x070c18);
-        reflMat.opacity = 0.12;
-        centerPointLight.intensity = 2.8;
-        ambientLight.intensity = 0.50;
-      }
 
       for (let i = 0; i < faceMeshes.length; i++) {
         carouselTextures[i] = createCardFaceTexture(ORDERED_PROJECTS[i], isLight, false);
@@ -1570,6 +1568,17 @@ export const Projects = () => {
       currentRotationRef.current += (targetRotationRef.current - currentRotationRef.current) * 0.085;
       carouselGroup.rotation.y = currentRotationRef.current;
       reflectionGroup.rotation.y = currentRotationRef.current;
+
+      // Smooth 3D Material & Light Interpolation across Theme Changes
+      glassMat.color.lerp(targetGlassColor, 0.08);
+      edgeMat.color.lerp(targetEdgeColor, 0.08);
+      reflMat.color.lerp(targetReflColor, 0.08);
+      glassMat.roughness += (targetGlassRoughness - glassMat.roughness) * 0.08;
+      glassMat.opacity += (targetGlassOpacity - glassMat.opacity) * 0.08;
+      edgeMat.opacity += (targetEdgeOpacity - edgeMat.opacity) * 0.08;
+      reflMat.opacity += (targetReflOpacity - reflMat.opacity) * 0.08;
+      centerPointLight.intensity += (targetCenterLightIntensity - centerPointLight.intensity) * 0.08;
+      ambientLight.intensity += (targetAmbientLightIntensity - ambientLight.intensity) * 0.08;
 
       for (let i = 0; i < cardMeshes.length; i++) {
         const card = cardMeshes[i];

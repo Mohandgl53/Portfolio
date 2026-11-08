@@ -19,7 +19,25 @@ export const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.add('theme-transitioning');
+      
+      if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.startViewTransition(() => {
+          setTheme(nextTheme);
+        });
+      } else {
+        setTheme(nextTheme);
+      }
+
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transitioning');
+      }, 500);
+    } else {
+      setTheme(nextTheme);
+    }
   };
 
   return (

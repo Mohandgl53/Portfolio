@@ -4,6 +4,12 @@ import { useTheme } from '../context/ThemeContext';
 export const Starfield = () => {
   const canvasRef = useRef(null);
   const { isDark } = useTheme();
+  const isDarkRef = useRef(isDark);
+  const themeBlendRef = useRef(isDark ? 1 : 0);
+
+  useEffect(() => {
+    isDarkRef.current = isDark;
+  }, [isDark]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -48,8 +54,21 @@ export const Starfield = () => {
 
     const drawStars = () => {
       ctx.clearRect(0, 0, W, H);
-      const starFill = isDark ? '#ffffff' : '#0f172a';
-      const lineStroke = isDark ? 'rgba(56, 189, 248, ' : 'rgba(2, 132, 199, ';
+      
+      // Smoothly blend star theme color over ~400ms without position teleportation
+      const targetBlend = isDarkRef.current ? 1 : 0;
+      themeBlendRef.current += (targetBlend - themeBlendRef.current) * 0.08;
+      const blend = themeBlendRef.current;
+
+      const sr = Math.round(15 + blend * (255 - 15));
+      const sg = Math.round(23 + blend * (255 - 23));
+      const sb = Math.round(42 + blend * (255 - 42));
+      const starFill = `rgb(${sr},${sg},${sb})`;
+
+      const lr = Math.round(2 + blend * (56 - 2));
+      const lg = Math.round(132 + blend * (189 - 132));
+      const lb = Math.round(199 + blend * (248 - 199));
+      const lineBase = `rgba(${lr}, ${lg}, ${lb}, `;
 
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
@@ -72,7 +91,7 @@ export const Starfield = () => {
             ctx.beginPath();
             ctx.moveTo(s.x, s.y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = lineStroke + (1 - dist / 85) * 0.30 + ')';
+            ctx.strokeStyle = lineBase + (1 - dist / 85) * 0.30 + ')';
             ctx.lineWidth = 0.75;
             ctx.stroke();
           }
@@ -108,7 +127,7 @@ export const Starfield = () => {
       window.removeEventListener('resize', resizeSpace);
       document.removeEventListener('visibilitychange', onVisibilityChange);
     };
-  }, [isDark]);
+  }, []);
 
   return (
     <>
