@@ -286,9 +286,28 @@ nav:hover {
 
 .nav-center { display: flex; align-items: center; gap: 4px; }
 
-.nav-link { font: 500 13px var(--d); color: var(--mute); padding: 6px 13px;
-  border-radius: var(--radius-full);
-  transition: all 0.2s ease;
+.nav-link {
+  position: relative;
+  font: 500 13px var(--d);
+  color: var(--mute);
+  padding: 6px 13px;
+  background: transparent;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: calc(100% - 16px);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary-glow);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  opacity: 0;
 }
 
 .nav-link:hover {
@@ -296,9 +315,15 @@ nav:hover {
 }
 
 .nav-link.active {
-  background: var(--primary);
-  color: #ffffff;
-  box-shadow: 0 4px 14px var(--primary-glow);
+  color: var(--primary);
+  font-weight: 600;
+  background: transparent;
+  box-shadow: none;
+}
+
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
 }
 
 .nav-right {
