@@ -3051,7 +3051,7 @@ html, body {
   border-radius: 0;
   box-shadow: none;
   overflow: visible;
-  cursor: grab;
+  cursor: default;
 }
 
 @media (min-width: 1400px) {

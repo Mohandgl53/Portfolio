@@ -1077,17 +1077,31 @@ export const Projects = () => {
       pointer.y = -(((clientY - rect.top) / rect.height) * 2 - 1);
     };
 
-    // STRICT CYLINDER ZONE: active where the cards cylinder revolves (including background cards tops)
+    // STRICT CYLINDER ZONE: active only over the central cards cylinder,
+    // leaving generous free space on both the left and right sides so the user can
+    // smoothly scroll the page vertically to navigate above and below this section.
     const isInsideCarouselZone = (clientX, clientY) => {
       const rect = canvas.getBoundingClientRect();
       const relY = (clientY - rect.top) / rect.height;
-      // Entire cylinder vertical range (tops of background cards at ~0.10 to bottom at ~0.88)
-      if (relY < 0.10 || relY > 0.88) return false;
+      // Cylinder vertical range (tops of background cards to bottom shelf)
+      if (relY < 0.12 || relY > 0.86) return false;
 
-      // Horizontal cylinder range
+      // Horizontal cylinder range: reduced width with comfortable left & right scroll gutters
       const relX = (clientX - rect.left) / rect.width;
       const w = rect.width;
-      let sideMargin = w >= 1400 ? 0.08 : 0.04;
+
+      // Provide generous gutters (18% - 22% on each side on desktop)
+      let sideMargin = 0.20;
+      if (w >= 1600) {
+        sideMargin = 0.22;
+      } else if (w >= 1200) {
+        sideMargin = 0.19;
+      } else if (w >= 900) {
+        sideMargin = 0.15;
+      } else {
+        sideMargin = 0.08;
+      }
+
       if (relX < sideMargin || relX > (1 - sideMargin)) return false;
 
       return true;
