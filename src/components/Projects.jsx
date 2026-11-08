@@ -206,6 +206,7 @@ export const Projects = () => {
   const dragStartRotRef = useRef(0);
   const hasDraggedRef = useRef(false);
   const wheelSnapTimerRef = useRef(null);
+  const isHoveringZoneRef = useRef(false);
   const updateThemeColorsRef = useRef(null);
 
   useEffect(() => {
@@ -1276,7 +1277,10 @@ export const Projects = () => {
       }
 
       // Normal carousel mode:
-      if (!isInsideCarouselZone(e.clientX, e.clientY)) {
+      const inZone = isInsideCarouselZone(e.clientX, e.clientY);
+      isHoveringZoneRef.current = inZone;
+
+      if (!inZone) {
         setHoveredIdx(null);
         canvas.style.cursor = 'default';
         return;
@@ -1313,6 +1317,7 @@ export const Projects = () => {
         return;
       }
 
+      isHoveringZoneRef.current = true;
       isDraggingRef.current = true;
       hasDraggedRef.current = false;
       dragStartXRef.current = e.clientX;
@@ -1328,7 +1333,9 @@ export const Projects = () => {
     const handlePointerUp = (e) => {
       isDraggingRef.current = false;
       setIsDragging(false);
-      canvas.style.cursor = isInsideCarouselZone(e.clientX, e.clientY) ? 'grab' : 'default';
+      const inZone = isInsideCarouselZone(e.clientX, e.clientY);
+      isHoveringZoneRef.current = inZone;
+      canvas.style.cursor = inZone ? 'grab' : 'default';
       try {
         canvas.releasePointerCapture(e.pointerId);
       } catch (err) {}
@@ -1361,13 +1368,10 @@ export const Projects = () => {
           if (faceHits.length > 0 && faceHits[0].uv) {
             const uv = faceHits[0].uv;
             if (uv.y >= 0.115 && uv.y <= 0.210) {
-              if (uv.x >= 0.030 && uv.x <= 0.490) {
+              if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
                 const ghUrl = ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
-                window.open(ghUrl, '_blank', 'noopener,noreferrer');
-                return;
-              } else if (uv.x >= 0.510 && uv.x <= 0.970) {
                 const demoUrl = ORDERED_PROJECTS[currentPinned].demo || ORDERED_PROJECTS[currentPinned].github || 'https://github.com/Mohandgl53';
-                window.open(demoUrl, '_blank', 'noopener,noreferrer');
+                window.open((uv.x >= 0.030 && uv.x <= 0.490) ? ghUrl : demoUrl, '_blank', 'noopener,noreferrer');
                 return;
               }
             }
@@ -1413,13 +1417,10 @@ export const Projects = () => {
         if (faceHits.length > 0 && faceHits[0].uv) {
           const uv = faceHits[0].uv;
           if (uv.y >= 0.115 && uv.y <= 0.210) {
-            if (uv.x >= 0.030 && uv.x <= 0.490) {
+            if ((uv.x >= 0.030 && uv.x <= 0.490) || (uv.x >= 0.510 && uv.x <= 0.970)) {
               const ghUrl = proj.github || 'https://github.com/Mohandgl53';
-              window.open(ghUrl, '_blank', 'noopener,noreferrer');
-              return;
-            } else if (uv.x >= 0.510 && uv.x <= 0.970) {
               const demoUrl = proj.demo || proj.github || 'https://github.com/Mohandgl53';
-              window.open(demoUrl, '_blank', 'noopener,noreferrer');
+              window.open((uv.x >= 0.030 && uv.x <= 0.490) ? ghUrl : demoUrl, '_blank', 'noopener,noreferrer');
               return;
             }
           }
@@ -1440,6 +1441,7 @@ export const Projects = () => {
     };
 
     const handlePointerLeave = () => {
+      isHoveringZoneRef.current = false;
       if (!isDraggingRef.current) {
         setHoveredIdx(null);
         canvas.style.cursor = 'default';
@@ -1449,8 +1451,10 @@ export const Projects = () => {
     // Mouse Wheel / Trackpad Scroll strictly inside the cylinder
     const handleWheel = (e) => {
       if (!isInsideCarouselZone(e.clientX, e.clientY)) {
+        isHoveringZoneRef.current = false;
         return; // Outside cylinder: smoothly scrolls the website up/down!
       }
+      isHoveringZoneRef.current = true;
       e.preventDefault(); // Inside cylinder: spins the carousel!
       if (pinnedIdxRef.current !== null) {
         setPinnedIdx(null);
@@ -1467,6 +1471,11 @@ export const Projects = () => {
         targetRotationRef.current = nearestSlot * slotAngle;
       }, 150);
     };
+
+    const handleWindowScroll = () => {
+      isHoveringZoneRef.current = false;
+    };
+    window.addEventListener('scroll', handleWindowScroll, { passive: true });
 
     canvas.addEventListener('pointermove', handlePointerMove);
     canvas.addEventListener('pointerdown', handlePointerDown);
@@ -1515,6 +1524,20 @@ export const Projects = () => {
       animFrameRef.current = requestAnimationFrame(animate);
 
       if (!isVisibleOnScreen) return;
+
+      // Ambient Auto-Rotation:
+      // When cursor is NOT hovering inside the scrollable carousel zone,
+      // no card is pinned, and user is not dragging, gently rotate at a slow ambient pace.
+      const isInteracting = (
+        pinnedIdxRef.current !== null ||
+        isDraggingRef.current ||
+        isHoveringZoneRef.current
+      );
+
+      if (!isInteracting) {
+        // Slow, elegant ambient drift (~0.0014 rad per frame = ~12s per card slot)
+        targetRotationRef.current += 0.0014;
+      }
 
       // Smooth carousel rotation interpolation
       currentRotationRef.current += (targetRotationRef.current - currentRotationRef.current) * 0.085;
@@ -1626,6 +1649,7 @@ export const Projects = () => {
       window.removeEventListener('pointerup', handlePointerUp);
       canvas.removeEventListener('pointerleave', handlePointerLeave);
       container.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('scroll', handleWindowScroll);
       resizeObserver.disconnect();
       themeObserver.disconnect();
       visibilityObserver.disconnect();
