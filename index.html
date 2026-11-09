@@ -19,13 +19,9 @@
   <meta property="og:title" content="Mohan Kumar T — AI Engineer & Full-Stack Systems Architect">
   <meta property="og:description" content="Explore Zugora chess engine coach, MahathRishi bilingual e-commerce, LocalMind local-first AI agent with MCP authorization, and IIT NPTEL Gold/Silver honors.">
 
-  <!-- Modern Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
-
+  <!-- Instant 0-ms Critical Styles: Placed at top of head before any network request -->
   <style>
-    /* ── SOLAR MINIMALIST SUN PRELOADER ── */
+    /* ── SOLAR MINIMALIST SUN PRELOADER (GPU ACCELERATED) ── */
     #solar-preloader {
       position: fixed;
       inset: 0;
@@ -37,9 +33,9 @@
       color: #f8fafc;
       user-select: none;
       pointer-events: all;
-      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.5s ease;
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.45s ease;
       will-change: opacity, transform, filter;
     }
 
@@ -65,11 +61,16 @@
       justify-content: center;
     }
 
+    /* Hardware Composited: Dedicated GPU plane prevents any stutter during JS execution */
     .solar-sun-svg {
       width: clamp(72px, 12vw, 96px);
       height: clamp(72px, 12vw, 96px);
       animation: solar-spin 1.25s linear infinite;
-      transform-origin: center;
+      transform-origin: 50% 50%;
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+      contain: strict;
+      backface-visibility: hidden;
     }
 
     @keyframes solar-spin {
@@ -107,9 +108,14 @@
       color: #2563eb;
     }
   </style>
+
+  <!-- Non-Blocking Modern Fonts: Will not stall first paint -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'">
 </head>
 <body>
-  <!-- 0-ms Instant Solar Sun Preloader -->
+  <!-- 0-ms Instant Solar Sun Preloader: Starts at 3% immediately with zero wait -->
   <div id="solar-preloader" aria-label="Loading portfolio">
     <div class="solar-center-icon">
       <svg class="solar-sun-svg" viewBox="0 0 100 100" fill="none">
@@ -143,7 +149,7 @@
     </div>
 
     <div class="solar-counter-corner">
-      <span id="solar-counter-val" class="solar-digit">0</span>
+      <span id="solar-counter-val" class="solar-digit">3</span>
       <span class="solar-percent">%</span>
     </div>
   </div>
@@ -158,32 +164,39 @@
       var stepIdx = 0;
       var isReady = false;
 
-      function checkReady() {
-        if (document.readyState === 'complete') {
-          isReady = true;
-        }
-      }
       if (document.readyState === 'complete') {
         isReady = true;
       } else {
         window.addEventListener('load', function() { isReady = true; });
       }
 
-      var timer = setInterval(function() {
-        if (stepIdx < steps.length - 1) {
-          counterEl.textContent = steps[stepIdx];
+      function stepToNext() {
+        if (stepIdx < steps.length - 2) {
           stepIdx++;
-        } else if (isReady || stepIdx === steps.length - 1) {
-          counterEl.textContent = '100';
-          clearInterval(timer);
-          setTimeout(function() {
-            preloader.classList.add('solar-fadeout');
-            setTimeout(function() {
-              if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
-            }, 550);
-          }, 180);
+          counterEl.textContent = steps[stepIdx];
+          var delays = [90, 100, 110];
+          setTimeout(stepToNext, delays[stepIdx - 1] || 100);
+        } else if (stepIdx === steps.length - 2) {
+          stepIdx++;
+          counterEl.textContent = '84';
+          // Now check for ready to hit 100
+          var poll = setInterval(function() {
+            if (isReady || document.readyState === 'complete') {
+              clearInterval(poll);
+              counterEl.textContent = '100';
+              setTimeout(function() {
+                preloader.classList.add('solar-fadeout');
+                setTimeout(function() {
+                  if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+                }, 500);
+              }, 160);
+            }
+          }, 30);
         }
-      }, 120);
+      }
+
+      // Step from 3% to 25% smoothly and immediately after 75ms
+      setTimeout(stepToNext, 75);
     })();
   </script>
 

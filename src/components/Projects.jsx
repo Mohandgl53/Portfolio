@@ -990,19 +990,26 @@ export const Projects = () => {
     const carouselTextures = [];
     const expandedTextures = [];
 
-    // Instant Texture Caching: Keeps both themes in memory so theme switching takes <1ms with zero lag
+    // Instant Texture Caching: Keeps both themes in memory with on-demand expansion
     const textureCache = {
       light: { carousel: [], expanded: [] },
       dark: { carousel: [], expanded: [] }
     };
+
+    // Lazy on-demand expansion texture resolver: Never blocks cold boot!
+    const getExpandedTexture = (idx, isLight) => {
+      const key = isLight ? 'light' : 'dark';
+      if (!textureCache[key].expanded[idx]) {
+        textureCache[key].expanded[idx] = createCardFaceTexture(ORDERED_PROJECTS[idx], isLight, true);
+      }
+      return textureCache[key].expanded[idx];
+    };
+
     const initialKey = initialIsLight ? 'light' : 'dark';
     for (let i = 0; i < 7; i++) {
       const cTex = createCardFaceTexture(ORDERED_PROJECTS[i], initialIsLight, false);
-      const eTex = createCardFaceTexture(ORDERED_PROJECTS[i], initialIsLight, true);
       textureCache[initialKey].carousel.push(cTex);
-      textureCache[initialKey].expanded.push(eTex);
       carouselTextures.push(cTex);
-      expandedTextures.push(eTex);
     }
 
     const floorSheenCache = {
@@ -1010,21 +1017,20 @@ export const Projects = () => {
       light: createFloorSheenTexture(true)
     };
 
-    // Pre-warm opposite theme during idle time in background so first toggle is 100% instant
+    // Pre-warm opposite theme in background when browser is completely idle (after 3.5s)
     const prewarmOppositeTheme = () => {
       const oppositeKey = initialIsLight ? 'dark' : 'light';
       if (textureCache[oppositeKey].carousel.length === 0) {
         const isOppositeLight = !initialIsLight;
         for (let i = 0; i < 7; i++) {
           textureCache[oppositeKey].carousel.push(createCardFaceTexture(ORDERED_PROJECTS[i], isOppositeLight, false));
-          textureCache[oppositeKey].expanded.push(createCardFaceTexture(ORDERED_PROJECTS[i], isOppositeLight, true));
         }
       }
     };
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      window.requestIdleCallback(prewarmOppositeTheme);
+      window.requestIdleCallback(prewarmOppositeTheme, { timeout: 4000 });
     } else {
-      setTimeout(prewarmOppositeTheme, 1500);
+      setTimeout(prewarmOppositeTheme, 3500);
     }
 
     // 7. Place Exactly Seven Upright Cards in the circular arrangement
@@ -1161,8 +1167,8 @@ export const Projects = () => {
 
       for (let i = 0; i < faceMeshes.length; i++) {
         carouselTextures[i] = textureCache[themeKey].carousel[i];
-        expandedTextures[i] = textureCache[themeKey].expanded[i];
-        const activeTex = (pinnedIdxRef.current === i) ? expandedTextures[i] : carouselTextures[i];
+        const isThisPinned = (pinnedIdxRef.current === i);
+        const activeTex = isThisPinned ? getExpandedTexture(i, isLight) : carouselTextures[i];
         if (activeTex) activeTex.needsUpdate = true;
         faceMeshes[i].material = new THREE.MeshBasicMaterial({
           map: activeTex,
@@ -1665,14 +1671,15 @@ export const Projects = () => {
 
         // Dynamic Texture Swap: In Carousel (bold/space-filling) vs Expanded (deep details/tech stack)
         if (isPinned && card.userData.currentMode !== 'expanded') {
+          const expTex = getExpandedTexture(i, currentThemeIsLight);
           faceMeshes[i].material = new THREE.MeshBasicMaterial({
-            map: expandedTextures[i],
+            map: expTex,
             transparent: false,
             side: THREE.FrontSide
           });
           if (reflFaceMeshes[i]) {
             reflFaceMeshes[i].material = new THREE.MeshBasicMaterial({
-              map: expandedTextures[i],
+              map: expTex,
               transparent: true,
               opacity: currentThemeIsLight ? 0.08 : 0.18,
               side: THREE.FrontSide
