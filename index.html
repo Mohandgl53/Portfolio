@@ -149,7 +149,7 @@
     </div>
 
     <div class="solar-counter-corner">
-      <span id="solar-counter-val" class="solar-digit">3</span>
+      <span id="solar-counter-val" class="solar-digit">0</span>
       <span class="solar-percent">%</span>
     </div>
   </div>
@@ -160,7 +160,8 @@
       var preloader = document.getElementById('solar-preloader');
       if (!counterEl || !preloader) return;
 
-      var steps = [3, 25, 59, 84, 100];
+      // Fast, snappy 4-number progression from 0 to 100%
+      var steps = [0, 34, 76, 100];
       var stepIdx = 0;
       var isReady = false;
 
@@ -171,32 +172,24 @@
       }
 
       function stepToNext() {
-        if (stepIdx < steps.length - 2) {
-          stepIdx++;
+        stepIdx++;
+        if (stepIdx < steps.length - 1) {
           counterEl.textContent = steps[stepIdx];
-          var delays = [90, 100, 110];
-          setTimeout(stepToNext, delays[stepIdx - 1] || 100);
-        } else if (stepIdx === steps.length - 2) {
-          stepIdx++;
-          counterEl.textContent = '84';
-          // Now check for ready to hit 100
-          var poll = setInterval(function() {
-            if (isReady || document.readyState === 'complete') {
-              clearInterval(poll);
-              counterEl.textContent = '100';
-              setTimeout(function() {
-                preloader.classList.add('solar-fadeout');
-                setTimeout(function() {
-                  if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
-                }, 500);
-              }, 160);
-            }
-          }, 30);
+          setTimeout(stepToNext, 65);
+        } else {
+          // Final milestone: 100%
+          counterEl.textContent = '100';
+          setTimeout(function() {
+            preloader.classList.add('solar-fadeout');
+            setTimeout(function() {
+              if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+            }, 400);
+          }, 120);
         }
       }
 
-      // Step from 3% to 25% smoothly and immediately after 75ms
-      setTimeout(stepToNext, 75);
+      // Start stepping immediately after 50ms: 0 -> 34 -> 76 -> 100%
+      setTimeout(stepToNext, 50);
     })();
   </script>
 
