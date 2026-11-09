@@ -115,6 +115,14 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-school parchment-scroll-card">
+            {/* Authentic Deckled Vintage Parchment Scroll Background with Drawn Borders */}
+            <div className="parchment-scroll-backdrop" aria-hidden="true">
+              <img
+                src={EXPERIENCE_ILLUSTRATIONS.parchmentScroll}
+                alt=""
+                className="parchment-scroll-img"
+              />
+            </div>
             {/* Curled Scroll Corners */}
             <div className="parchment-curl curl-tl" aria-hidden="true"></div>
             <div className="parchment-curl curl-tr" aria-hidden="true"></div>
@@ -134,61 +142,15 @@ export const Experience = () => {
 
             {/* Realistic Pinned Photograph of School Campus with Metallic Brass Paperclip */}
             <div className="parchment-pinned-doc" aria-label="School Campus Photograph">
-              <div className="pinned-photo-card">
-                <div className="pinned-photo-inner">
-                  <img
-                    src={EXPERIENCE_ILLUSTRATIONS.schoolPhoto}
-                    alt="School Campus Architecture"
-                    className="pinned-school-img"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              {/* Metallic Brass 3D Paperclip */}
-              <div className="brass-paperclip-mount" aria-hidden="true">
-                <svg className="brass-paperclip-svg" viewBox="0 0 28 64" fill="none">
-                  <path d="M 9,24 V 48 C 9,54 19,54 19,48 V 14 C 19,6 5,6 5,14 V 46 C 5,56 23,56 23,46 V 18" 
-                        stroke="url(#clip-brass)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <defs>
-                    <linearGradient id="clip-brass" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#fef08a" />
-                      <stop offset="25%" stopColor="#eab308" />
-                      <stop offset="60%" stopColor="#ca8a04" />
-                      <stop offset="100%" stopColor="#78350f" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
+              <img
+                src={EXPERIENCE_ILLUSTRATIONS.schoolPhoto}
+                alt="Kovilpatti Thiruvika School Campus Photograph"
+                className="pinned-school-photograph-img"
+                loading="lazy"
+              />
             </div>
 
             <div className="exp-card-inner">
-              <div className="exp-card-header">
-                <span className="category-pill pill-school slanted-badge">
-                  <span>SCHOOL EDUCATION</span>
-                  <span className="pill-slashes">//</span>
-                </span>
-
-                <div className="header-meta-school-ref">
-                  <div className="grade-laurel-wrapper">
-                    <LaurelWreath
-                      title="GRADE"
-                      value="75%"
-                      color="#2d5a27"
-                    />
-                    <div className="date-chip-vintage">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                      </svg>
-                      <span>2021 – 2022</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               <div className="card-main-content school-layout">
                 {/* Globe & Books positioned prominently on left */}
                 <div className="school-art-col">
@@ -201,6 +163,32 @@ export const Experience = () => {
                 </div>
 
                 <div className="card-details-col">
+                  <div className="school-details-top-row">
+                    <span className="category-pill pill-school slanted-badge">
+                      <span>SCHOOL EDUCATION</span>
+                      <span className="pill-slashes">//</span>
+                    </span>
+
+                    <div className="header-meta-school-ref">
+                      <div className="grade-laurel-wrapper">
+                        <LaurelWreath
+                          title="GRADE"
+                          value="75%"
+                          color="#15803d"
+                        />
+                        <div className="date-chip-vintage">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                          </svg>
+                          <span>2021 – 2022</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <h3 className="card-heading-serif">Higher Secondary Certificate (HSC)</h3>
                   <div className="card-subheading-serif">Computer Science</div>
 
@@ -240,6 +228,8 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-college architectural-prospectus-card">
+            {/* Drawn Futuristic Chamfered Inner Frame */}
+            <div className="card-drawn-inner-frame frame-college" aria-hidden="true"></div>
             {/* Integrated Right-Side Architectural Campus Mural */}
             <div className="college-campus-backdrop" aria-hidden="true">
               <img
@@ -359,6 +349,8 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-codefury cyberpunk-poster-card">
+            {/* Drawn Futuristic Chamfered Inner Frame */}
+            <div className="card-drawn-inner-frame frame-codefury" aria-hidden="true"></div>
             {/* Integrated Cyberpunk Developer Terminal Scene on Right */}
             <div className="codefury-backdrop-scene" aria-hidden="true">
               <img
@@ -462,6 +454,8 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-internship executive-workspace-card">
+            {/* Drawn Futuristic Chamfered Inner Frame */}
+            <div className="card-drawn-inner-frame frame-internship" aria-hidden="true"></div>
             {/* Integrated Cinematic Workspace on Right */}
             <div className="internship-backdrop-workspace" aria-hidden="true">
               <img
@@ -513,33 +507,35 @@ export const Experience = () => {
                     <span>Perevex Data Science & Analytics</span>
                   </div>
 
-                  {/* Dual Bento Boxes */}
-                  <div className="internship-bento-split">
-                    <div className="bento-box bento-role">
-                      <div className="bento-title-row">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                  {/* Horizontal Dual Capsule Bento matching Reference */}
+                  <div className="internship-bento-capsule">
+                    <div className="bento-capsule-item">
+                      <div className="bento-capsule-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
                         </svg>
-                        <strong>Role & Work</strong>
+                        <span>Role & Work</span>
                       </div>
-                      <p className="bento-desc">
+                      <span className="bento-capsule-text">
                         Worked on data preprocessing, EDA, and ML model development for real-world datasets.
-                      </p>
+                      </span>
                     </div>
 
-                    <div className="bento-box bento-impact">
-                      <div className="bento-title-row">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <div className="bento-capsule-divider" aria-hidden="true"></div>
+
+                    <div className="bento-capsule-item">
+                      <div className="bento-capsule-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                           <line x1="18" y1="20" x2="18" y2="10"/>
                           <line x1="12" y1="20" x2="12" y2="4"/>
                           <line x1="6" y1="20" x2="6" y2="14"/>
                         </svg>
-                        <strong>Impact</strong>
+                        <span>Impact</span>
                       </div>
-                      <p className="bento-desc">
+                      <span className="bento-capsule-text">
                         Built end-to-end pipelines and gained hands-on experience with data analytics.
-                      </p>
+                      </span>
                     </div>
                   </div>
 
@@ -593,6 +589,8 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-odyssey martian-poster-card">
+            {/* Drawn Futuristic Chamfered Inner Frame */}
+            <div className="card-drawn-inner-frame frame-odyssey" aria-hidden="true"></div>
             {/* Integrated Planetary Mountain & Flag Scene on Right */}
             <div className="odyssey-backdrop-scene" aria-hidden="true">
               <img

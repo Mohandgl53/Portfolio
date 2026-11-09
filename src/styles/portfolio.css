@@ -3973,63 +3973,40 @@ html, body {
 
 /* ═══════════════════════════════════════════════════════════
    CARD 1: SCHOOL (Vintage Scholar Parchment Scroll)
-   Artistic Direction: Authentic Aged Parchment with Curled Corners
+   Artistic Direction: Authentic Deckled Aged Parchment with Hand-Drawn Borders
    ═══════════════════════════════════════════════════════════ */
 .exp-card-school,
 .parchment-scroll-card {
-  background: #fbf5e6 !important;
-  color: #2b1f14 !important;
-  border: 1.8px solid #d4c5a0 !important;
-  border-radius: 12px;
-  box-shadow: 
-    0 24px 50px -10px rgba(0, 0, 0, 0.7),
-    inset 0 0 60px rgba(180, 130, 60, 0.12),
-    inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+  background: transparent !important;
+  color: #1a120b !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   position: relative;
   overflow: visible !important;
 }
 
-[data-theme="light"] .exp-card-school,
-[data-theme="light"] .parchment-scroll-card {
-  background: #fcf8ee !important;
-  color: #2b1f14 !important;
-  border: 1.8px solid #d0bea0 !important;
-  box-shadow: 
-    0 20px 42px -10px rgba(120, 80, 30, 0.25),
-    inset 0 0 50px rgba(180, 130, 70, 0.08) !important;
+/* Authentic Deckled Parchment Backdrop Graphic */
+.parchment-scroll-backdrop {
+  position: absolute;
+  inset: -10px -14px -14px -14px;
+  z-index: 1;
+  pointer-events: none;
+}
+.parchment-scroll-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.75));
+  transition: transform 0.4s ease;
+}
+.exp-card-school:hover .parchment-scroll-img {
+  transform: scale(1.01);
 }
 
-/* Curled Corner Accents */
-.parchment-curl {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  pointer-events: none;
-  z-index: 3;
-}
-.curl-tl {
-  top: 0; left: 0;
-  border-top: 2.5px solid #a88958;
-  border-left: 2.5px solid #a88958;
-  border-top-left-radius: 4px;
-}
-.curl-tr {
-  top: 0; right: 0;
-  border-top: 2.5px solid #a88958;
-  border-right: 2.5px solid #a88958;
-  border-top-right-radius: 4px;
-}
-.curl-bl {
-  bottom: 0; left: 0;
-  border-bottom: 2.5px solid #a88958;
-  border-left: 2.5px solid #a88958;
-  border-bottom-left-radius: 4px;
-}
-.curl-br {
-  bottom: 0; right: 0;
-  border-bottom: 2.5px solid #a88958;
-  border-right: 2.5px solid #a88958;
-  border-bottom-right-radius: 4px;
+[data-theme="light"] .exp-card-school,
+[data-theme="light"] .parchment-scroll-card {
+  color: #1a120b !important;
 }
 
 /* Botanical Foliage in Top-Left Corner */
@@ -4044,73 +4021,39 @@ html, body {
   filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.15));
 }
 
-/* Realistic Pinned Lined Sheet Note */
 /* Realistic Pinned Photograph of School Campus with Metallic Brass Paperclip */
 .parchment-pinned-doc {
   position: absolute;
-  top: -8px;
-  right: 12px;
+  top: -14px;
+  right: 10px;
   z-index: 12;
   pointer-events: none;
-  transform: rotate(5deg);
   transition: transform 0.3s ease;
 }
-.exp-card-school:hover .parchment-pinned-doc {
-  transform: rotate(2deg) translateY(-2px);
-}
-
-.pinned-photo-card {
-  background: #ffffff;
-  padding: 3px 3px 7px 3px;
-  width: 100px;
-  border-radius: 2px;
-  box-shadow: 
-    0 8px 18px -3px rgba(0, 0, 0, 0.45),
-    0 2px 6px rgba(0, 0, 0, 0.22);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-.pinned-photo-inner {
-  width: 100%;
-  height: 60px;
-  overflow: hidden;
-  border-radius: 1px;
-  background: #cbd5e1;
-}
-.pinned-school-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: contrast(1.05) saturate(1.1);
+.pinned-school-photograph-img {
+  width: 140px;
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55));
+  transform: rotate(4deg);
+  transition: transform 0.3s ease;
   display: block;
 }
-
-/* Metallic Brass 3D Paperclip */
-.brass-paperclip-mount {
-  position: absolute;
-  top: -8px;
-  left: 12px;
-  width: 16px;
-  height: 38px;
-  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
-}
-.brass-paperclip-svg {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-6deg);
+.exp-card-school:hover .pinned-school-photograph-img {
+  transform: rotate(1deg) translateY(-2px);
 }
 
 .pill-school {
   background: #14532d !important;
   color: #fef08a !important;
   border: 1px solid #22c55e !important;
-  box-shadow: 0 2px 6px rgba(20, 83, 45, 0.35) !important;
+  box-shadow: 0 2px 8px rgba(20, 83, 45, 0.4) !important;
 }
 
 .header-meta-school-ref {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-right: 110px;
+  gap: 10px;
+  margin-right: 118px;
 }
 .grade-laurel-wrapper {
   display: flex;
@@ -4120,12 +4063,13 @@ html, body {
 }
 .grade-laurel-wrapper .laurel-title {
   color: #1e3a1e !important;
-  font-size: 8px;
+  font-size: 8.5px;
 }
 .grade-laurel-wrapper .laurel-value {
   font-family: 'Playfair Display', Georgia, serif;
-  color: #1e3a1e !important;
-  font-size: 15px;
+  color: #15803d !important;
+  font-size: 17px;
+  font-weight: 800;
 }
 
 .date-chip-vintage {
@@ -4133,20 +4077,27 @@ html, body {
   align-items: center;
   gap: 4px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 10.5px;
   font-weight: 700;
   color: #78350f !important;
-  background: rgba(217, 119, 6, 0.12) !important;
-  padding: 2px 7px;
+  background: rgba(217, 119, 6, 0.15) !important;
+  padding: 2.5px 8px;
   border-radius: 999px;
-  border: 1px solid rgba(180, 83, 9, 0.3) !important;
+  border: 1px solid rgba(180, 83, 9, 0.35) !important;
+}
+
+.school-details-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
 }
 
 .card-heading-serif {
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: 19px;
-  font-weight: 700;
-  color: #1e150d !important;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827 !important;
   line-height: 1.15;
   margin: 0;
   letter-spacing: -0.01em;
@@ -4155,20 +4106,20 @@ html, body {
 .card-subheading-serif {
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 600;
-  color: #453322 !important;
-  margin: 1px 0 2px 0;
+  color: #2e1d0f !important;
+  margin: 2px 0 3px 0;
 }
 
 .vintage-org-row {
-  color: #6b4d2d !important;
-  font-size: 11px;
+  color: #4a3319 !important;
+  font-size: 12.5px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 .vintage-org-row svg {
   color: #92400e !important;
@@ -4179,6 +4130,8 @@ html, body {
   display: flex;
   gap: 16px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 .school-art-col {
   flex-shrink: 0;
@@ -4186,10 +4139,10 @@ html, body {
   text-align: center;
 }
 .school-globe-img {
-  width: 90px;
-  height: 90px;
+  width: 92px;
+  height: 92px;
   object-fit: contain;
-  filter: drop-shadow(0 8px 16px rgba(90, 60, 20, 0.35));
+  filter: drop-shadow(0 8px 18px rgba(90, 60, 20, 0.4));
   transition: transform 0.4s ease;
 }
 .exp-card-school:hover .school-globe-img {
@@ -4200,23 +4153,23 @@ html, body {
 .hsc-academic-foundation-banner {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid #d4c5a0;
-  outline: 1px dashed #c0b08a;
+  outline: 1px dashed #b8a278;
   outline-offset: -3px;
   border-radius: 6px;
   padding: 5px 10px;
   margin-top: 5px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 .foundation-banner-left {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 700;
-  color: #1e3a1e;
+  color: #14532d;
   white-space: nowrap;
 }
 .foundation-banner-left svg {
@@ -4230,9 +4183,45 @@ html, body {
   flex-shrink: 0;
 }
 .foundation-banner-right {
-  font-size: 10px;
-  line-height: 1.35;
-  color: #3b2b1b;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #2e1d0f;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DRAWN INNER FRAMES & CHAMFERED CORNERS FOR CARDS 2, 3, 4, 5
+   ═══════════════════════════════════════════════════════════ */
+.card-drawn-inner-frame {
+  position: absolute;
+  inset: 3.5px;
+  pointer-events: none;
+  z-index: 4;
+  clip-path: polygon(
+    11px 0, 
+    calc(100% - 11px) 0, 
+    100% 11px, 
+    100% calc(100% - 11px), 
+    calc(100% - 11px) 100%, 
+    11px 100%, 
+    0 calc(100% - 11px), 
+    0 11px
+  );
+}
+.frame-college {
+  border: 1px solid rgba(56, 189, 248, 0.75);
+  box-shadow: inset 0 0 12px rgba(14, 165, 233, 0.22);
+}
+.frame-codefury {
+  border: 1px solid rgba(236, 72, 153, 0.65);
+  box-shadow: inset 0 0 14px rgba(168, 85, 247, 0.28);
+}
+.frame-internship {
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  box-shadow: inset 0 0 12px rgba(14, 165, 233, 0.22);
+}
+.frame-odyssey {
+  border: 1px solid rgba(251, 191, 36, 0.7);
+  box-shadow: inset 0 0 14px rgba(245, 158, 11, 0.28);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -4250,6 +4239,16 @@ html, body {
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   position: relative;
   overflow: hidden;
+  clip-path: polygon(
+    14px 0, 
+    calc(100% - 14px) 0, 
+    100% 14px, 
+    100% calc(100% - 14px), 
+    calc(100% - 14px) 100%, 
+    14px 100%, 
+    0 calc(100% - 14px), 
+    0 14px
+  );
 }
 
 /* Integrated Right-Side Campus Mural */
@@ -4257,25 +4256,25 @@ html, body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 44%;
+  width: 40%;
   height: 100%;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 20%, black 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 20%, black 100%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 25%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 25%, black 100%);
 }
 .college-campus-mural-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center right;
-  opacity: 0.92;
-  filter: contrast(1.1) saturate(1.15);
+  opacity: 0.96;
+  filter: contrast(1.08) saturate(1.15);
   transition: transform 0.6s ease;
 }
 .exp-card-college:hover .college-campus-mural-img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .pill-college {
@@ -4295,29 +4294,29 @@ html, body {
   align-items: center;
   gap: 5px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 600;
   color: #0369a1;
   background: rgba(14, 165, 233, 0.12);
-  padding: 2.5px 8px;
+  padding: 3px 9px;
   border-radius: 999px;
   border: 1px solid rgba(14, 165, 233, 0.3);
 }
 
 .laurel-pill-blue {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 2px 8px;
+  background: #0a192f !important;
+  padding: 2.5px 11px;
   border-radius: 9999px;
-  border: 1px solid #7dd3fc;
+  border: 1px solid rgba(125, 211, 252, 0.45);
 }
 .laurel-pill-blue .laurel-title,
 .laurel-pill-blue .laurel-subtitle {
-  color: #0369a1 !important;
+  color: #ffffff !important;
 }
 
 .card-heading-modern {
   font-family: 'Space Grotesk', -apple-system, sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   color: #0f172a !important;
   line-height: 1.2;
@@ -4325,20 +4324,20 @@ html, body {
   letter-spacing: -0.01em;
 }
 .college-blue-gradient {
-  color: #0284c7;
+  color: #0066cc;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .college-org-row {
   font-family: 'Space Grotesk', -apple-system, sans-serif;
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 11px;
+  gap: 6px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #0284c7 !important;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 .college-org-row svg {
   color: #0284c7;
@@ -4351,7 +4350,7 @@ html, body {
   display: flex;
 }
 .college-details {
-  max-width: 62%;
+  max-width: 84%;
 }
 
 /* Stepper and Focus Areas Horizontal Rows matching Reference */
@@ -4360,7 +4359,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-bottom: 3.5px;
+  margin-bottom: 4px;
   flex-wrap: nowrap;
 }
 .stepper-row-label,
@@ -4369,12 +4368,12 @@ html, body {
   align-items: center;
   gap: 4px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 9.5px;
   font-weight: 800;
   color: #0f172a;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  min-width: 106px;
+  min-width: 98px;
   flex-shrink: 0;
 }
 .stepper-row-label svg,
@@ -4386,7 +4385,7 @@ html, body {
 .focus-pills-row {
   display: flex;
   flex-wrap: nowrap;
-  gap: 4px;
+  gap: 3.5px;
   align-items: center;
 }
 .step-pill-ref {
@@ -4394,9 +4393,9 @@ html, body {
   align-items: center;
   gap: 3px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 9.4px;
   font-weight: 600;
-  padding: 2px 6px;
+  padding: 2px 5px;
   border-radius: 5px;
   white-space: nowrap;
 }
@@ -4424,9 +4423,9 @@ html, body {
   display: inline-flex;
   align-items: center;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 9.8px;
   font-weight: 600;
-  padding: 2px 6px;
+  padding: 2px 5.5px;
   border-radius: 5px;
   background: #ffffff !important;
   color: #0f172a !important;
@@ -4450,6 +4449,16 @@ html, body {
     inset 0 1px 0 rgba(236, 72, 153, 0.35) !important;
   position: relative;
   overflow: hidden;
+  clip-path: polygon(
+    14px 0, 
+    calc(100% - 14px) 0, 
+    100% 14px, 
+    100% calc(100% - 14px), 
+    calc(100% - 14px) 100%, 
+    14px 100%, 
+    0 calc(100% - 14px), 
+    0 14px
+  );
 }
 
 /* Integrated Cyberpunk Backdrop Scene */
@@ -4492,7 +4501,7 @@ html, body {
 
 .laurel-pill-violet {
   background: rgba(46, 16, 77, 0.85);
-  padding: 2px 8px;
+  padding: 2.5px 9px;
   border-radius: 9999px;
   border: 1px solid rgba(192, 132, 252, 0.45);
 }
@@ -4506,11 +4515,11 @@ html, body {
   align-items: center;
   gap: 5px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 600;
   color: #e9d5ff;
   background: rgba(168, 85, 247, 0.2);
-  padding: 2.5px 8px;
+  padding: 3px 9px;
   border-radius: 999px;
   border: 1px solid rgba(192, 132, 252, 0.35);
 }
@@ -4520,20 +4529,19 @@ html, body {
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .codefury-art-col {
   flex-shrink: 0;
-  width: 95px;
+  width: 130px;
   text-align: center;
 }
 .codefury-trophy-img {
-  width: 88px;
-  height: 98px;
+  width: 125px;
+  height: 145px;
   object-fit: contain;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 16px rgba(192, 132, 252, 0.65));
+  filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.75));
   transition: transform 0.4s ease;
 }
 .exp-card-codefury:hover .codefury-trophy-img {
@@ -4541,12 +4549,12 @@ html, body {
 }
 
 .codefury-details {
-  max-width: 60%;
+  max-width: 65%;
 }
 
 .card-heading-neon {
   font-family: 'Sora', var(--sans), sans-serif;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #ffffff !important;
@@ -4559,14 +4567,13 @@ html, body {
   -webkit-text-fill-color: #ff2a9d !important;
 }
 .card-subheading-neon {
-  font-family: 'Fira Code', var(--mono);
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #c084fc !important;
-  text-transform: uppercase;
-  margin-top: 1px;
-  margin-bottom: 2px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e9d5ff !important;
+  margin-top: 2px;
+  margin-bottom: 3px;
 }
 
 .neon-org-row {
@@ -4574,11 +4581,11 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: #e9d5ff !important;
   opacity: 0.9;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 .neon-org-row svg {
   color: #ff2a9d;
@@ -4601,13 +4608,13 @@ html, body {
 .highlights-banner-tab {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 5px 9px;
+  padding: 6px 12px;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -4621,24 +4628,24 @@ html, body {
 }
 .highlights-banner-list {
   list-style: none;
-  padding: 4px 9px;
+  padding: 5px 12px;
   margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2px;
+  gap: 2.5px;
 }
 .highlights-banner-list li {
   display: flex;
   align-items: flex-start;
   gap: 6px;
-  font-size: 9px;
-  line-height: 1.32;
+  font-size: 11px;
+  line-height: 1.4;
   color: #f3e8ff;
 }
 .highlight-bullet {
   font-weight: 800;
-  font-size: 9px;
+  font-size: 11px;
   margin-top: 1px;
   flex-shrink: 0;
 }
@@ -4660,6 +4667,16 @@ html, body {
     inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
   position: relative;
   overflow: hidden;
+  clip-path: polygon(
+    14px 0, 
+    calc(100% - 14px) 0, 
+    100% 14px, 
+    100% calc(100% - 14px), 
+    calc(100% - 14px) 100%, 
+    14px 100%, 
+    0 calc(100% - 14px), 
+    0 14px
+  );
 }
 
 .pill-internship {
@@ -4680,11 +4697,11 @@ html, body {
   align-items: center;
   gap: 5px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 600;
   color: #7dd3fc;
   background: rgba(14, 165, 233, 0.15);
-  padding: 2.5px 8px;
+  padding: 3px 9px;
   border-radius: 999px;
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
@@ -4694,18 +4711,18 @@ html, body {
   align-items: center;
   gap: 4px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 600;
   color: #38bdf8;
   background: rgba(56, 189, 248, 0.12);
-  padding: 2.5px 8px;
+  padding: 3px 9px;
   border-radius: 999px;
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
 .card-heading-corporate {
   font-family: 'Manrope', -apple-system, sans-serif;
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 800;
   color: #f0fdfa !important;
   line-height: 1.2;
@@ -4718,14 +4735,15 @@ html, body {
 }
 
 .corporate-org-row {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 11px;
+  gap: 6px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #7dd3fc !important;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 .corporate-org-row svg {
   color: #38bdf8;
@@ -4771,63 +4789,75 @@ html, body {
   z-index: 2;
 }
 
-/* Split Bento */
-.internship-bento-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  margin-bottom: 5px;
-}
-
-.bento-box {
-  background: rgba(15, 29, 46, 0.8);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  border-radius: 6px;
-  padding: 4px 7px;
-}
-
-.bento-title-row {
-  font-family: 'Manrope', sans-serif;
+/* Horizontal Dual Capsule Bento matching Reference */
+.internship-bento-capsule {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 9.5px;
-  font-weight: 700;
-  color: #38bdf8 !important;
-  margin-bottom: 1px;
+  background: rgba(14, 28, 46, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 8px;
+  padding: 5px 12px;
+  gap: 12px;
+  margin-bottom: 6px;
+  backdrop-filter: blur(8px);
 }
-.bento-desc {
+.bento-capsule-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+.bento-capsule-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-family: 'Manrope', sans-serif;
-  font-size: 9px;
-  line-height: 1.32;
-  color: #cbd5e1 !important;
-  margin: 0;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #38bdf8;
+  white-space: nowrap;
+}
+.bento-capsule-badge svg {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+.bento-capsule-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #cbd5e1;
+}
+.bento-capsule-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(56, 189, 248, 0.35);
+  flex-shrink: 0;
 }
 
 /* Official Tech Stack Badges Horizontal Row matching Reference */
 .internship-tech-stack-row {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-top: 4px;
+  gap: 8px;
+  margin-top: 5px;
 }
 .tech-stack-label {
   display: flex;
   align-items: center;
   gap: 4px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: #38bdf8 !important;
   text-transform: uppercase;
   flex-shrink: 0;
-  min-width: 68px;
+  min-width: 74px;
 }
 
 .official-tech-badges-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 5px;
   align-items: center;
 }
@@ -4836,14 +4866,15 @@ html, body {
   align-items: center;
   gap: 4px;
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 10px;
   font-weight: 600;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 5px;
   background: rgba(15, 29, 46, 0.85);
   color: #f1f5f9;
   border: 1px solid rgba(255, 255, 255, 0.14);
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 .official-badge:hover {
   transform: translateY(-1px);
@@ -4851,8 +4882,8 @@ html, body {
 }
 .official-badge svg {
   flex-shrink: 0;
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -4869,6 +4900,16 @@ html, body {
     inset 0 1px 0 rgba(251, 191, 36, 0.35) !important;
   position: relative;
   overflow: hidden;
+  clip-path: polygon(
+    14px 0, 
+    calc(100% - 14px) 0, 
+    100% 14px, 
+    100% calc(100% - 14px), 
+    calc(100% - 14px) 100%, 
+    14px 100%, 
+    0 calc(100% - 14px), 
+    0 14px
+  );
 }
 
 /* Integrated Mountain Backdrop Scene */
@@ -4911,7 +4952,7 @@ html, body {
 
 .laurel-pill-amber {
   background: rgba(55, 23, 9, 0.9);
-  padding: 2px 8px;
+  padding: 2.5px 9px;
   border-radius: 9999px;
   border: 1px solid rgba(245, 158, 11, 0.45);
 }
@@ -4925,11 +4966,11 @@ html, body {
   align-items: center;
   gap: 5px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 600;
   color: #fde68a;
   background: rgba(245, 158, 11, 0.2);
-  padding: 2.5px 8px;
+  padding: 3px 9px;
   border-radius: 999px;
   border: 1px solid rgba(251, 191, 36, 0.35);
 }
@@ -4939,22 +4980,21 @@ html, body {
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .odyssey-art-col,
 .odyssey-art-hero {
   flex-shrink: 0;
-  width: 95px;
+  width: 135px;
   text-align: center;
   z-index: 3;
 }
 .odyssey-astronaut-img {
-  width: 90px;
-  height: 118px;
+  width: 130px;
+  height: 155px;
   object-fit: contain;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.7));
+  filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.75));
   transition: transform 0.4s ease;
 }
 .exp-card-odyssey:hover .odyssey-astronaut-img {
@@ -4962,12 +5002,12 @@ html, body {
 }
 
 .odyssey-details {
-  max-width: 60%;
+  max-width: 65%;
 }
 
 .card-heading-sci-fi {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 21px;
+  font-size: 23px;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: #ffffff !important;
@@ -4981,14 +5021,13 @@ html, body {
 }
 
 .card-subheading-sci-fi {
-  font-family: 'Sora', var(--mono);
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #fbbf24 !important;
-  text-transform: uppercase;
-  margin-top: 1px;
-  margin-bottom: 2px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fed7aa !important;
+  margin-top: 2px;
+  margin-bottom: 3px;
 }
 
 .sci-fi-org-row {
@@ -4996,11 +5035,11 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: #fed7aa !important;
   opacity: 0.9;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 .sci-fi-org-row svg {
   color: #f59e0b;
@@ -5016,6 +5055,16 @@ html, body {
   background: rgba(55, 23, 9, 0.95);
   color: #ffffff;
   border-right: 1px solid rgba(245, 158, 11, 0.35);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .tab-odyssey svg {
   color: #f59e0b;
