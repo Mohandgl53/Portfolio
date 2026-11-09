@@ -11,3 +11,4 @@ export const EXPERIENCE_ILLUSTRATIONS = {
   internship: internshipLaptop,
   hackOdyssey: hackAstronaut
 };
+

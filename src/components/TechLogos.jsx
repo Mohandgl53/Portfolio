@@ -91,3 +91,4 @@ export const LaurelWreath = ({ title, value, subtitle, star, color = "currentCol
     </svg>
   </div>
 );
+

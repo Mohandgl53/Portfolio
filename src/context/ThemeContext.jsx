@@ -22,6 +22,10 @@ export const ThemeProvider = ({ children }) => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
 
     if (typeof document !== 'undefined') {
+      document.documentElement.dataset.theme = nextTheme;
+      try {
+        localStorage.setItem('mk-theme', nextTheme);
+      } catch (e) {}
       document.documentElement.classList.add('theme-transitioning');
       
       if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
