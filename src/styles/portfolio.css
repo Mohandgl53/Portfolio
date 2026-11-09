@@ -4225,16 +4225,16 @@ html, body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CARD 2: COLLEGE (Modern Architectural Prospectus)
-   Artistic Direction: Contemporary Editorial Campus Mural
+   CARD 2: COLLEGE (Architectural Blueprint & Drafting Table)
+   Artistic Direction: Blueprint Grid, Drafting Compass & Campus Mural
    ═══════════════════════════════════════════════════════════ */
 .exp-card-college,
 .architectural-prospectus-card {
-  background: linear-gradient(135deg, #e8f4fc 0%, #d8eefc 40%, #f0f8ff 100%) !important;
+  background: #eef6fc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M20 0H0v20h20V0z' fill='none' stroke='%2338bdf8' stroke-width='0.4' stroke-opacity='0.22'/%3E%3C/svg%3E") !important;
   color: #0f172a !important;
   border: 1.5px solid #7dd3fc !important;
   box-shadow: 
-    0 22px 50px -10px rgba(14, 165, 233, 0.25),
+    0 20px 45px -10px rgba(14, 165, 233, 0.22),
     0 4px 16px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   position: relative;
@@ -4256,7 +4256,7 @@ html, body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 40%;
+  width: 38%;
   height: 100%;
   pointer-events: none;
   z-index: 1;
@@ -4314,6 +4314,37 @@ html, body {
   color: #ffffff !important;
 }
 
+.college-layout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.college-compass-col {
+  width: 105px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.college-compass-tool-img {
+  width: 100px;
+  height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(2px 4px 8px rgba(15, 23, 42, 0.25));
+  transition: transform 0.4s ease;
+}
+.exp-card-college:hover .college-compass-tool-img {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+.college-details {
+  flex: 1;
+  max-width: 82%;
+}
+
 .card-heading-modern {
   font-family: 'Space Grotesk', -apple-system, sans-serif;
   font-size: 22px;
@@ -4344,21 +4375,12 @@ html, body {
   flex-shrink: 0;
 }
 
-.college-layout {
-  position: relative;
-  z-index: 2;
-  display: flex;
-}
-.college-details {
-  max-width: 84%;
-}
-
-/* Stepper and Focus Areas Horizontal Rows matching Reference */
+/* Stepper and Focus Areas Horizontal Rows */
 .stepper-horizontal-row,
 .focus-horizontal-row {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   margin-bottom: 4px;
   flex-wrap: nowrap;
 }
@@ -4388,6 +4410,23 @@ html, body {
   gap: 3.5px;
   align-items: center;
 }
+.stepper-milestone-wire {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.step-wire-connector {
+  height: 2px;
+  width: 14px;
+  background: #0284c7;
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+.step-node-dot {
+  color: #16a34a;
+  font-size: 8px;
+  margin-right: 3px;
+}
 .step-pill-ref {
   display: inline-flex;
   align-items: center;
@@ -4395,7 +4434,7 @@ html, body {
   font-family: var(--mono);
   font-size: 9.4px;
   font-weight: 600;
-  padding: 2px 5px;
+  padding: 2px 6px;
   border-radius: 5px;
   white-space: nowrap;
 }
@@ -4404,19 +4443,18 @@ html, body {
   color: #15803d !important;
   border: 1px solid #86efac !important;
 }
-.step-pill-ref.step-active-current {
-  background: #0284c7 !important;
+.step-pill-ref.step-final-star {
+  background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
-  border: 1px solid #0369a1 !important;
-  box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+  border: 1px solid #60a5fa !important;
+  box-shadow: 0 0 10px rgba(29, 78, 216, 0.45);
+  border-radius: 999px !important;
+  padding: 2.5px 8px !important;
 }
-.step-pill-ref .check-mark {
-  font-weight: 800;
-}
-.spinner-indicator {
-  display: inline-block;
-  animation: spinSlow 3s linear infinite;
-  font-size: 10px;
+.star-icon {
+  color: #fef08a;
+  font-size: 9px;
+  margin-right: 3px;
 }
 
 .focus-tag-ref {
@@ -4425,18 +4463,18 @@ html, body {
   font-family: var(--mono);
   font-size: 9.8px;
   font-weight: 600;
-  padding: 2px 5.5px;
-  border-radius: 5px;
-  background: #ffffff !important;
-  color: #0f172a !important;
-  border: 1px solid #bae6fd !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   white-space: nowrap;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CARD 3: CODEFURRY-25 (Cinematic Purple Hackathon Poster)
-   Artistic Direction: Cyberpunk Terminal & 3D Crystal Trophy
+   CARD 3: CODEFURRY-25 (VIP Hackathon Pass & Ticket Stub)
+   Artistic Direction: Lanyard VIP Pass, Pinned Sticky Note & Barcode
    ═══════════════════════════════════════════════════════════ */
 .exp-card-hackathon,
 .exp-card-codefury,
@@ -4466,7 +4504,7 @@ html, body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 48%;
+  width: 44%;
   height: 100%;
   pointer-events: none;
   z-index: 1;
@@ -4529,27 +4567,30 @@ html, body {
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
-.codefury-art-col {
+.codefury-badge-col {
   flex-shrink: 0;
-  width: 130px;
-  text-align: center;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }
-.codefury-trophy-img {
-  width: 125px;
-  height: 145px;
+.codefury-badge-img {
+  width: 112px;
+  height: 140px;
   object-fit: contain;
-  filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.75));
+  filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.65));
   transition: transform 0.4s ease;
 }
-.exp-card-codefury:hover .codefury-trophy-img {
+.exp-card-codefury:hover .codefury-badge-img {
   transform: scale(1.05) translateY(-2px);
 }
 
 .codefury-details {
-  max-width: 65%;
+  flex: 1;
 }
 
 .card-heading-neon {
@@ -4592,70 +4633,72 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Horizontal Poster Highlights Banner matching Reference */
-.poster-highlights-banner {
-  display: flex;
-  align-items: stretch;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-top: 5px;
-}
-.codefury-banner {
-  background: rgba(24, 9, 44, 0.9);
-  border: 1px solid rgba(192, 132, 252, 0.35);
-  box-shadow: inset 0 0 16px rgba(124, 58, 237, 0.2);
-}
-.highlights-banner-tab {
+/* Sticky Note Highlights Row */
+.codefury-sticky-highlights-row {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  white-space: nowrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+.codefury-sticky-img {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(1px 3px 6px rgba(0, 0, 0, 0.45));
+  transform: rotate(-2deg);
   flex-shrink: 0;
 }
-.tab-codefury {
-  background: rgba(43, 13, 82, 0.95);
-  color: #ffffff;
-  border-right: 1px solid rgba(192, 132, 252, 0.3);
-}
-.tab-codefury svg {
-  color: #ff2a9d;
-}
-.highlights-banner-list {
+.codefury-bullet-list {
   list-style: none;
-  padding: 5px 12px;
+  padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 2.5px;
 }
-.highlights-banner-list li {
+.codefury-bullet-list li {
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  color: #f1e8ff;
+  line-height: 1.35;
   display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  font-size: 11px;
-  line-height: 1.4;
-  color: #f3e8ff;
+  align-items: baseline;
 }
-.highlight-bullet {
+.codefury-check-dot {
+  color: #e879f9;
   font-weight: 800;
-  font-size: 11px;
-  margin-top: 1px;
+  margin-right: 6px;
   flex-shrink: 0;
 }
-.bullet-codefury {
-  color: #ff2a9d;
+
+/* Vertical Barcode & Chevrons on Far Right */
+.codefury-ticket-barcode-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding-left: 6px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+.ticket-chevrons {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 900;
+  color: #c084fc;
+  letter-spacing: 2px;
+}
+.ticket-vertical-barcode {
+  width: 14px;
+  height: 68px;
+  background: repeating-linear-gradient(to bottom, #c084fc 0px, #c084fc 2px, transparent 2px, transparent 4px, #c084fc 4px, #c084fc 5px, transparent 5px, transparent 7px, #c084fc 7px, #c084fc 10px, transparent 10px, transparent 12px);
+  border-radius: 1px;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CARD 4: DATA SCIENCE INTERNSHIP (Executive Tech Workspace)
-   Artistic Direction: Late-Night Workstation & Official Logos
+   CARD 4: DATA SCIENCE INTERNSHIP (Persevex Tech Workspace)
+   Artistic Direction: Left-Side Laptop & Mug, Dual Capsule Bento
    ═══════════════════════════════════════════════════════════ */
 .exp-card-internship,
 .executive-workspace-card {
@@ -4720,6 +4763,36 @@ html, body {
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
+.internship-layout {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+.internship-art-col {
+  width: 130px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.internship-laptop-img {
+  width: 125px;
+  height: 135px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.35));
+  transition: transform 0.4s ease;
+}
+.exp-card-internship:hover .internship-laptop-img {
+  transform: scale(1.04);
+}
+
+.internship-details {
+  flex: 1;
+}
+
 .card-heading-corporate {
   font-family: 'Manrope', -apple-system, sans-serif;
   font-size: 22px;
@@ -4750,46 +4823,7 @@ html, body {
   flex-shrink: 0;
 }
 
-.internship-layout {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: relative;
-  z-index: 2;
-}
-
-.internship-backdrop-workspace {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 44%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, black 85%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, black 85%);
-}
-.internship-workspace-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center right;
-  opacity: 0.95;
-  filter: contrast(1.1) saturate(1.15);
-  transition: transform 0.6s ease;
-}
-.exp-card-internship:hover .internship-workspace-img {
-  transform: scale(1.03);
-}
-
-.internship-details {
-  max-width: 60%;
-  position: relative;
-  z-index: 2;
-}
-
-/* Horizontal Dual Capsule Bento matching Reference */
+/* Horizontal Dual Capsule Bento */
 .internship-bento-capsule {
   display: flex;
   align-items: center;
@@ -4834,7 +4868,7 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Official Tech Stack Badges Horizontal Row matching Reference */
+/* Official Tech Stack Badges Horizontal Row */
 .internship-tech-stack-row {
   display: flex;
   align-items: center;
@@ -4887,8 +4921,8 @@ html, body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CARD 5: HACK ODYSSEY 3.0 (Futuristic Martian Sci-Fi Poster)
-   Artistic Direction: Astronaut on Mars & Mountain Flag Peak
+   CARD 5: HACK ODYSSEY 3.0 (Sci-Fi Armored Bulkhead & Mars)
+   Artistic Direction: Armored Steel Frame, Astronaut Gazing at Planet
    ═══════════════════════════════════════════════════════════ */
 .exp-card-odyssey,
 .martian-poster-card {
@@ -4912,12 +4946,24 @@ html, body {
   );
 }
 
+/* Top-Right Hazard Warning Diagonal Stripes */
+.odyssey-hazard-stripes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 14px;
+  background: repeating-linear-gradient(45deg, #f59e0b, #f59e0b 6px, #18181b 6px, #18181b 12px);
+  border-bottom-left-radius: 4px;
+  z-index: 4;
+}
+
 /* Integrated Mountain Backdrop Scene */
 .odyssey-backdrop-scene {
   position: absolute;
   top: 0;
   right: 0;
-  width: 48%;
+  width: 44%;
   height: 100%;
   pointer-events: none;
   z-index: 1;
@@ -4980,29 +5026,30 @@ html, body {
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
-.odyssey-art-col,
-.odyssey-art-hero {
+.odyssey-art-planet {
   flex-shrink: 0;
-  width: 135px;
-  text-align: center;
+  width: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 3;
 }
-.odyssey-astronaut-img {
-  width: 130px;
-  height: 155px;
+.odyssey-planet-astronaut-img {
+  width: 120px;
+  height: 135px;
   object-fit: contain;
-  filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.75));
+  filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.75));
   transition: transform 0.4s ease;
 }
-.exp-card-odyssey:hover .odyssey-astronaut-img {
+.exp-card-odyssey:hover .odyssey-planet-astronaut-img {
   transform: scale(1.05) translateY(-2px);
 }
 
 .odyssey-details {
-  max-width: 65%;
+  flex: 1;
 }
 
 .card-heading-sci-fi {
@@ -5035,10 +5082,9 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: #fed7aa !important;
-  opacity: 0.9;
+  color: #f59e0b !important;
   margin-bottom: 6px;
 }
 .sci-fi-org-row svg {
@@ -5046,48 +5092,69 @@ html, body {
   flex-shrink: 0;
 }
 
-.odyssey-banner {
-  background: rgba(35, 16, 7, 0.9);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  box-shadow: inset 0 0 16px rgba(234, 88, 12, 0.2);
-}
-.tab-odyssey {
-  background: rgba(55, 23, 9, 0.95);
-  color: #ffffff;
-  border-right: 1px solid rgba(245, 158, 11, 0.35);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.tab-odyssey svg {
-  color: #f59e0b;
-}
-.bullet-odyssey {
-  color: #f59e0b;
+/* Card 5 Key Highlights Elongated Banner matching Reference */
+.poster-highlights-banner {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch;
+  background: rgba(30, 14, 4, 0.9) !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 6px;
+  backdrop-filter: blur(8px);
 }
 
-/* Atmospheric Mountain Ridge Footer */
-.experience-bottom-mountains {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
+.highlights-banner-tab {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px !important;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(245, 158, 11, 0.35);
+  border-bottom: none !important;
 }
-.mountain-ridge-svg {
-  width: 100%;
-  height: 100%;
+
+.tab-odyssey {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
 }
+
+.highlights-banner-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 14px;
+  margin: 0;
+  list-style: none;
+  flex: 1;
+}
+
+.highlights-banner-list li {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #fde68a;
+  display: flex;
+  align-items: baseline;
+}
+
+.highlight-bullet {
+  font-weight: 800;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.bullet-odyssey {
+  color: #f59e0b !important;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

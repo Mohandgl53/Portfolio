@@ -196,7 +196,7 @@ export const Experience = () => {
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
                     </svg>
-                    <span>Kovilpatti Thiruvika Govt. Hr. Sec. School</span>
+                    <span>Edustar International School, Kovilpatti</span>
                   </div>
 
                   {/* Horizontal Academic Foundation Split Banner */}
@@ -269,6 +269,16 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content college-layout">
+                {/* Left Drafting Compass & Blueprint Architecture */}
+                <div className="college-compass-col" aria-hidden="true">
+                  <img
+                    src={EXPERIENCE_ILLUSTRATIONS.collegeCompass}
+                    alt="Architectural Drafting Compass & Blueprint"
+                    className="college-compass-tool-img"
+                    loading="lazy"
+                  />
+                </div>
+
                 <div className="card-details-col college-details">
                   <h3 className="card-heading-modern">
                     B.Tech in <span className="college-blue-gradient">Artificial Intelligence & Data Science</span>
@@ -281,7 +291,7 @@ export const Experience = () => {
                     <span>P.S.R.R. College of Engineering, Sivakasi, Tamil Nadu</span>
                   </div>
 
-                  {/* Connected Degree Progression Stepper Row */}
+                  {/* Connected Degree Progression Stepper Row with Milestone Wire */}
                   <div className="stepper-horizontal-row">
                     <div className="stepper-row-label">
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -291,22 +301,25 @@ export const Experience = () => {
                       <span>Degree Progression</span>
                     </div>
 
-                    <div className="stepper-pills-row">
+                    <div className="stepper-pills-row stepper-milestone-wire">
                       <span className="step-pill-ref step-completed">
-                        <span>I Year – Foundation</span>
-                        <span className="check-mark">✓</span>
+                        <span className="step-node-dot">●</span>
+                        <span>I Year Foundation</span>
                       </span>
+                      <span className="step-wire-connector"></span>
                       <span className="step-pill-ref step-completed">
-                        <span>II Year – Core AI & DS</span>
-                        <span className="check-mark">✓</span>
+                        <span className="step-node-dot">●</span>
+                        <span>II Year Core AI & DS</span>
                       </span>
+                      <span className="step-wire-connector"></span>
                       <span className="step-pill-ref step-completed">
-                        <span>III Year – Systems & Projects</span>
-                        <span className="check-mark">✓</span>
+                        <span className="step-node-dot">●</span>
+                        <span>III Year Systems & Projects</span>
                       </span>
-                      <span className="step-pill-ref step-active-current">
-                        <span>IV Year – Final Year</span>
-                        <span className="spinner-indicator">⟳</span>
+                      <span className="step-wire-connector"></span>
+                      <span className="step-pill-ref step-active-current step-final-star">
+                        <span className="star-icon">★</span>
+                        <span>IV Year Final Year</span>
                       </span>
                     </div>
                   </div>
@@ -391,12 +404,12 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content codefury-layout">
-                {/* 3D Crystal Trophy on Left */}
-                <div className="codefury-art-col">
+                {/* VIP Lanyard Badge on Left */}
+                <div className="codefury-art-col codefury-badge-col">
                   <img
-                    src={EXPERIENCE_ILLUSTRATIONS.codefury}
-                    alt="Futuristic Crystal Trophy on Pedestal"
-                    className="codefury-trophy-img"
+                    src={EXPERIENCE_ILLUSTRATIONS.codefuryBadge}
+                    alt="CODEFURRY '25 VIP Lanyard Pass Badge"
+                    className="codefury-badge-img"
                     loading="lazy"
                   />
                 </div>
@@ -414,30 +427,35 @@ export const Experience = () => {
                     <span>Syed Ammal Engineering College, Ramanathapuram</span>
                   </div>
 
-                  {/* Horizontal Key Highlights Banner matching Reference */}
-                  <div className="poster-highlights-banner codefury-banner">
-                    <div className="highlights-banner-tab tab-codefury">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                      </svg>
-                      <span>Key Highlights</span>
-                    </div>
-
-                    <ul className="highlights-banner-list">
+                  {/* Pinned Sticky Note Highlights matching New Reference */}
+                  <div className="codefury-sticky-highlights-row">
+                    <img
+                      src={EXPERIENCE_ILLUSTRATIONS.codefurySticky}
+                      alt="Key Highlights Note"
+                      className="codefury-sticky-img"
+                      loading="lazy"
+                    />
+                    <ul className="codefury-bullet-list">
                       <li>
-                        <span className="highlight-bullet bullet-codefury">✔</span>
+                        <span className="codefury-check-dot">✓</span>
                         <span>Participated in a National Level Hackathon along with a team.</span>
                       </li>
                       <li>
-                        <span className="highlight-bullet bullet-codefury">✔</span>
+                        <span className="codefury-check-dot">✓</span>
                         <span>Built and presented a technical solution addressing a real-world problem.</span>
                       </li>
                       <li>
-                        <span className="highlight-bullet bullet-codefury">✔</span>
+                        <span className="codefury-check-dot">✓</span>
                         <span>Gained hands-on experience in rapid prototyping, collaboration, and problem solving.</span>
                       </li>
                     </ul>
                   </div>
+                </div>
+
+                {/* Vertical Barcode & Chevrons on Far Right */}
+                <div className="codefury-ticket-barcode-col" aria-hidden="true">
+                  <div className="ticket-chevrons">&gt;&gt;&gt;</div>
+                  <div className="ticket-vertical-barcode"></div>
                 </div>
               </div>
             </div>
@@ -456,15 +474,6 @@ export const Experience = () => {
           <div className="exp-card-outer exp-card-internship executive-workspace-card">
             {/* Drawn Futuristic Chamfered Inner Frame */}
             <div className="card-drawn-inner-frame frame-internship" aria-hidden="true"></div>
-            {/* Integrated Cinematic Workspace on Right */}
-            <div className="internship-backdrop-workspace" aria-hidden="true">
-              <img
-                src={EXPERIENCE_ILLUSTRATIONS.internshipWorkspace}
-                alt=""
-                className="internship-workspace-img"
-                loading="lazy"
-              />
-            </div>
 
             <div className="exp-card-inner">
               <div className="exp-card-header">
@@ -495,6 +504,16 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content internship-layout">
+                {/* Left-side Analytics Laptop & Coffee Mug */}
+                <div className="internship-art-col" aria-hidden="true">
+                  <img
+                    src={EXPERIENCE_ILLUSTRATIONS.internshipDeskLaptop}
+                    alt="Persevex Analytics Workstation with Coffee Mug"
+                    className="internship-laptop-img"
+                    loading="lazy"
+                  />
+                </div>
+
                 <div className="card-details-col internship-details flex-1">
                   <h3 className="card-heading-corporate">
                     Data Science <em className="cyan-highlight">Intern</em>
@@ -504,7 +523,7 @@ export const Experience = () => {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
                     </svg>
-                    <span>Perevex Data Science & Analytics</span>
+                    <span>Persevex Data Science & Analytics</span>
                   </div>
 
                   {/* Horizontal Dual Capsule Bento matching Reference */}
@@ -588,18 +607,11 @@ export const Experience = () => {
             </svg>
           </div>
 
-          <div className="exp-card-outer exp-card-odyssey martian-poster-card">
+          <div className="exp-card-outer exp-card-odyssey martian-poster-card armored-bulkhead-card">
+            {/* Top-Right Hazard Warning Diagonal Stripes */}
+            <div className="odyssey-hazard-stripes" aria-hidden="true"></div>
             {/* Drawn Futuristic Chamfered Inner Frame */}
             <div className="card-drawn-inner-frame frame-odyssey" aria-hidden="true"></div>
-            {/* Integrated Planetary Mountain & Flag Scene on Right */}
-            <div className="odyssey-backdrop-scene" aria-hidden="true">
-              <img
-                src={EXPERIENCE_ILLUSTRATIONS.hackOdysseyScene}
-                alt=""
-                className="odyssey-backdrop-img"
-                loading="lazy"
-              />
-            </div>
 
             <div className="exp-card-inner">
               <div className="exp-card-header">
@@ -631,12 +643,12 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content odyssey-layout">
-                {/* Golden Visor Astronaut on Left - Heroic Foreground */}
-                <div className="odyssey-art-col odyssey-art-hero">
+                {/* Astronaut Gazing at Glowing Planet on Left */}
+                <div className="odyssey-art-col odyssey-art-planet">
                   <img
-                    src={EXPERIENCE_ILLUSTRATIONS.hackOdysseyHero}
-                    alt="Astronaut with Golden Reflective Visor"
-                    className="odyssey-astronaut-img"
+                    src={EXPERIENCE_ILLUSTRATIONS.hackOdysseyPlanet}
+                    alt="Astronaut gazing at glowing orange planet"
+                    className="odyssey-planet-astronaut-img"
                     loading="lazy"
                   />
                 </div>
