@@ -26,19 +26,7 @@ export const ThemeProvider = ({ children }) => {
       try {
         localStorage.setItem('mk-theme', nextTheme);
       } catch (e) {}
-      document.documentElement.classList.add('theme-transitioning');
-      
-      if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.startViewTransition(() => {
-          setTheme(nextTheme);
-        });
-      } else {
-        setTheme(nextTheme);
-      }
-
-      setTimeout(() => {
-        document.documentElement.classList.remove('theme-transitioning');
-      }, 500);
+      setTheme(nextTheme);
     } else {
       setTheme(nextTheme);
     }

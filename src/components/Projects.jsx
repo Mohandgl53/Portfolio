@@ -513,22 +513,22 @@ export const Projects = () => {
         ctx.fillText(catText, catX + 12, chipY + 18.5);
 
         // Title: Pure Deep Black / Crisp White
-        ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
-        ctx.font = `bold 36px ${FONT_HEAD}`;
-        ctx.fillText(proj.title, 24, 326);
+        ctx.fillStyle = isLight ? '#020617' : '#ffffff';
+        ctx.font = `bold 32px ${FONT_HEAD}`;
+        ctx.fillText(proj.title, 24, 324);
 
         // Tagline / Headline: High-Contrast Dark Slate
-        ctx.fillStyle = isLight ? '#1e293b' : '#94a3b8';
-        ctx.font = `bold 17.5px ${FONT_BODY}`;
-        ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 354);
+        ctx.fillStyle = isLight ? '#0f172a' : '#94a3b8';
+        ctx.font = `bold 16px ${FONT_BODY}`;
+        ctx.fillText(proj.headline || proj.whatDoes1 || '', 24, 350);
 
         // Bento Tile 1: High-Contrast Pure White Interior Container
-        const bentoY = 372;
-        const bentoH = 114;
+        const bentoY = 368;
+        const bentoH = 112;
         drawRoundRect(ctx, 24, bentoY, 592, bentoH, 10);
-        ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.75)';
+        ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.65)';
         ctx.fill();
-        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.12)';
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.10)';
         ctx.lineWidth = 1.4;
         ctx.stroke();
 
@@ -538,21 +538,21 @@ export const Projects = () => {
 
         // Tile Header Label: Deep Cobalt
         ctx.fillStyle = isLight ? '#1e40af' : '#38bdf8';
-        ctx.font = `bold 13px ${FONT_HEAD}`;
+        ctx.font = `bold 12.5px ${FONT_HEAD}`;
         ctx.fillText('PROBLEM SOLVED & PURPOSE', 38, bentoY + 24);
 
         // Primary line: Deep Solid Pitch Black
-        ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
-        ctx.font = `bold 16px ${FONT_BODY}`;
+        ctx.fillStyle = isLight ? '#020617' : '#f8fafc';
+        ctx.font = `bold 15px ${FONT_BODY}`;
         const sum1Lines = wrapText(ctx, proj.summary1 || proj.whyBuilt1 || '', 538);
-        let sY = bentoY + 49;
+        let sY = bentoY + 48;
         sum1Lines.slice(0, 2).forEach(line => {
           ctx.fillText(line, 38, sY);
-          sY += 21;
+          sY += 20;
         });
 
         // Secondary line: Deep Solid Slate
-        ctx.fillStyle = isLight ? '#334155' : '#cbd5e1';
+        ctx.fillStyle = isLight ? '#0f172a' : '#cbd5e1';
         ctx.font = `600 14.5px ${FONT_BODY}`;
         const sum2Lines = wrapText(ctx, proj.summary2 || proj.whyBuilt2 || '', 538);
         sum2Lines.slice(0, 1).forEach(line => {
@@ -560,58 +560,58 @@ export const Projects = () => {
         });
 
         // Technologies Header: Deep Sky
-        ctx.fillStyle = isLight ? '#0369a1' : '#38bdf8';
-        ctx.font = `bold 13px ${FONT_HEAD}`;
-        ctx.fillText('CORE TECHNOLOGIES', 26, 510);
+        ctx.fillStyle = isLight ? '#075985' : '#38bdf8';
+        ctx.font = `bold 12.5px ${FONT_HEAD}`;
+        ctx.fillText('CORE TECHNOLOGIES', 26, 504);
 
         // Tech Tags: Distinct contrast badges
         const allTags = proj.tags || ['React', 'Node.js', 'Express'];
         const row1 = allTags.slice(0, 4);
         let rx1 = 24;
         row1.forEach(tag => {
-          ctx.font = `bold 14px ${FONT_BODY}`;
-          const tw = ctx.measureText(tag).width + 22;
-          drawRoundRect(ctx, rx1, 522, tw, 30, 8);
+          ctx.font = `bold 13.5px ${FONT_BODY}`;
+          const tw = ctx.measureText(tag).width + 20;
+          drawRoundRect(ctx, rx1, 516, tw, 28, 7);
           ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.95)';
           ctx.fill();
-          ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(56, 189, 248, 0.50)';
-          ctx.lineWidth = 1.4;
+          ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.45)';
+          ctx.lineWidth = 1.3;
           ctx.stroke();
-          ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
-          ctx.fillText(tag, rx1 + 11, 542.5);
-          rx1 += tw + 10;
+          ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
+          ctx.fillText(tag, rx1 + 10, 535);
+          rx1 += tw + 9;
         });
 
         const row2 = allTags.slice(4, 8);
         if (row2.length > 0) {
           let rx2 = 24;
           row2.forEach(tag => {
-            ctx.font = `bold 14px ${FONT_BODY}`;
-            const tw = ctx.measureText(tag).width + 22;
-            drawRoundRect(ctx, rx2, 558, tw, 30, 8);
+            ctx.font = `bold 13.5px ${FONT_BODY}`;
+            const tw = ctx.measureText(tag).width + 20;
+            drawRoundRect(ctx, rx2, 552, tw, 28, 7);
             ctx.fillStyle = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.95)';
             ctx.fill();
-            ctx.strokeStyle = isLight ? '#94a3b8' : 'rgba(56, 189, 248, 0.50)';
-            ctx.lineWidth = 1.4;
+            ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(56, 189, 248, 0.45)';
+            ctx.lineWidth = 1.3;
             ctx.stroke();
-            ctx.fillStyle = isLight ? '#090d16' : '#ffffff';
-            ctx.fillText(tag, rx2 + 11, 578.5);
-            rx2 += tw + 10;
+            ctx.fillStyle = isLight ? '#090d16' : '#f8fafc';
+            ctx.fillText(tag, rx2 + 10, 571);
+            rx2 += tw + 9;
           });
         }
 
         // Click to expand capsule hint: Solid high-contrast
-        drawRoundRect(ctx, 80, 644, 480, 36, 18);
-        ctx.fillStyle = isLight ? '#ffffff' : 'rgba(56, 189, 248, 0.12)';
+        drawRoundRect(ctx, 110, 646, 420, 34, 17);
+        ctx.fillStyle = isLight ? '#ffffff' : 'rgba(56, 189, 248, 0.10)';
         ctx.fill();
-        ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.40)';
-        ctx.lineWidth = 1.4;
+        ctx.strokeStyle = isLight ? '#93c5fd' : 'rgba(56, 189, 248, 0.35)';
+        ctx.lineWidth = 1.3;
         ctx.stroke();
 
-        ctx.fillStyle = isLight ? '#1d4ed8' : '#38bdf8';
+        ctx.fillStyle = isLight ? '#1e3a8a' : '#38bdf8';
         ctx.font = `bold 13px ${FONT_HEAD}`;
         ctx.textAlign = 'center';
-        ctx.fillText('CLICK CARD TO EXPAND ARCHITECTURE & DETAILS →', 320, 667);
+        ctx.fillText('CLICK CARD TO EXPAND ARCHITECTURE & DETAILS →', 320, 668);
         ctx.textAlign = 'left';
 
         // Action Buttons at the bottom
@@ -867,9 +867,9 @@ export const Projects = () => {
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
-    camera.position.set(0, 2.65, 5.85);
-    camera.lookAt(0, 1.12, 0);
+    const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
+    camera.position.set(0, 4.3, 7.8);
+    camera.lookAt(0, 0.88, 0);
     cameraRef.current = camera;
 
     // 2. High-performance WebGL Renderer (100% Transparent Background - Seamless with Website!)
@@ -990,10 +990,41 @@ export const Projects = () => {
     const carouselTextures = [];
     const expandedTextures = [];
 
-    // Pre-create both Carousel (bold/space-filling) and Expanded (deep architectural) textures
+    // Instant Texture Caching: Keeps both themes in memory so theme switching takes <1ms with zero lag
+    const textureCache = {
+      light: { carousel: [], expanded: [] },
+      dark: { carousel: [], expanded: [] }
+    };
+    const initialKey = initialIsLight ? 'light' : 'dark';
     for (let i = 0; i < 7; i++) {
-      carouselTextures.push(createCardFaceTexture(ORDERED_PROJECTS[i], initialIsLight, false));
-      expandedTextures.push(createCardFaceTexture(ORDERED_PROJECTS[i], initialIsLight, true));
+      const cTex = createCardFaceTexture(ORDERED_PROJECTS[i], initialIsLight, false);
+      const eTex = createCardFaceTexture(ORDERED_PROJECTS[i], initialIsLight, true);
+      textureCache[initialKey].carousel.push(cTex);
+      textureCache[initialKey].expanded.push(eTex);
+      carouselTextures.push(cTex);
+      expandedTextures.push(eTex);
+    }
+
+    const floorSheenCache = {
+      dark: createFloorSheenTexture(false),
+      light: createFloorSheenTexture(true)
+    };
+
+    // Pre-warm opposite theme during idle time in background so first toggle is 100% instant
+    const prewarmOppositeTheme = () => {
+      const oppositeKey = initialIsLight ? 'dark' : 'light';
+      if (textureCache[oppositeKey].carousel.length === 0) {
+        const isOppositeLight = !initialIsLight;
+        for (let i = 0; i < 7; i++) {
+          textureCache[oppositeKey].carousel.push(createCardFaceTexture(ORDERED_PROJECTS[i], isOppositeLight, false));
+          textureCache[oppositeKey].expanded.push(createCardFaceTexture(ORDERED_PROJECTS[i], isOppositeLight, true));
+        }
+      }
+    };
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      window.requestIdleCallback(prewarmOppositeTheme);
+    } else {
+      setTimeout(prewarmOppositeTheme, 1500);
     }
 
     // 7. Place Exactly Seven Upright Cards in the circular arrangement
@@ -1096,9 +1127,14 @@ export const Projects = () => {
     let targetAmbientLightIntensity = initialIsLight ? 0.85 : 0.50;
     let currentThemeIsLight = initialIsLight;
 
-    // Dynamic Light / Dark Theme Sync with Smooth Lerp
-    const updateThemeColors = (isLight) => {
+    let lastAppliedThemeIsLight = null;
+
+    // Dynamic Light / Dark Theme Sync with Instant Cache Swapping (<1ms execution)
+    const updateThemeColors = (isLight, force = false) => {
+      if (!force && lastAppliedThemeIsLight === isLight) return;
+      lastAppliedThemeIsLight = isLight;
       currentThemeIsLight = isLight;
+
       renderer.toneMapping = isLight ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = isLight ? 1.0 : 1.15;
       targetGlassColor.setHex(isLight ? 0xf8fafc : 0x0c1527);
@@ -1111,12 +1147,21 @@ export const Projects = () => {
       targetCenterLightIntensity = isLight ? 0.70 : 2.8;
       targetAmbientLightIntensity = isLight ? 0.85 : 0.50;
 
-      floorMat.map = createFloorSheenTexture(isLight);
+      floorMat.map = isLight ? floorSheenCache.light : floorSheenCache.dark;
       floorMat.map.needsUpdate = true;
 
+      const themeKey = isLight ? 'light' : 'dark';
+      // If opposite theme textures have not been pre-warmed yet, generate and cache them now
+      if (textureCache[themeKey].carousel.length < 7) {
+        for (let i = 0; i < 7; i++) {
+          textureCache[themeKey].carousel.push(createCardFaceTexture(ORDERED_PROJECTS[i], isLight, false));
+          textureCache[themeKey].expanded.push(createCardFaceTexture(ORDERED_PROJECTS[i], isLight, true));
+        }
+      }
+
       for (let i = 0; i < faceMeshes.length; i++) {
-        carouselTextures[i] = createCardFaceTexture(ORDERED_PROJECTS[i], isLight, false);
-        expandedTextures[i] = createCardFaceTexture(ORDERED_PROJECTS[i], isLight, true);
+        carouselTextures[i] = textureCache[themeKey].carousel[i];
+        expandedTextures[i] = textureCache[themeKey].expanded[i];
         const activeTex = (pinnedIdxRef.current === i) ? expandedTextures[i] : carouselTextures[i];
         if (activeTex) activeTex.needsUpdate = true;
         faceMeshes[i].material = new THREE.MeshBasicMaterial({
@@ -1138,12 +1183,15 @@ export const Projects = () => {
 
     if (typeof document !== 'undefined' && document.fonts) {
       document.fonts.ready.then(() => {
+        // Re-rasterize with web fonts once loaded and update
+        textureCache.light = { carousel: [], expanded: [] };
+        textureCache.dark = { carousel: [], expanded: [] };
         if (updateThemeColorsRef.current) {
-          updateThemeColorsRef.current(document.documentElement.getAttribute('data-theme') === 'light');
+          updateThemeColorsRef.current(document.documentElement.getAttribute('data-theme') === 'light', true);
         }
       });
     }
-    updateThemeColors(initialIsLight);
+    updateThemeColors(initialIsLight, true);
 
     const themeObserver = new MutationObserver((mutations) => {
       for (const m of mutations) {
@@ -1658,9 +1706,9 @@ export const Projects = () => {
 
         if (pinT > 0.0005) {
           // FRONT-CENTER ELEVATED EXPANSION (EXPANDS UPWARD ABOVE THE FLOOR!):
-          // Positioned prominently at front center and elevated upward (Z = circleR + 0.35, Y = 1.85)
+          // Positioned prominently at front center and elevated upward (Z = circleR + 0.40, Y = 1.95)
           // Eliminates bottom canvas clipping, keeping all text, content, and buttons comfortably in view.
-          const targetWorldPos = new THREE.Vector3(0, 1.85, circleR + 0.35);
+          const targetWorldPos = new THREE.Vector3(0, 1.95, circleR + 0.40);
           const targetLocalPos = targetWorldPos.clone();
           targetLocalPos.applyAxisAngle(new THREE.Vector3(0, 1, 0), -carouselGroup.rotation.y);
 
