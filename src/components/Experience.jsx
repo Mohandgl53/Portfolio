@@ -146,7 +146,7 @@ export const Experience = () => {
                 src={EXPERIENCE_ILLUSTRATIONS.schoolPhoto}
                 alt="Kovilpatti Thiruvika School Campus Photograph"
                 className="pinned-school-photograph-img"
-                loading="lazy"
+                loading="eager"
               />
             </div>
 
@@ -158,7 +158,7 @@ export const Experience = () => {
                     src={EXPERIENCE_ILLUSTRATIONS.school}
                     alt="Vintage Brass Globe & Academic Books"
                     className="school-globe-img"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </div>
 
@@ -236,7 +236,7 @@ export const Experience = () => {
                 src={EXPERIENCE_ILLUSTRATIONS.college}
                 alt="Engineering Campus Architecture"
                 className="college-campus-mural-img"
-                loading="lazy"
+                loading="eager"
               />
             </div>
 
@@ -275,7 +275,7 @@ export const Experience = () => {
                     src={EXPERIENCE_ILLUSTRATIONS.collegeCompass}
                     alt="Architectural Drafting Compass & Blueprint"
                     className="college-compass-tool-img"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </div>
 
@@ -370,7 +370,7 @@ export const Experience = () => {
                 src={EXPERIENCE_ILLUSTRATIONS.codefuryScene}
                 alt=""
                 className="codefury-backdrop-img"
-                loading="lazy"
+                loading="eager"
               />
             </div>
 
@@ -410,7 +410,7 @@ export const Experience = () => {
                     src={EXPERIENCE_ILLUSTRATIONS.codefuryBadge}
                     alt="CODEFURRY '25 VIP Lanyard Pass Badge"
                     className="codefury-badge-img"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </div>
 
@@ -433,7 +433,7 @@ export const Experience = () => {
                       src={EXPERIENCE_ILLUSTRATIONS.codefurySticky}
                       alt="Key Highlights Note"
                       className="codefury-sticky-img"
-                      loading="lazy"
+                      loading="eager"
                     />
                     <ul className="codefury-bullet-list">
                       <li>
@@ -510,7 +510,7 @@ export const Experience = () => {
                     src={EXPERIENCE_ILLUSTRATIONS.internshipDeskLaptop}
                     alt="Persevex Analytics Workstation with Coffee Mug"
                     className="internship-laptop-img"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </div>
 
@@ -649,7 +649,7 @@ export const Experience = () => {
                     src={EXPERIENCE_ILLUSTRATIONS.hackOdysseyPlanet}
                     alt="Astronaut gazing at glowing orange planet"
                     className="odyssey-planet-astronaut-img"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </div>
 
