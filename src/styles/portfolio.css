@@ -3829,12 +3829,12 @@ html, body {
 }
 
 .node-internship {
-  background: #0f172a;
-  border: 2.5px solid #2563eb;
-  color: #60a5fa;
+  background: #042f2e;
+  border: 2.5px solid #14b8a6;
+  color: #2dd4bf;
 }
 .timeline-item.active-passed .node-internship {
-  box-shadow: 0 0 16px #2563eb, 0 0 28px rgba(37, 99, 235, 0.5);
+  box-shadow: 0 0 16px #14b8a6, 0 0 28px rgba(20, 184, 166, 0.5);
 }
 
 .node-odyssey {
@@ -3970,63 +3970,162 @@ html, body {
   margin-top: 2px;
 }
 
+.exp-card-school .laurel-title,
+.exp-card-school .laurel-subtitle,
+.exp-card-school .laurel-value {
+  color: #78350f !important;
+}
+.laurel-pill-violet .laurel-title,
+.laurel-pill-violet .laurel-subtitle {
+  color: #f3e8ff !important;
+}
+.laurel-pill-amber .laurel-title,
+.laurel-pill-amber .laurel-subtitle {
+  color: #ffedd5 !important;
+}
+.laurel-pill-blue .laurel-title,
+.laurel-pill-blue .laurel-subtitle {
+  color: #38bdf8 !important;
+}
+[data-theme="light"] .laurel-pill-blue .laurel-title,
+[data-theme="light"] .laurel-pill-blue .laurel-subtitle {
+  color: #0369a1 !important;
+}
+
 /* ═══════════════════════════════════════════════════════════
-   CARD 1: SCHOOL (Vintage Scholar Parchment & Paperclip)
+   CARD 1: SCHOOL (Vintage Scholar Parchment Scroll)
+   Artistic Direction: Authentic Aged Parchment Manuscript
    ═══════════════════════════════════════════════════════════ */
 .exp-card-school {
-  background: linear-gradient(145deg, #221d15 0%, #17130d 100%);
-  border: 1.5px solid rgba(217, 119, 6, 0.32);
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(217, 119, 6, 0.08);
+  background: #fbf5e6 !important;
+  color: #2b1f14 !important;
+  border: 1.5px solid #d8caa7 !important;
+  border-radius: 16px;
+  box-shadow: 
+    0 22px 50px -10px rgba(0, 0, 0, 0.65),
+    0 4px 16px rgba(180, 140, 80, 0.15),
+    inset 0 0 60px rgba(160, 115, 60, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+  position: relative;
+  overflow: visible !important;
 }
+
 [data-theme="light"] .exp-card-school {
-  background: linear-gradient(145deg, #fffdf8 0%, #f6f0e2 100%);
-  border: 1.5px solid #d4c5ac;
-  box-shadow: 0 14px 30px -8px rgba(120, 95, 60, 0.16);
+  background: #fcf8ee !important;
+  color: #2b1f14 !important;
+  border: 1.5px solid #d5c39e !important;
+  box-shadow: 
+    0 18px 40px -12px rgba(120, 80, 30, 0.22),
+    0 2px 10px rgba(180, 140, 80, 0.1),
+    inset 0 0 50px rgba(180, 130, 70, 0.08) !important;
 }
 
-.pill-school {
-  background: #0f766e;
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(15, 118, 110, 0.35);
-}
-
-/* Realistic Paperclip holding small memo note */
-.parchment-paperclip {
-  position: absolute;
-  top: -8px;
-  right: 28px;
-  z-index: 5;
-  pointer-events: none;
-}
-.paperclip-wire {
-  width: 14px;
-  height: 38px;
-  border: 2.5px solid #d97706;
-  border-radius: 7px;
+/* Botanical Foliage Draping in Top-Left Corner */
+.parchment-botanical-foliage {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+  left: 0;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
   z-index: 2;
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.15));
 }
-.paperclip-note {
-  background: #fef3c7;
-  color: #78350f;
-  padding: 10px 14px 8px 14px;
+
+/* Realistic Pinned Photograph / Certificate Memo Note */
+.parchment-pinned-doc {
+  position: absolute;
+  top: -14px;
+  right: 28px;
+  z-index: 12;
+  pointer-events: none;
+  transform: rotate(3.5deg);
+  transition: transform 0.3s ease;
+}
+.exp-card-school:hover .parchment-pinned-doc {
+  transform: rotate(1deg) translateY(-2px);
+}
+
+.pinned-photo-border {
+  background: #ffffff;
+  padding: 6px 7px 9px 7px;
   border-radius: 4px;
+  box-shadow: 
+    0 8px 22px rgba(0, 0, 0, 0.35),
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.pinned-photo-body {
+  background: #fefcf3;
+  border: 1px solid #e7d8ba;
+  padding: 8px 12px;
+  min-width: 130px;
+  text-align: center;
+}
+
+.pinned-doc-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.pinned-doc-seal {
+  color: #b45309;
   font-size: 11px;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transform: rotate(3deg);
+}
+.pinned-doc-title {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #78350f;
+  text-transform: uppercase;
+}
+.pinned-doc-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d97706, transparent);
+  margin: 5px 0 6px 0;
+}
+.pinned-doc-meta {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 1px solid #fde68a;
+  gap: 2px;
 }
-.paperclip-note .note-sub {
-  font-size: 9px;
-  opacity: 0.75;
+.pinned-doc-score {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e3a1e;
+  letter-spacing: 0.02em;
+}
+.pinned-doc-year {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: #92400e;
+  font-weight: 600;
+}
+
+/* Metallic Brass 3D Paperclip */
+.brass-paperclip-mount {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 22px;
+  height: 52px;
+  filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, 0.45));
+}
+.brass-paperclip-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Card 1 Internal Elements */
+.pill-school {
+  background: #14532d !important;
+  color: #fef08a !important;
+  border: 1px solid #22c55e !important;
+  box-shadow: 0 2px 8px rgba(20, 83, 45, 0.35) !important;
 }
 
 .header-meta-school {
@@ -4035,163 +4134,191 @@ html, body {
   gap: 16px;
   margin-right: 80px;
 }
+
 .date-chip-vintage {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #d97706;
-  background: rgba(217, 119, 6, 0.12);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #78350f !important;
+  background: rgba(217, 119, 6, 0.12) !important;
   padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(217, 119, 6, 0.25);
-}
-[data-theme="light"] .date-chip-vintage {
-  color: #92400e;
-  background: rgba(217, 119, 6, 0.08);
-  border-color: rgba(217, 119, 6, 0.2);
-}
-
-.school-art-col {
-  width: 130px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.school-globe-img {
-  width: 130px;
-  height: 130px;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+  border-radius: 999px;
+  border: 1px solid rgba(180, 83, 9, 0.3) !important;
 }
 
 .card-heading-serif {
-  font-family: "Cinzel", Georgia, serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fef3c7;
-  line-height: 1.3;
-  margin: 0;
-}
-[data-theme="light"] .card-heading-serif {
-  color: #1c1917;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 23px;
+  font-weight: 800;
+  color: #2b1f14 !important;
+  line-height: 1.25;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
 }
 
-.card-subheading-serif {
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-size: 15px;
-  color: #fde68a;
-  margin: 2px 0 6px 0;
+.vintage-org-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6b4d2d !important;
+  margin-bottom: 14px;
 }
-[data-theme="light"] .card-subheading-serif {
-  color: #44403c;
-}
-
-.exp-card-school .institution-row {
-  color: #d6d3d1;
-}
-[data-theme="light"] .exp-card-school .institution-row {
-  color: #57534e;
+.vintage-org-row svg {
+  color: #92400e !important;
+  flex-shrink: 0;
 }
 
+.school-layout {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+.school-art-col {
+  flex-shrink: 0;
+  width: 165px;
+  text-align: center;
+}
+.school-globe-img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(90, 60, 20, 0.35));
+  transition: transform 0.4s ease;
+}
+.exp-card-school:hover .school-globe-img {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+.certificate-box-vintage,
 .foundation-box {
-  background: rgba(217, 119, 6, 0.08);
-  border: 1px solid rgba(217, 119, 6, 0.22);
-  border-left: 3.5px solid #d97706;
+  background: rgba(255, 255, 255, 0.65) !important;
+  border: 1px solid #d4c5a0 !important;
+  outline: 1px dashed #c0b08a;
+  outline-offset: -5px;
   border-radius: 8px;
-  padding: 10px 14px;
-  margin: 12px 0;
+  padding: 12px 14px;
+  margin: 12px 0 14px 0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
 }
-[data-theme="light"] .foundation-box {
-  background: rgba(217, 119, 6, 0.06);
-  border-color: rgba(217, 119, 6, 0.2);
-  border-left-color: #b45309;
-}
+.cert-header,
 .foundation-box-badge {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #f59e0b;
-  margin-bottom: 4px;
-}
-[data-theme="light"] .foundation-box-badge {
-  color: #b45309;
-}
-.foundation-box-text {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 13px;
-  line-height: 1.55;
-  color: #e7e5e4;
-  margin: 0;
+  font-weight: 700;
+  color: #78350f !important;
+  margin-bottom: 5px;
 }
-[data-theme="light"] .foundation-box-text {
-  color: #292524;
+.cert-desc,
+.foundation-box-text {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #44301e !important;
+  margin: 0;
 }
 
 .vintage-tag {
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 600;
-  padding: 4px 11px;
-  border-radius: 6px;
-  background: rgba(217, 119, 6, 0.1);
-  color: #fde68a;
-  border: 1px solid rgba(217, 119, 6, 0.25);
-  transition: transform 0.2s ease;
-}
-[data-theme="light"] .vintage-tag {
-  background: rgba(217, 119, 6, 0.08);
-  color: #78350f;
-  border-color: rgba(217, 119, 6, 0.22);
+  padding: 3.5px 9px;
+  border-radius: 5px;
+  background: rgba(120, 53, 15, 0.08) !important;
+  color: #78350f !important;
+  border: 1px solid rgba(120, 53, 15, 0.25) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CARD 2: COLLEGE (Modern Glass Campus & Stepper)
+   CARD 2: COLLEGE (Modern Architectural Prospectus)
+   Artistic Direction: Contemporary Editorial Campus Mural
    ═══════════════════════════════════════════════════════════ */
 .exp-card-college {
-  background: linear-gradient(145deg, rgba(8, 47, 73, 0.65) 0%, rgba(12, 74, 110, 0.35) 100%);
-  border: 1.5px solid rgba(56, 189, 248, 0.45);
-  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.18);
-  backdrop-filter: blur(14px);
+  background: linear-gradient(135deg, #091220 0%, #0d1b30 50%, #08101e 100%) !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.35) !important;
+  box-shadow: 
+    0 20px 48px -10px rgba(0, 0, 0, 0.75),
+    0 0 30px rgba(14, 165, 233, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  position: relative;
+  overflow: hidden;
 }
+
 [data-theme="light"] .exp-card-college {
-  background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 100%);
-  border: 1.5px solid #7dd3fc;
-  box-shadow: 0 14px 32px -8px rgba(14, 165, 233, 0.2);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 60%, #e0f2fe 100%) !important;
+  border: 1.5px solid #bae6fd !important;
+  box-shadow: 
+    0 18px 40px -10px rgba(14, 165, 233, 0.18),
+    0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Integrated Right-Side Campus Mural */
+.college-campus-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 20%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 20%, black 100%);
+}
+.college-campus-mural-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0.88;
+  filter: contrast(1.1) saturate(1.15);
+  transition: transform 0.6s ease;
+}
+.exp-card-college:hover .college-campus-mural-img {
+  transform: scale(1.05);
+}
+[data-theme="light"] .college-campus-mural-img {
+  opacity: 0.92;
+  mix-blend-mode: multiply;
 }
 
 .pill-college {
-  background: linear-gradient(135deg, #0284c7, #06b6d4);
+  background: #0284c7;
   color: #ffffff;
-  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35);
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4);
 }
 
 .header-meta-college {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
+
 .date-chip-modern {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 600;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
-  padding: 4px 11px;
-  border-radius: 6px;
+  color: #7dd3fc;
+  background: rgba(14, 165, 233, 0.14);
+  padding: 4px 10px;
+  border-radius: 999px;
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
 [data-theme="light"] .date-chip-modern {
-  color: #0284c7;
-  background: rgba(2, 132, 199, 0.08);
-  border-color: rgba(2, 132, 199, 0.25);
+  color: #0369a1;
+  background: rgba(14, 165, 233, 0.1);
+  border-color: rgba(14, 165, 233, 0.25);
 }
 
 .laurel-pill-blue {
@@ -4205,109 +4332,127 @@ html, body {
   border-color: #7dd3fc;
 }
 
-.college-art-col {
-  width: 175px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.college-campus-img {
-  width: 175px;
-  height: 175px;
-  object-fit: contain;
-  border-radius: 14px;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
-}
-
 .card-heading-modern {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
-  color: #f8fafc;
-  line-height: 1.3;
-  margin: 0;
+  color: #f0f9ff;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
 }
 [data-theme="light"] .card-heading-modern {
   color: #0f172a;
 }
 
 .college-org-row {
-  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
   font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 14px;
 }
 [data-theme="light"] .college-org-row {
-  color: #0284c7;
+  color: #475569;
+}
+.college-org-row svg {
+  color: #38bdf8;
+  flex-shrink: 0;
 }
 
-/* Degree Progression Stepper */
-.degree-stepper-box {
-  background: rgba(56, 189, 248, 0.06);
-  border: 1px solid rgba(56, 189, 248, 0.2);
+.college-layout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+}
+.college-details {
+  max-width: 65%;
+}
+@media (max-width: 900px) {
+  .college-details {
+    max-width: 100%;
+  }
+  .college-campus-backdrop {
+    opacity: 0.25;
+    width: 60%;
+  }
+}
+
+/* Academic Progression Stepper */
+.degree-stepper-box,
+.academic-progression-component {
+  background: rgba(15, 23, 42, 0.7) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
   border-radius: 10px;
-  padding: 11px 14px;
+  padding: 12px 14px;
   margin: 12px 0 10px 0;
 }
-[data-theme="light"] .degree-stepper-box {
-  background: rgba(255, 255, 255, 0.65);
-  border-color: rgba(56, 189, 248, 0.3);
+[data-theme="light"] .degree-stepper-box,
+[data-theme="light"] .academic-progression-component {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(14, 165, 233, 0.25) !important;
 }
 
-.stepper-label-group {
+.stepper-label-group,
+.progression-stepper-header {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   color: #38bdf8;
+  text-transform: uppercase;
   margin-bottom: 8px;
 }
-[data-theme="light"] .stepper-label-group {
+[data-theme="light"] .stepper-label-group,
+[data-theme="light"] .progression-stepper-header {
   color: #0284c7;
 }
 
 .stepper-pills-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 7px;
 }
-
 .step-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11.5px;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 6px;
 }
 .step-completed {
-  background: rgba(16, 185, 129, 0.14);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.16) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
 }
 [data-theme="light"] .step-completed {
-  background: rgba(16, 185, 129, 0.1);
-  color: #047857;
-  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #047857 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
 }
 .step-completed .check-mark {
+  color: #34d399;
   font-weight: 800;
-  color: #10b981;
 }
-
 .step-active-current {
-  background: rgba(6, 182, 212, 0.22);
-  color: #38bdf8;
-  border: 1px solid rgba(6, 182, 212, 0.55);
+  background: rgba(14, 165, 233, 0.22) !important;
+  color: #38bdf8 !important;
+  border: 1px solid rgba(56, 189, 248, 0.55) !important;
   font-weight: 700;
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.35);
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.35);
 }
 [data-theme="light"] .step-active-current {
-  background: rgba(2, 132, 199, 0.12);
-  color: #0284c7;
-  border-color: rgba(2, 132, 199, 0.45);
+  background: rgba(2, 132, 199, 0.12) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.45) !important;
 }
 .spinner-indicator {
   display: inline-block;
@@ -4319,23 +4464,37 @@ html, body {
   to { transform: rotate(360deg); }
 }
 
-/* Focus Areas Box */
-.focus-areas-box {
+/* College Focus Areas Bento */
+.focus-areas-box,
+.college-focus-bento {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 8px;
+  padding: 10px 12px;
   margin-top: 10px;
+  margin-bottom: 12px;
 }
-.focus-label-group {
+[data-theme="light"] .focus-areas-box,
+[data-theme="light"] .college-focus-bento {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(14, 165, 233, 0.15);
+}
+.focus-label-group,
+.bento-heading-sm {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 800;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--mute);
   margin-bottom: 6px;
 }
-[data-theme="light"] .focus-label-group {
-  color: #64748b;
+[data-theme="light"] .focus-label-group,
+[data-theme="light"] .bento-heading-sm {
+  color: #0284c7;
 }
 
 .focus-pills-row {
@@ -4343,62 +4502,93 @@ html, body {
   flex-wrap: wrap;
   gap: 7px;
 }
-.focus-tag {
-  font-size: 12px;
+.focus-tag,
+.chip-modern-blue {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: rgba(56, 189, 248, 0.1);
-  color: #bae6fd;
-  border: 1px solid rgba(56, 189, 248, 0.28);
+  padding: 3.5px 9px;
+  border-radius: 5px;
+  background: rgba(14, 165, 233, 0.12) !important;
+  color: #7dd3fc !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
 }
-[data-theme="light"] .focus-tag {
-  background: rgba(2, 132, 199, 0.08);
-  color: #0369a1;
-  border-color: rgba(2, 132, 199, 0.25);
+[data-theme="light"] .focus-tag,
+[data-theme="light"] .chip-modern-blue {
+  background: rgba(14, 165, 233, 0.08) !important;
+  color: #0369a1 !important;
+  border-color: rgba(14, 165, 233, 0.25) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CARD 3: CODEFURY HACKATHON (Cyberpunk Neon Violet Arena)
+   CARD 3: CODEFURRY-25 (Cinematic Purple Hackathon Poster)
+   Artistic Direction: Cyberpunk Terminal & 3D Crystal Trophy
    ═══════════════════════════════════════════════════════════ */
+.exp-card-hackathon,
 .exp-card-codefury {
-  background: linear-gradient(145deg, rgba(29, 11, 46, 0.95) 0%, rgba(15, 6, 26, 0.98) 100%);
-  border: 1.5px solid rgba(168, 85, 247, 0.5);
-  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(168, 85, 247, 0.25);
+  background: linear-gradient(135deg, #100522 0%, #1a0833 50%, #0d041c 100%) !important;
+  border: 1.5px solid rgba(192, 132, 252, 0.45) !important;
+  box-shadow: 
+    0 22px 55px -10px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(168, 85, 247, 0.22),
+    inset 0 1px 0 rgba(236, 72, 153, 0.35) !important;
+  position: relative;
+  overflow: hidden;
 }
+
+[data-theme="light"] .exp-card-hackathon,
 [data-theme="light"] .exp-card-codefury {
-  background: linear-gradient(145deg, #faf5ff 0%, #f3e8ff 100%);
-  border: 1.5px solid #c084fc;
-  box-shadow: 0 14px 32px -8px rgba(147, 51, 234, 0.2);
+  background: linear-gradient(135deg, #1f0b3b 0%, #290f4e 50%, #18082e 100%) !important;
+  border: 1.5px solid rgba(192, 132, 252, 0.6) !important;
+  box-shadow: 
+    0 20px 48px -10px rgba(124, 58, 237, 0.35),
+    0 0 30px rgba(168, 85, 247, 0.2) !important;
+}
+
+/* Integrated Cyberpunk Backdrop Scene */
+.codefury-backdrop-scene {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 25%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 25%, black 100%);
+}
+.codefury-backdrop-svg {
+  width: 100%;
+  height: 100%;
 }
 
 .pill-hackathon {
-  background: linear-gradient(135deg, #7c3aed, #db2777);
+  background: #7c3aed;
   color: #ffffff;
-  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.45);
 }
 
 .header-meta-codefury {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
+
 .date-chip-violet {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 600;
-  color: #c084fc;
-  background: rgba(168, 85, 247, 0.14);
-  padding: 4px 11px;
-  border-radius: 6px;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-}
-[data-theme="light"] .date-chip-violet {
-  color: #7e22ce;
-  background: rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.28);
+  color: #e9d5ff;
+  background: rgba(168, 85, 247, 0.2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(192, 132, 252, 0.35);
 }
 
 .laurel-pill-violet {
@@ -4408,89 +4598,107 @@ html, body {
   border: 1px solid rgba(168, 85, 247, 0.4);
 }
 [data-theme="light"] .laurel-pill-violet {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(46, 16, 77, 0.9);
   border-color: #d8b4fe;
 }
 
-.codefury-art-col {
-  width: 140px;
-  flex-shrink: 0;
+.codefury-layout {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 20px;
+}
+
+.codefury-art-col {
+  flex-shrink: 0;
+  width: 155px;
+  text-align: center;
 }
 .codefury-trophy-img {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
-  filter: drop-shadow(0 6px 20px rgba(168, 85, 247, 0.4));
+  filter: drop-shadow(0 10px 25px rgba(168, 85, 247, 0.55));
+  transition: transform 0.4s ease;
+}
+.exp-card-hackathon:hover .codefury-trophy-img,
+.exp-card-codefury:hover .codefury-trophy-img {
+  transform: scale(1.05) translateY(-3px);
 }
 
 .card-heading-neon {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 900;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  color: #ffffff;
+  letter-spacing: -0.03em;
+  color: #ffffff !important;
   margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.4);
 }
-[data-theme="light"] .card-heading-neon {
-  color: #3b0764;
-}
-
 .neon-magenta-gradient {
-  background: linear-gradient(135deg, #ec4899, #f43f5e);
+  background: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #d946ef 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .card-subheading-neon {
-  font-size: 14px;
-  font-weight: 600;
-  color: #c084fc;
-  margin: 2px 0 6px 0;
-}
-[data-theme="light"] .card-subheading-neon {
-  color: #7e22ce;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #c084fc !important;
+  text-transform: uppercase;
+  margin-top: 3px;
+  margin-bottom: 6px;
 }
 
 .neon-org-row {
-  color: #e9d5ff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e9d5ff !important;
+  opacity: 0.9;
+  margin-bottom: 12px;
 }
-[data-theme="light"] .neon-org-row {
-  color: #581c87;
+.neon-org-row svg {
+  color: #ec4899;
+  flex-shrink: 0;
 }
 
 .highlights-box-violet {
-  background: rgba(168, 85, 247, 0.08);
-  border: 1px solid rgba(168, 85, 247, 0.24);
-  border-left: 3.5px solid #a855f7;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin: 12px 0;
+  background: rgba(20, 8, 38, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(192, 132, 252, 0.25);
+  border-left: 3px solid #ec4899;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
 }
 [data-theme="light"] .highlights-box-violet {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(168, 85, 247, 0.3);
-  border-left-color: #9333ea;
+  background: rgba(30, 12, 55, 0.8);
+  border-color: rgba(192, 132, 252, 0.35);
 }
 
 .highlights-header {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 11.5px;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   color: #c084fc;
+  text-transform: uppercase;
   margin-bottom: 8px;
 }
-[data-theme="light"] .highlights-header {
-  color: #7e22ce;
+.highlights-header svg {
+  color: #ec4899;
 }
 
-.highlights-list {
+.highlights-list,
+.neon-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -4498,205 +4706,214 @@ html, body {
   flex-direction: column;
   gap: 6px;
 }
-.highlights-list li {
+.highlights-list li,
+.neon-list li {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #f3e8ff;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #f3e8ff !important;
 }
-[data-theme="light"] .highlights-list li {
-  color: #2e1065;
-}
-.highlight-check {
-  color: #a855f7;
+.highlight-check,
+.neon-check {
+  color: #ec4899;
+  font-size: 12px;
   font-weight: 800;
   flex-shrink: 0;
+  margin-top: 1px;
 }
 
-.hackathon-tag {
+.hackathon-tag,
+.chip-neon-violet {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--mono);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: rgba(168, 85, 247, 0.12);
-  color: #e9d5ff;
-  border: 1px solid rgba(168, 85, 247, 0.3);
-}
-[data-theme="light"] .hackathon-tag {
-  background: rgba(168, 85, 247, 0.08);
-  color: #6b21a8;
-  border-color: rgba(168, 85, 247, 0.28);
+  padding: 3.5px 9px;
+  border-radius: 5px;
+  background: rgba(168, 85, 247, 0.22) !important;
+  color: #f3e8ff !important;
+  border: 1px solid rgba(192, 132, 252, 0.4) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CARD 4: INTERNSHIP (Executive Late-Night Workstation)
+   CARD 4: DATA SCIENCE INTERNSHIP (Executive Tech Workspace)
+   Artistic Direction: Late-Night Workstation & Official Logos
    ═══════════════════════════════════════════════════════════ */
 .exp-card-internship {
-  background: linear-gradient(145deg, rgba(11, 26, 51, 0.95) 0%, rgba(7, 16, 33, 0.98) 100%);
-  border: 1.5px solid rgba(56, 189, 248, 0.38);
-  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.9), 0 0 25px rgba(2, 132, 199, 0.2);
+  background: linear-gradient(135deg, #090f1a 0%, #0d1728 50%, #070d18 100%) !important;
+  border: 1.5px solid rgba(20, 184, 166, 0.35) !important;
+  box-shadow: 
+    0 20px 48px -10px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(20, 184, 166, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  position: relative;
+  overflow: hidden;
 }
+
 [data-theme="light"] .exp-card-internship {
-  background: linear-gradient(145deg, #f8fafc 0%, #eff6ff 100%);
-  border: 1.5px solid #93c5fd;
-  box-shadow: 0 14px 32px -8px rgba(37, 99, 235, 0.16);
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 60%, #ccfbf1 100%) !important;
+  border: 1.5px solid #99f6e4 !important;
+  box-shadow: 
+    0 18px 40px -10px rgba(20, 184, 166, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.04) !important;
 }
 
 .pill-internship {
-  background: linear-gradient(135deg, #1e40af, #0284c7);
+  background: #0f766e;
   color: #ffffff;
-  box-shadow: 0 2px 10px rgba(30, 64, 175, 0.35);
+  box-shadow: 0 2px 10px rgba(15, 118, 110, 0.35);
 }
 
 .header-meta-internship {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
-.date-chip-sapphire {
+
+.date-chip-cyan {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 600;
-  color: #60a5fa;
-  background: rgba(37, 99, 235, 0.14);
-  padding: 4px 11px;
-  border-radius: 6px;
-  border: 1px solid rgba(37, 99, 235, 0.3);
-}
-[data-theme="light"] .date-chip-sapphire {
-  color: #1d4ed8;
-  background: rgba(37, 99, 235, 0.08);
-  border-color: rgba(37, 99, 235, 0.25);
-}
-
-.location-chip-cyan {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
+  color: #5eead4;
+  background: rgba(20, 184, 166, 0.15);
   padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 999px;
+  border: 1px solid rgba(45, 212, 191, 0.3);
 }
-[data-theme="light"] .location-chip-cyan {
-  color: #0284c7;
-  background: rgba(2, 132, 199, 0.08);
-  border-color: rgba(2, 132, 199, 0.25);
-}
-
-.internship-art-col {
-  width: 175px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.internship-desk-img {
-  width: 175px;
-  height: 175px;
-  object-fit: contain;
-  border-radius: 14px;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+[data-theme="light"] .date-chip-cyan {
+  color: #0f766e;
+  background: rgba(20, 184, 166, 0.1);
+  border-color: rgba(20, 184, 166, 0.25);
 }
 
 .card-heading-corporate {
-  font-size: 21px;
+  font-size: 23px;
   font-weight: 800;
-  color: #f8fafc;
-  line-height: 1.3;
-  margin: 0;
+  color: #f0fdfa !important;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
 }
 [data-theme="light"] .card-heading-corporate {
-  color: #0f172a;
+  color: #0f172a !important;
 }
 .cyan-highlight {
-  font-style: italic;
-  font-weight: 700;
-  color: #38bdf8;
+  color: #2dd4bf;
+  font-style: normal;
 }
 [data-theme="light"] .cyan-highlight {
-  color: #0284c7;
+  color: #0d9488;
 }
 
 .corporate-org-row {
-  color: #60a5fa;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
   font-weight: 600;
+  color: #94a3b8 !important;
+  margin-bottom: 14px;
 }
 [data-theme="light"] .corporate-org-row {
-  color: #1d4ed8;
+  color: #475569 !important;
+}
+.corporate-org-row svg {
+  color: #14b8a6;
+  flex-shrink: 0;
 }
 
-/* Bento Split Grid */
+.internship-layout {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.internship-art-col {
+  flex-shrink: 0;
+  width: 170px;
+  text-align: center;
+}
+.internship-desk-img {
+  width: 165px;
+  height: 165px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(20, 184, 166, 0.35));
+  transition: transform 0.4s ease;
+}
+.exp-card-internship:hover .internship-desk-img {
+  transform: scale(1.04) translateY(-2px);
+}
+
+/* Split Bento */
 .internship-bento-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 12px 0;
+  gap: 10px;
+  margin-bottom: 12px;
 }
-@media (max-width: 720px) {
+@media (max-width: 600px) {
   .internship-bento-split {
     grid-template-columns: 1fr;
   }
 }
+
 .bento-box {
-  background: rgba(37, 99, 235, 0.07);
-  border: 1px solid rgba(37, 99, 235, 0.22);
-  border-radius: 10px;
-  padding: 10px 14px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
 }
 [data-theme="light"] .bento-box {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(37, 99, 235, 0.25);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(20, 184, 166, 0.2);
 }
+
 .bento-title-row {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 11.5px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #60a5fa;
+  color: #2dd4bf !important;
   margin-bottom: 4px;
 }
 [data-theme="light"] .bento-title-row {
-  color: #1d4ed8;
+  color: #0f766e !important;
 }
 .bento-desc {
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: #dbeafe;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #cbd5e1 !important;
   margin: 0;
 }
 [data-theme="light"] .bento-desc {
-  color: #1e3a8a;
+  color: #334155 !important;
 }
 
-/* Official Tech Stack Row */
+/* Official Tech Stack Badges */
 .internship-tech-stack {
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 .tech-stack-label {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 800;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #2dd4bf !important;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--mute);
-  margin-bottom: 7px;
 }
 [data-theme="light"] .tech-stack-label {
-  color: #64748b;
+  color: #0f766e !important;
 }
 
 .official-tech-badges-row {
@@ -4707,66 +4924,96 @@ html, body {
 .official-badge {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 12px;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 600;
-  padding: 4px 11px;
+  padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(37, 99, 235, 0.1);
-  color: #bfdbfe;
-  border: 1px solid rgba(37, 99, 235, 0.28);
-  transition: transform 0.2s ease;
+  background: rgba(15, 23, 42, 0.7);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.2s ease;
 }
 [data-theme="light"] .official-badge {
-  background: rgba(255, 255, 255, 0.85);
-  color: #1e40af;
-  border-color: rgba(37, 99, 235, 0.25);
+  background: #ffffff;
+  color: #1e293b;
+  border-color: #cbd5e1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 .official-badge:hover {
   transform: translateY(-1px);
+  border-color: #2dd4bf;
+}
+.official-badge svg {
+  flex-shrink: 0;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CARD 5: HACK ODYSSEY 3.0 (Martian Sci-Fi Amber Horizon)
+   CARD 5: HACK ODYSSEY 3.0 (Futuristic Martian Sci-Fi Poster)
+   Artistic Direction: Astronaut on Mars & Mountain Flag Peak
    ═══════════════════════════════════════════════════════════ */
 .exp-card-odyssey {
-  background: linear-gradient(145deg, rgba(38, 19, 10, 0.95) 0%, rgba(20, 10, 5, 0.98) 100%);
-  border: 1.5px solid rgba(245, 158, 11, 0.48);
-  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.22);
+  background: linear-gradient(135deg, #180903 0%, #240e05 50%, #120602 100%) !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 
+    0 22px 55px -10px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(245, 158, 11, 0.2),
+    inset 0 1px 0 rgba(251, 191, 36, 0.35) !important;
+  position: relative;
+  overflow: hidden;
 }
+
 [data-theme="light"] .exp-card-odyssey {
-  background: linear-gradient(145deg, #fffbeb 0%, #fef3c7 100%);
-  border: 1.5px solid #fcd34d;
-  box-shadow: 0 14px 32px -8px rgba(217, 119, 6, 0.2);
+  background: linear-gradient(135deg, #240e05 0%, #301407 50%, #1a0a03 100%) !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.6) !important;
+  box-shadow: 
+    0 20px 48px -10px rgba(217, 119, 6, 0.35),
+    0 0 30px rgba(245, 158, 11, 0.22) !important;
+}
+
+/* Integrated Mountain Backdrop Scene */
+.odyssey-backdrop-scene {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 25%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 25%, black 100%);
+}
+.odyssey-backdrop-svg {
+  width: 100%;
+  height: 100%;
 }
 
 .pill-odyssey {
-  background: linear-gradient(135deg, #d97706, #ea580c);
+  background: #d97706;
   color: #ffffff;
-  box-shadow: 0 2px 12px rgba(217, 119, 6, 0.4);
+  box-shadow: 0 2px 12px rgba(217, 119, 6, 0.45);
 }
 
 .header-meta-odyssey {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
+
 .date-chip-amber {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
   font-weight: 600;
-  color: #fbbf24;
-  background: rgba(245, 158, 11, 0.14);
-  padding: 4px 11px;
-  border-radius: 6px;
-  border: 1px solid rgba(245, 158, 11, 0.35);
-}
-[data-theme="light"] .date-chip-amber {
-  color: #b45309;
-  background: rgba(245, 158, 11, 0.1);
-  border-color: rgba(245, 158, 11, 0.3);
+  color: #fde68a;
+  background: rgba(245, 158, 11, 0.2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
 }
 
 .laurel-pill-amber {
@@ -4776,105 +5023,134 @@ html, body {
   border: 1px solid rgba(245, 158, 11, 0.4);
 }
 [data-theme="light"] .laurel-pill-amber {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(69, 26, 3, 0.9);
   border-color: #fde68a;
 }
 
-.odyssey-art-col {
-  width: 140px;
-  flex-shrink: 0;
+.odyssey-layout {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 20px;
+}
+
+.odyssey-art-col {
+  flex-shrink: 0;
+  width: 155px;
+  text-align: center;
 }
 .odyssey-astronaut-img {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
-  filter: drop-shadow(0 6px 20px rgba(245, 158, 11, 0.35));
+  filter: drop-shadow(0 10px 25px rgba(245, 158, 11, 0.55));
+  transition: transform 0.4s ease;
+}
+.exp-card-odyssey:hover .odyssey-astronaut-img {
+  transform: scale(1.05) translateY(-3px);
 }
 
-.card-heading-sci-fi {
-  font-size: 22px;
+.card-heading-sci-fi,
+.card-heading-amber {
+  font-size: 28px;
   font-weight: 900;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  color: #ffffff;
+  letter-spacing: -0.03em;
+  color: #ffffff !important;
   margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
 }
-[data-theme="light"] .card-heading-sci-fi {
-  color: #451a03;
-}
-.amber-glow {
-  color: #fbbf24;
-  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+.amber-glow,
+.amber-glow-gradient {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.card-subheading-sci-fi {
-  font-size: 14px;
+.card-subheading-sci-fi,
+.card-subheading-amber {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #fbbf24 !important;
+  text-transform: uppercase;
+  margin-top: 3px;
+  margin-bottom: 6px;
+}
+
+.sci-fi-org-row,
+.amber-org-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
   font-weight: 600;
-  color: #fbbf24;
-  margin: 2px 0 6px 0;
+  color: #ffedd5 !important;
+  opacity: 0.9;
+  margin-bottom: 12px;
 }
-[data-theme="light"] .card-subheading-sci-fi {
-  color: #b45309;
-}
-
-.sci-fi-org-row {
-  color: #fed7aa;
-}
-[data-theme="light"] .sci-fi-org-row {
-  color: #7c2d12;
+.sci-fi-org-row svg,
+.amber-org-row svg {
+  color: #f59e0b;
+  flex-shrink: 0;
 }
 
 .highlights-box-amber {
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.24);
-  border-left: 3.5px solid #f59e0b;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin: 12px 0;
+  background: rgba(30, 14, 6, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-left: 3px solid #f59e0b;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
 }
 [data-theme="light"] .highlights-box-amber {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(245, 158, 11, 0.3);
-  border-left-color: #d97706;
+  background: rgba(40, 18, 8, 0.85);
+  border-color: rgba(245, 158, 11, 0.4);
 }
 
-.amber-header {
+.highlights-header.amber-header {
   color: #fbbf24;
 }
-[data-theme="light"] .amber-header {
-  color: #b45309;
-}
 
-.amber-list li {
-  color: #ffedd5;
+.amber-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-[data-theme="light"] .amber-list li {
-  color: #431407;
+.amber-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #ffedd5 !important;
 }
 .amber-check {
   color: #f59e0b;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 1px;
 }
 
-.blockchain-tag {
+.blockchain-tag,
+.chip-amber-solar {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-family: var(--mono);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: rgba(245, 158, 11, 0.12);
-  color: #fde68a;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-[data-theme="light"] .blockchain-tag {
-  background: rgba(245, 158, 11, 0.08);
-  color: #78350f;
-  border-color: rgba(245, 158, 11, 0.28);
+  padding: 3.5px 9px;
+  border-radius: 5px;
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #ffedd5 !important;
+  border: 1px solid rgba(251, 191, 36, 0.35) !important;
 }
 
 /* Responsive adjustments */
@@ -4892,22 +5168,47 @@ html, body {
     width: 15px;
     height: 15px;
   }
-  .card-main-content {
-    flex-direction: column;
-    align-items: stretch;
+  .card-main-content,
+  .school-layout,
+  .college-layout,
+  .codefury-layout,
+  .internship-layout,
+  .odyssey-layout {
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
   .school-art-col, .college-art-col, .codefury-art-col, .internship-art-col, .odyssey-art-col {
-    width: 100%;
-    margin-bottom: 12px;
+    width: 100% !important;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: center;
   }
-  .school-globe-img, .college-campus-img, .codefury-trophy-img, .internship-desk-img, .odyssey-astronaut-img {
-    width: 130px;
-    height: 130px;
+  .school-globe-img, .codefury-trophy-img, .internship-desk-img, .odyssey-astronaut-img {
+    width: 130px !important;
+    height: 130px !important;
     margin: 0 auto;
   }
+  .college-details {
+    max-width: 100% !important;
+  }
+  .college-campus-backdrop {
+    opacity: 0.18 !important;
+    width: 100% !important;
+  }
+  .codefury-backdrop-scene,
+  .odyssey-backdrop-scene {
+    opacity: 0.25 !important;
+    width: 100% !important;
+  }
+  .parchment-pinned-doc {
+    top: -10px;
+    right: 12px;
+    transform: rotate(2deg) scale(0.9);
+  }
   .header-meta-school, .header-meta-college, .header-meta-codefury, .header-meta-internship, .header-meta-odyssey {
-    margin-right: 0;
+    margin-right: 0 !important;
     flex-wrap: wrap;
+    gap: 8px;
   }
 }
 

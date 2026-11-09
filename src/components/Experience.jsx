@@ -97,8 +97,8 @@ export const Experience = () => {
           <div className="timeline-rail-progress" id="timelineProgress" ref={progressRef}></div>
         </div>
 
-        {/* ── CARD 1: SCHOOL (Vintage Scholar Parchment) ── */}
-        <div className="timeline-item" data-index="0">
+        {/* ── CARD 1: SCHOOL (Vintage Scholar Parchment Scroll) ── */}
+        <div className="timeline-item timeline-item-school" data-index="0">
           <div className="timeline-node-dot node-school" title="School Education">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
@@ -107,12 +107,47 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-school">
-            {/* Paperclip in top-right */}
-            <div className="parchment-paperclip" aria-hidden="true">
-              <div className="paperclip-wire"></div>
-              <div className="paperclip-note">
-                <span>HSLC Core</span>
-                <span className="note-sub">2021-22</span>
+            {/* Botanical Foliage Draping in Top-Left Corner */}
+            <svg className="parchment-botanical-foliage" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+              <path d="M 0,15 Q 45,25 75,70 Q 100,105 125,140" stroke="#2d5a27" strokeWidth="2.4" strokeLinecap="round" fill="none" opacity="0.65"/>
+              <path d="M 12,14 C 22,6 34,18 24,24 C 16,22 10,18 12,14 Z" fill="#3b6e32" opacity="0.85"/>
+              <path d="M 28,24 C 42,16 50,30 38,36 C 30,32 25,28 28,24 Z" fill="#2d5a27" opacity="0.9"/>
+              <path d="M 46,42 C 60,34 68,48 54,56 C 46,52 42,46 46,42 Z" fill="#3b6e32" opacity="0.85"/>
+              <path d="M 64,66 C 80,58 86,74 72,82 C 64,78 58,72 64,66 Z" fill="#2d5a27" opacity="0.9"/>
+              <path d="M 82,90 C 98,82 104,98 90,106 C 82,102 76,96 82,90 Z" fill="#3b6e32" opacity="0.85"/>
+              <path d="M 102,116 C 118,108 124,124 110,132 C 102,128 96,122 102,116 Z" fill="#2d5a27" opacity="0.9"/>
+            </svg>
+
+            {/* Realistic Pinned Photograph / Certificate Memo with Metallic Brass Paperclip */}
+            <div className="parchment-pinned-doc" aria-hidden="true">
+              <div className="pinned-photo-border">
+                <div className="pinned-photo-body">
+                  <div className="pinned-doc-header">
+                    <span className="pinned-doc-seal">✦</span>
+                    <span className="pinned-doc-title">HSC RECORD</span>
+                  </div>
+                  <div className="pinned-doc-rule"></div>
+                  <div className="pinned-doc-meta">
+                    <span className="pinned-doc-score">75% DIV-I</span>
+                    <span className="pinned-doc-year">2021–2022</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Metallic Brass 3D Paperclip */}
+              <div className="brass-paperclip-mount">
+                <svg className="brass-paperclip-svg" viewBox="0 0 28 64" fill="none">
+                  <path d="M 9,24 V 48 C 9,54 19,54 19,48 V 14 C 19,6 5,6 5,14 V 46 C 5,56 23,56 23,46 V 18" 
+                        stroke="url(#clip-brass)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <defs>
+                    <linearGradient id="clip-brass" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#fef08a" />
+                      <stop offset="25%" stopColor="#eab308" />
+                      <stop offset="60%" stopColor="#ca8a04" />
+                      <stop offset="100%" stopColor="#78350f" />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
             </div>
 
@@ -127,7 +162,7 @@ export const Experience = () => {
                   <LaurelWreath
                     title="GRADE"
                     value="75%"
-                    color="#57534e"
+                    color="#653b11"
                   />
                   <div className="date-chip-vintage">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -141,11 +176,12 @@ export const Experience = () => {
                 </div>
               </div>
 
-              <div className="card-main-content">
+              <div className="card-main-content hsc-layout">
+                {/* Globe & Books positioned prominently on left */}
                 <div className="school-art-col">
                   <img
                     src={EXPERIENCE_ILLUSTRATIONS.school}
-                    alt="Vintage Brass Globe & Books"
+                    alt="Vintage Brass Globe & Academic Books"
                     className="school-globe-img"
                     loading="lazy"
                   />
@@ -155,11 +191,11 @@ export const Experience = () => {
                   <h3 className="card-heading-serif">Higher Secondary Certificate (HSC)</h3>
                   <div className="card-subheading-serif">Computer Science</div>
 
-                  <div className="institution-row">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="institution-row school-inst-row">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
                     </svg>
-                    <span>Edustar International School, Kovilpatti, Tamil Nadu</span>
+                    <span>Kovilpatti Thiruvika Govt. Hr. Sec. School · Edustar Campus</span>
                   </div>
 
                   <div className="foundation-box">
@@ -187,8 +223,8 @@ export const Experience = () => {
           </div>
         </div>
 
-        {/* ── CARD 2: COLLEGE (Modern Glass Campus) ── */}
-        <div className="timeline-item" data-index="1">
+        {/* ── CARD 2: COLLEGE (Modern Architectural Prospectus) ── */}
+        <div className="timeline-item timeline-item-college" data-index="1">
           <div className="timeline-node-dot node-college" title="College Education">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
@@ -196,6 +232,16 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-college">
+            {/* Integrated Right-Side Architectural Campus Mural */}
+            <div className="college-campus-backdrop" aria-hidden="true">
+              <img
+                src={EXPERIENCE_ILLUSTRATIONS.college}
+                alt="Engineering Campus Architecture"
+                className="college-campus-mural-img"
+                loading="lazy"
+              />
+            </div>
+
             <div className="exp-card-inner">
               <div className="exp-card-header">
                 <span className="category-pill pill-college">
@@ -211,7 +257,7 @@ export const Experience = () => {
                       <line x1="8" y1="2" x2="8" y2="6"/>
                       <line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
-                    <span>Sep 2023 – May 2027</span>
+                    <span>May 2023 – May 2027</span>
                   </div>
 
                   <div className="laurel-pill-blue">
@@ -224,8 +270,8 @@ export const Experience = () => {
                 </div>
               </div>
 
-              <div className="card-main-content">
-                <div className="card-details-col flex-1">
+              <div className="card-main-content college-layout">
+                <div className="card-details-col college-details">
                   <h3 className="card-heading-modern">B.Tech in Artificial Intelligence & Data Science</h3>
 
                   <div className="institution-row college-org-row">
@@ -235,7 +281,7 @@ export const Experience = () => {
                     <span>P.S.R.R. College of Engineering, Sivakasi, Tamil Nadu</span>
                   </div>
 
-                  {/* Degree Progression Stepper */}
+                  {/* Connected Degree Progression Stepper */}
                   <div className="degree-stepper-box">
                     <div className="stepper-label-group">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -285,22 +331,13 @@ export const Experience = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="college-art-col">
-                  <img
-                    src={EXPERIENCE_ILLUSTRATIONS.college}
-                    alt="Engineering Campus Architecture"
-                    className="college-campus-img"
-                    loading="lazy"
-                  />
-                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── CARD 3: CODEFURY HACKATHON (Cyberpunk Neon Violet Arena) ── */}
-        <div className="timeline-item" data-index="2">
+        {/* ── CARD 3: CODEFURY-25 HACKATHON (Cyberpunk Neon Violet Poster) ── */}
+        <div className="timeline-item timeline-item-codefury" data-index="2">
           <div className="timeline-node-dot node-hackathon" title="CodeFury Hackathon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
@@ -308,6 +345,34 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-codefury">
+            {/* Integrated Cyberpunk Developer Terminal Scene on Right */}
+            <div className="codefury-backdrop-scene" aria-hidden="true">
+              <svg className="codefury-backdrop-svg" viewBox="0 0 320 180" fill="none" preserveAspectRatio="xMidYMid slice">
+                <radialGradient id="cf-glow" cx="80%" cy="40%" r="60%">
+                  <stop offset="0%" stopColor="#db2777" stopOpacity="0.4" />
+                  <stop offset="50%" stopColor="#7c3aed" stopOpacity="0.22" />
+                  <stop offset="100%" stopColor="#0f061a" stopOpacity="0" />
+                </radialGradient>
+                <rect width="320" height="180" fill="url(#cf-glow)" />
+                {/* Terminal monitor */}
+                <rect x="180" y="45" width="90" height="58" rx="4" fill="#1e1035" stroke="#c084fc" strokeWidth="1.5" />
+                <rect x="186" y="52" width="78" height="44" rx="2" fill="#0d041a" />
+                <line x1="192" y1="60" x2="225" y2="60" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" />
+                <line x1="192" y1="66" x2="245" y2="66" stroke="#c084fc" strokeWidth="2" strokeLinecap="round" opacity="0.8" />
+                <line x1="192" y1="72" x2="215" y2="72" stroke="#ec4899" strokeWidth="2" strokeLinecap="round" />
+                <line x1="192" y1="78" x2="238" y2="78" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+                <text x="240" y="80" fill="#ec4899" fontSize="16" fontWeight="bold" fontFamily="monospace">&lt;/&gt;</text>
+                <rect x="278" y="55" width="40" height="48" rx="3" fill="#180a2b" stroke="#7c3aed" strokeWidth="1.2" opacity="0.8" />
+                {/* Developer silhouettes */}
+                <path d="M 140,180 Q 155,120 175,130 Q 195,140 210,180 Z" fill="#0c0414" opacity="0.9" />
+                <circle cx="175" cy="118" r="14" fill="#0c0414" opacity="0.9" />
+                <path d="M 215,180 Q 230,110 250,125 Q 270,135 285,180 Z" fill="#08020e" opacity="0.95" />
+                <circle cx="250" cy="106" r="15" fill="#08020e" opacity="0.95" />
+                <path d="M 275,180 Q 290,130 305,140 Q 320,150 330,180 Z" fill="#05010a" />
+                <circle cx="305" cy="125" r="13" fill="#05010a" />
+              </svg>
+            </div>
+
             <div className="exp-card-inner">
               <div className="exp-card-header">
                 <span className="category-pill pill-hackathon">
@@ -323,13 +388,13 @@ export const Experience = () => {
                       <line x1="8" y1="2" x2="8" y2="6"/>
                       <line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
-                    <span>Aug 2024 · 24-Hour Continuous Sprint</span>
+                    <span>Apr 25 – 26, 2025</span>
                   </div>
 
                   <div className="laurel-pill-violet">
                     <LaurelWreath
-                      title="NATIONAL FINALIST"
-                      subtitle="AWARD"
+                      title="PARTICIPATION"
+                      subtitle="CERTIFICATE"
                       star={true}
                       color="#c084fc"
                     />
@@ -337,11 +402,12 @@ export const Experience = () => {
                 </div>
               </div>
 
-              <div className="card-main-content">
+              <div className="card-main-content codefury-layout">
+                {/* 3D Crystal Trophy integrated on the left */}
                 <div className="codefury-art-col">
                   <img
                     src={EXPERIENCE_ILLUSTRATIONS.codefury}
-                    alt="Futuristic Crystal Trophy"
+                    alt="Futuristic Crystal Trophy on Pedestal"
                     className="codefury-trophy-img"
                     loading="lazy"
                   />
@@ -349,7 +415,7 @@ export const Experience = () => {
 
                 <div className="card-details-col flex-1">
                   <h3 className="card-heading-neon">
-                    CODEFURY<span className="neon-magenta-gradient">-24</span>
+                    CODEFURRY<span className="neon-magenta-gradient">-25</span>
                   </h3>
                   <div className="card-subheading-neon">National Level Technical Hackathon</div>
 
@@ -357,7 +423,7 @@ export const Experience = () => {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
                     </svg>
-                    <span>Syed Ammal Engineering College, Ramanathapuram · Conducted by LEAP Success</span>
+                    <span>Syed Ammal Engineering College, Ramanathapuram · LEAP Success</span>
                   </div>
 
                   {/* Highlights Container */}
@@ -372,15 +438,15 @@ export const Experience = () => {
                     <ul className="highlights-list">
                       <li>
                         <span className="highlight-check">✔</span>
-                        <span>Participated in a high-intensity 24-hour National Level Hackathon along with a multidisciplinary team.</span>
+                        <span>Participated in a National Level Hackathon along with a team.</span>
                       </li>
                       <li>
                         <span className="highlight-check">✔</span>
-                        <span>Architected and shipped a credit-based P2P digital library platform for community book sharing with dynamic lending economy.</span>
+                        <span>Built and presented a technical solution addressing a real-world problem.</span>
                       </li>
                       <li>
                         <span className="highlight-check">✔</span>
-                        <span>Pitched live prototype to industry evaluation panels, qualifying as a high-ranking National Finalist.</span>
+                        <span>Gained hands-on experience in rapid prototyping, collaboration, and problem solving.</span>
                       </li>
                     </ul>
                   </div>
@@ -397,8 +463,8 @@ export const Experience = () => {
           </div>
         </div>
 
-        {/* ── CARD 4: INTERNSHIP (Late-Night Executive Workstation) ── */}
-        <div className="timeline-item" data-index="3">
+        {/* ── CARD 4: INTERNSHIP (Executive Late-Night Technology Workspace) ── */}
+        <div className="timeline-item timeline-item-internship" data-index="3">
           <div className="timeline-node-dot node-internship" title="Industry Internship">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
@@ -435,7 +501,7 @@ export const Experience = () => {
                 </div>
               </div>
 
-              <div className="card-main-content">
+              <div className="card-main-content internship-layout">
                 <div className="card-details-col flex-1">
                   <h3 className="card-heading-corporate">
                     Data Science <em className="cyan-highlight">Intern</em>
@@ -445,10 +511,10 @@ export const Experience = () => {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
                     </svg>
-                    <span>Persevex Data Science & Analytics</span>
+                    <span>Provave Data Science & Analytics · Persevex Partner</span>
                   </div>
 
-                  {/* Bento Split: Role & Work | Impact */}
+                  {/* Distinct Split Bento: Role & Work | Impact */}
                   <div className="internship-bento-split">
                     <div className="bento-box bento-role">
                       <div className="bento-title-row">
@@ -459,7 +525,7 @@ export const Experience = () => {
                         <strong>Role & Work</strong>
                       </div>
                       <p className="bento-desc">
-                        Worked on data preprocessing, EDA, and ML model development for real-world enterprise datasets.
+                        Worked on data preprocessing, EDA, and ML model development for real-world datasets.
                       </p>
                     </div>
 
@@ -473,7 +539,7 @@ export const Experience = () => {
                         <strong>Impact</strong>
                       </div>
                       <p className="bento-desc">
-                        Built end-to-end pipelines and gained hands-on experience with production data analytics.
+                        Built end-to-end pipelines and gained hands-on experience with data analytics.
                       </p>
                     </div>
                   </div>
@@ -514,6 +580,7 @@ export const Experience = () => {
                   </div>
                 </div>
 
+                {/* Desk Lamp Laptop Setup on Right */}
                 <div className="internship-art-col">
                   <img
                     src={EXPERIENCE_ILLUSTRATIONS.internship}
@@ -527,8 +594,8 @@ export const Experience = () => {
           </div>
         </div>
 
-        {/* ── CARD 5: HACK ODYSSEY 3.0 (Martian Sci-Fi Amber Horizon) ── */}
-        <div className="timeline-item" data-index="4">
+        {/* ── CARD 5: HACK ODYSSEY 3.0 (Futuristic Martian Sci-Fi Poster) ── */}
+        <div className="timeline-item timeline-item-odyssey" data-index="4">
           <div className="timeline-node-dot node-odyssey" title="Hack Odyssey Hackathon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="16 18 22 12 16 6"/>
@@ -537,6 +604,32 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-odyssey">
+            {/* Integrated Planetary Mountain & Flag Scene on Right */}
+            <div className="odyssey-backdrop-scene" aria-hidden="true">
+              <svg className="odyssey-backdrop-svg" viewBox="0 0 320 180" fill="none" preserveAspectRatio="xMidYMid slice">
+                <radialGradient id="mars-sun" cx="75%" cy="30%" r="70%">
+                  <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.45" />
+                  <stop offset="45%" stopColor="#ea580c" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="#140a05" stopOpacity="0" />
+                </radialGradient>
+                <rect width="320" height="180" fill="url(#mars-sun)" />
+                <circle cx="180" cy="25" r="1" fill="#fde68a" opacity="0.8" />
+                <circle cx="220" cy="18" r="1.2" fill="#ffffff" opacity="0.9" />
+                <circle cx="260" cy="35" r="1" fill="#fde68a" opacity="0.7" />
+                <circle cx="295" cy="20" r="1.5" fill="#ffffff" opacity="0.85" />
+                <path d="M 120,180 L 190,135 L 245,150 L 290,110 L 320,130 L 320,180 Z" fill="#241108" />
+                <path d="M 180,180 L 235,135 L 275,155 L 305,120 L 320,135 L 320,180 Z" fill="#190a04" opacity="0.95" />
+                <line x1="290" y1="110" x2="290" y2="72" stroke="#d97706" strokeWidth="2" strokeLinecap="round" />
+                <polygon points="290,72 318,80 290,88" fill="url(#flag-grad)" />
+                <defs>
+                  <linearGradient id="flag-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fbbf24" />
+                    <stop offset="100%" stopColor="#ea580c" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
             <div className="exp-card-inner">
               <div className="exp-card-header">
                 <span className="category-pill pill-odyssey">
@@ -552,13 +645,13 @@ export const Experience = () => {
                       <line x1="8" y1="2" x2="8" y2="6"/>
                       <line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
-                    <span>Oct 2025 · 24-Hour Continuous Sprint</span>
+                    <span>2025</span>
                   </div>
 
                   <div className="laurel-pill-amber">
                     <LaurelWreath
-                      title="SYSTEMS CHALLENGE"
-                      subtitle="FINALIST"
+                      title="PARTICIPATION"
+                      subtitle="CERTIFICATE"
                       star={true}
                       color="#f59e0b"
                     />
@@ -566,7 +659,8 @@ export const Experience = () => {
                 </div>
               </div>
 
-              <div className="card-main-content">
+              <div className="card-main-content odyssey-layout">
+                {/* Golden Visor Astronaut on Left */}
                 <div className="odyssey-art-col">
                   <img
                     src={EXPERIENCE_ILLUSTRATIONS.hackOdyssey}
@@ -580,13 +674,13 @@ export const Experience = () => {
                   <h3 className="card-heading-sci-fi">
                     HACK ODYSSEY <span className="amber-glow">3.0</span>
                   </h3>
-                  <div className="card-subheading-sci-fi">24-Hour Systems & Blockchain Hackathon</div>
+                  <div className="card-subheading-sci-fi">Technical Hackathon</div>
 
                   <div className="institution-row sci-fi-org-row">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
                     </svg>
-                    <span>Kalasalingam Engineering College (KARE), Krishnankoil</span>
+                    <span>P.S.R.R. College of Engineering</span>
                   </div>
 
                   {/* Highlights Container */}
@@ -601,15 +695,15 @@ export const Experience = () => {
                     <ul className="highlights-list amber-list">
                       <li>
                         <span className="highlight-check amber-check">✔</span>
-                        <span>Architected a tamper-proof image provenance shield deployed on the Polygon blockchain within 24 hours.</span>
+                        <span>Participated in Hack Odyssey 3.0, a college-level technical hackathon.</span>
                       </li>
                       <li>
                         <span className="highlight-check amber-check">✔</span>
-                        <span>Implemented SHA-256 cryptographic digital signatures to verify image provenance and prevent deepfake tampering.</span>
+                        <span>Collaborated with a team to build a working prototype within the given time.</span>
                       </li>
                       <li>
                         <span className="highlight-check amber-check">✔</span>
-                        <span>Built smart contracts and client verification portal, qualifying as a Systems Challenge Finalist.</span>
+                        <span>Explored ideas, implemented features, and gained valuable hands-on experience.</span>
                       </li>
                     </ul>
                   </div>
