@@ -21,7 +21,7 @@
 
   <!-- Instant 0-ms Critical Styles: Placed at top of head before any network request -->
   <style>
-    /* ── SOLAR MINIMALIST SUN PRELOADER (GPU ACCELERATED) ── */
+    /* ── MINIMALIST SOLAR CORONA PRELOADER (GPU ACCELERATED) ── */
     #solar-preloader {
       position: fixed;
       inset: 0;
@@ -30,32 +30,28 @@
       align-items: center;
       justify-content: center;
       background-color: #070c18;
-      color: #f8fafc;
+      color: #38bdf8;
       user-select: none;
       pointer-events: all;
-      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.45s ease;
+      transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.22s ease;
       will-change: opacity, transform, filter;
     }
 
     [data-theme="light"] #solar-preloader {
       background-color: #f8fafc;
-      color: #0f172a;
+      color: #2563eb;
     }
 
     #solar-preloader.solar-fadeout {
       opacity: 0;
-      transform: scale(1.03);
-      filter: blur(8px);
+      transform: scale(1.02);
+      filter: blur(4px);
       pointer-events: none;
     }
 
     .solar-center-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -63,49 +59,24 @@
 
     /* Hardware Composited: Dedicated GPU plane prevents any stutter during JS execution */
     .solar-sun-svg {
-      width: clamp(72px, 12vw, 96px);
-      height: clamp(72px, 12vw, 96px);
-      animation: solar-spin 1.25s linear infinite;
+      width: 52px;
+      height: 52px;
+      animation: solar-spin 0.75s linear infinite;
       transform-origin: 50% 50%;
       transform: translate3d(0, 0, 0);
       will-change: transform;
       contain: strict;
       backface-visibility: hidden;
+      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.45));
+    }
+
+    [data-theme="light"] .solar-sun-svg {
+      filter: drop-shadow(0 0 4px rgba(37, 99, 235, 0.25));
     }
 
     @keyframes solar-spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
-    }
-
-    .solar-counter-corner {
-      position: absolute;
-      right: clamp(2rem, 5vw, 4.5rem);
-      bottom: clamp(2rem, 5vw, 4.5rem);
-      display: flex;
-      align-items: baseline;
-      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-feature-settings: 'tnum' 1;
-      font-variant-numeric: tabular-nums;
-      line-height: 0.9;
-    }
-
-    .solar-digit {
-      font-size: clamp(4.5rem, 11vw, 8.5rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: currentColor;
-    }
-
-    .solar-percent {
-      font-size: clamp(2rem, 4.5vw, 3.5rem);
-      font-weight: 700;
-      margin-left: 0.15em;
-      color: #38bdf8;
-    }
-
-    [data-theme="light"] .solar-percent {
-      color: #2563eb;
     }
   </style>
 
@@ -115,81 +86,54 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'">
 </head>
 <body>
-  <!-- 0-ms Instant Solar Sun Preloader: Starts at 3% immediately with zero wait -->
+  <!-- 0-ms Instant Minimalist Solar Preloader: Fast & Elegant -->
   <div id="solar-preloader" aria-label="Loading portfolio">
     <div class="solar-center-icon">
-      <svg class="solar-sun-svg" viewBox="0 0 100 100" fill="none">
-        <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
-          <line x1="50" y1="12" x2="50" y2="28" opacity="0.08" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(15 50 50)" opacity="0.12" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(30 50 50)" opacity="0.16" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(45 50 50)" opacity="0.20" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(60 50 50)" opacity="0.24" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(75 50 50)" opacity="0.28" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(90 50 50)" opacity="0.32" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(105 50 50)" opacity="0.36" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(120 50 50)" opacity="0.40" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(135 50 50)" opacity="0.45" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(150 50 50)" opacity="0.50" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(165 50 50)" opacity="0.55" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(180 50 50)" opacity="0.60" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(195 50 50)" opacity="0.65" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(210 50 50)" opacity="0.70" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(225 50 50)" opacity="0.75" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(240 50 50)" opacity="0.80" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(255 50 50)" opacity="0.85" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(270 50 50)" opacity="0.90" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(285 50 50)" opacity="0.93" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(300 50 50)" opacity="0.96" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(315 50 50)" opacity="0.98" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(330 50 50)" opacity="1.0" />
-          <line x1="50" y1="12" x2="50" y2="28" transform="rotate(345 50 50)" opacity="1.0" />
+      <svg class="solar-sun-svg" viewBox="0 0 48 48" fill="none">
+        <g stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+          <line x1="24" y1="5" x2="24" y2="13" opacity="0.12" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(30 24 24)" opacity="0.18" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(60 24 24)" opacity="0.25" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(90 24 24)" opacity="0.32" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(120 24 24)" opacity="0.42" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(150 24 24)" opacity="0.52" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(180 24 24)" opacity="0.62" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(210 24 24)" opacity="0.72" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(240 24 24)" opacity="0.82" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(270 24 24)" opacity="0.90" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(300 24 24)" opacity="0.96" />
+          <line x1="24" y1="5" x2="24" y2="13" transform="rotate(330 24 24)" opacity="1.0" />
         </g>
+        <circle cx="24" cy="24" r="2.4" fill="currentColor" opacity="0.9" />
       </svg>
-    </div>
-
-    <div class="solar-counter-corner">
-      <span id="solar-counter-val" class="solar-digit">0</span>
-      <span class="solar-percent">%</span>
     </div>
   </div>
 
   <script>
     (function() {
-      var counterEl = document.getElementById('solar-counter-val');
       var preloader = document.getElementById('solar-preloader');
-      if (!counterEl || !preloader) return;
+      if (!preloader) return;
 
-      // Fast, snappy 4-number progression from 0 to 100%
-      var steps = [0, 34, 76, 100];
-      var stepIdx = 0;
-      var isReady = false;
+      var dismissed = false;
+      function dismiss() {
+        if (dismissed) return;
+        dismissed = true;
+        preloader.classList.add('solar-fadeout');
+        setTimeout(function() {
+          if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+        }, 240);
+      }
 
+      // Fast dismissal: Dissolve immediately when ready with zero artificial delay
       if (document.readyState === 'complete') {
-        isReady = true;
+        setTimeout(dismiss, 80);
       } else {
-        window.addEventListener('load', function() { isReady = true; });
+        window.addEventListener('load', function() {
+          setTimeout(dismiss, 60);
+        });
+        // Never keep the user waiting more than 260ms under any condition
+        setTimeout(dismiss, 260);
       }
-
-      function stepToNext() {
-        stepIdx++;
-        if (stepIdx < steps.length - 1) {
-          counterEl.textContent = steps[stepIdx];
-          setTimeout(stepToNext, 65);
-        } else {
-          // Final milestone: 100%
-          counterEl.textContent = '100';
-          setTimeout(function() {
-            preloader.classList.add('solar-fadeout');
-            setTimeout(function() {
-              if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
-            }, 400);
-          }, 120);
-        }
-      }
-
-      // Start stepping immediately after 50ms: 0 -> 34 -> 76 -> 100%
-      setTimeout(stepToNext, 50);
     })();
   </script>
 
