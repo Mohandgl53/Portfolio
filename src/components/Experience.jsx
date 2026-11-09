@@ -132,18 +132,21 @@ export const Experience = () => {
               <path d="M 102,116 C 118,108 124,124 110,132 C 102,128 96,122 102,116 Z" fill="#2d5a27" opacity="0.9"/>
             </svg>
 
-            {/* Realistic Pinned Lined Sheet Note with Metallic Brass Paperclip */}
-            <div className="parchment-pinned-doc" aria-hidden="true">
-              <div className="pinned-sheet-paper">
-                <div className="sheet-line"></div>
-                <div className="sheet-line"></div>
-                <div className="sheet-line"></div>
-                <div className="sheet-line"></div>
-                <div className="sheet-line"></div>
+            {/* Realistic Pinned Photograph of School Campus with Metallic Brass Paperclip */}
+            <div className="parchment-pinned-doc" aria-label="School Campus Photograph">
+              <div className="pinned-photo-card">
+                <div className="pinned-photo-inner">
+                  <img
+                    src={EXPERIENCE_ILLUSTRATIONS.schoolPhoto}
+                    alt="School Campus Architecture"
+                    className="pinned-school-img"
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
               {/* Metallic Brass 3D Paperclip */}
-              <div className="brass-paperclip-mount">
+              <div className="brass-paperclip-mount" aria-hidden="true">
                 <svg className="brass-paperclip-svg" viewBox="0 0 28 64" fill="none">
                   <path d="M 9,24 V 48 C 9,54 19,54 19,48 V 14 C 19,6 5,6 5,14 V 46 C 5,56 23,56 23,46 V 18" 
                         stroke="url(#clip-brass)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -453,6 +456,16 @@ export const Experience = () => {
           </div>
 
           <div className="exp-card-outer exp-card-internship executive-workspace-card">
+            {/* Integrated Cinematic Workspace on Right */}
+            <div className="internship-backdrop-workspace" aria-hidden="true">
+              <img
+                src={EXPERIENCE_ILLUSTRATIONS.internshipWorkspace}
+                alt=""
+                className="internship-workspace-img"
+                loading="lazy"
+              />
+            </div>
+
             <div className="exp-card-inner">
               <div className="exp-card-header">
                 <span className="category-pill pill-internship slanted-badge">
@@ -482,7 +495,7 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content internship-layout">
-                <div className="card-details-col flex-1">
+                <div className="card-details-col internship-details flex-1">
                   <h3 className="card-heading-corporate">
                     Data Science <em className="cyan-highlight">Intern</em>
                   </h3>
@@ -491,7 +504,7 @@ export const Experience = () => {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
                     </svg>
-                    <span>Provave Data Science & Analytics</span>
+                    <span>Perevex Data Science & Analytics</span>
                   </div>
 
                   {/* Dual Bento Boxes */}
@@ -559,16 +572,6 @@ export const Experience = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Desk Lamp Laptop Setup on Right */}
-                <div className="internship-art-col">
-                  <img
-                    src={EXPERIENCE_ILLUSTRATIONS.internship}
-                    alt="Data Science Workstation with Desk Lamp"
-                    className="internship-desk-img"
-                    loading="lazy"
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -624,11 +627,11 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content odyssey-layout">
-                {/* Golden Visor Astronaut on Left */}
-                <div className="odyssey-art-col">
+                {/* Golden Visor Astronaut on Left - Heroic Foreground */}
+                <div className="odyssey-art-col odyssey-art-hero">
                   <img
-                    src={EXPERIENCE_ILLUSTRATIONS.hackOdyssey}
-                    alt="Astronaut with Golden Visor"
+                    src={EXPERIENCE_ILLUSTRATIONS.hackOdysseyHero}
+                    alt="Astronaut with Golden Reflective Visor"
                     className="odyssey-astronaut-img"
                     loading="lazy"
                   />
@@ -677,6 +680,14 @@ export const Experience = () => {
           </div>
         </div>
 
+      </div>
+
+      {/* Atmospheric Mountain Ridge Footer matching Reference */}
+      <div className="experience-bottom-mountains" aria-hidden="true">
+        <svg className="mountain-ridge-svg" viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none">
+          <path d="M0,90 L0,55 L90,25 L180,48 L270,18 L380,42 L480,12 L580,45 L690,20 L800,5 L910,28 L1020,10 L1130,38 L1240,15 L1350,40 L1440,22 L1440,90 Z" fill="#040812" opacity="0.95"/>
+          <path d="M0,90 L0,70 L110,45 L210,60 L320,32 L420,52 L530,22 L640,55 L750,26 L860,48 L970,18 L1080,45 L1190,25 L1300,58 L1440,35 L1440,90 Z" fill="#060c18" opacity="0.85"/>
+        </svg>
       </div>
     </section>
   );

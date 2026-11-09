@@ -4048,47 +4048,55 @@ html, body {
 /* Realistic Pinned Lined Sheet Note */
 .parchment-pinned-doc {
   position: absolute;
-  top: -14px;
-  right: 24px;
+  top: -12px;
+  right: 18px;
   z-index: 12;
   pointer-events: none;
-  transform: rotate(8deg);
+  transform: rotate(5.5deg);
   transition: transform 0.3s ease;
 }
 .exp-card-school:hover .parchment-pinned-doc {
-  transform: rotate(4deg) translateY(-2px);
+  transform: rotate(2deg) translateY(-2px);
 }
 
-.pinned-sheet-paper {
-  background: #f7f1dd;
-  border: 1px solid #d8cca8;
-  padding: 10px 14px;
-  width: 95px;
-  height: 64px;
+.pinned-photo-card {
+  background: #ffffff;
+  padding: 5px 5px 14px 5px;
+  width: 140px;
   border-radius: 2px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  box-shadow: 
+    0 10px 25px -3px rgba(0, 0, 0, 0.45),
+    0 3px 8px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
-.sheet-line {
-  height: 1px;
-  background: rgba(180, 130, 70, 0.28);
+.pinned-photo-inner {
   width: 100%;
+  height: 86px;
+  overflow: hidden;
+  border-radius: 1px;
+  background: #cbd5e1;
+}
+.pinned-school-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(1.1);
+  display: block;
 }
 
 /* Metallic Brass 3D Paperclip */
 .brass-paperclip-mount {
   position: absolute;
-  top: -12px;
-  left: 14px;
-  width: 20px;
-  height: 48px;
-  filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, 0.45));
+  top: -14px;
+  left: 20px;
+  width: 22px;
+  height: 52px;
+  filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.5));
 }
 .brass-paperclip-svg {
   width: 100%;
   height: 100%;
+  transform: rotate(-6deg);
 }
 
 .pill-school {
@@ -4102,7 +4110,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-right: 100px;
+  margin-right: 145px;
 }
 .grade-laurel-wrapper {
   display: flex;
@@ -4133,11 +4141,11 @@ html, body {
 }
 
 .card-heading-serif {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 22px;
-  font-weight: 800;
-  color: #2b1f14 !important;
-  line-height: 1.25;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e150d !important;
+  line-height: 1.2;
   margin: 0 0 3px 0;
   letter-spacing: -0.01em;
 }
@@ -4145,8 +4153,9 @@ html, body {
 .card-subheading-serif {
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
-  font-size: 14.5px;
-  color: #523f2d !important;
+  font-size: 15px;
+  font-weight: 600;
+  color: #453322 !important;
   margin: 0 0 6px 0;
 }
 
@@ -4302,8 +4311,9 @@ html, body {
 }
 
 .card-heading-modern {
-  font-size: 22px;
-  font-weight: 800;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
   color: #0f172a !important;
   line-height: 1.25;
   margin-bottom: 4px;
@@ -4311,10 +4321,11 @@ html, body {
 }
 
 .college-org-row {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   color: #0284c7 !important;
   margin-bottom: 12px;
@@ -4523,8 +4534,9 @@ html, body {
 }
 
 .card-heading-neon {
-  font-size: 28px;
-  font-weight: 900;
+  font-family: 'Sora', var(--sans), sans-serif;
+  font-size: 30px;
+  font-weight: 800;
   letter-spacing: -0.03em;
   color: #ffffff !important;
   margin: 0;
@@ -4537,7 +4549,7 @@ html, body {
   -webkit-text-fill-color: transparent;
 }
 .card-subheading-neon {
-  font-family: var(--mono);
+  font-family: 'Fira Code', var(--mono);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -4548,6 +4560,7 @@ html, body {
 }
 
 .neon-org-row {
+  font-family: 'Sora', var(--sans), sans-serif;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -4681,7 +4694,8 @@ html, body {
 }
 
 .card-heading-corporate {
-  font-size: 23px;
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 26px;
   font-weight: 800;
   color: #f0fdfa !important;
   line-height: 1.25;
@@ -4694,10 +4708,11 @@ html, body {
 }
 
 .corporate-org-row {
+  font-family: 'Manrope', sans-serif;
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   color: #7dd3fc !important;
   margin-bottom: 12px;
@@ -4711,22 +4726,39 @@ html, body {
   display: flex;
   align-items: center;
   gap: 20px;
+  position: relative;
+  z-index: 2;
 }
 
-.internship-art-col {
-  flex-shrink: 0;
-  width: 170px;
-  text-align: center;
+.internship-backdrop-workspace {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 18%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 18%, black 100%);
 }
-.internship-desk-img {
-  width: 165px;
-  height: 165px;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 24px rgba(14, 165, 233, 0.35));
-  transition: transform 0.4s ease;
+.internship-workspace-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0.95;
+  filter: contrast(1.1) saturate(1.15);
+  transition: transform 0.6s ease;
 }
-.exp-card-internship:hover .internship-desk-img {
-  transform: scale(1.04) translateY(-2px);
+.exp-card-internship:hover .internship-workspace-img {
+  transform: scale(1.03);
+}
+
+.internship-details {
+  max-width: 58%;
+  position: relative;
+  z-index: 2;
 }
 
 /* Split Bento */
@@ -4738,21 +4770,24 @@ html, body {
 }
 
 .bento-box {
-  background: rgba(15, 29, 46, 0.7);
-  border: 1px solid rgba(56, 189, 248, 0.22);
+  background: rgba(15, 29, 46, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.25);
   border-radius: 8px;
   padding: 10px 12px;
 }
 
 .bento-title-row {
+  font-family: 'Manrope', sans-serif;
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11.5px;
+  font-size: 12px;
+  font-weight: 700;
   color: #38bdf8 !important;
   margin-bottom: 4px;
 }
 .bento-desc {
+  font-family: 'Manrope', sans-serif;
   font-size: 12px;
   line-height: 1.45;
   color: #cbd5e1 !important;
@@ -4894,20 +4929,22 @@ html, body {
   gap: 18px;
 }
 
-.odyssey-art-col {
+.odyssey-art-col,
+.odyssey-art-hero {
   flex-shrink: 0;
-  width: 140px;
+  width: 155px;
   text-align: center;
+  z-index: 3;
 }
 .odyssey-astronaut-img {
-  width: 135px;
-  height: 135px;
+  width: 150px;
+  height: 200px;
   object-fit: contain;
-  filter: drop-shadow(0 10px 25px rgba(245, 158, 11, 0.55));
+  filter: drop-shadow(0 14px 28px rgba(245, 158, 11, 0.65));
   transition: transform 0.4s ease;
 }
 .exp-card-odyssey:hover .odyssey-astronaut-img {
-  transform: scale(1.05) translateY(-3px);
+  transform: scale(1.05) translateY(-4px);
 }
 
 .odyssey-details {
@@ -4915,9 +4952,10 @@ html, body {
 }
 
 .card-heading-sci-fi {
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 29px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: #ffffff !important;
   margin: 0;
   line-height: 1.1;
@@ -4930,7 +4968,7 @@ html, body {
 }
 
 .card-subheading-sci-fi {
-  font-family: var(--mono);
+  font-family: 'Sora', var(--mono);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -4941,10 +4979,11 @@ html, body {
 }
 
 .sci-fi-org-row {
+  font-family: 'Space Grotesk', sans-serif;
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #fed7aa !important;
   opacity: 0.9;
@@ -4970,6 +5009,22 @@ html, body {
 }
 .bullet-odyssey {
   color: #f59e0b;
+}
+
+/* Atmospheric Mountain Ridge Footer */
+.experience-bottom-mountains {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.mountain-ridge-svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* Responsive adjustments */
@@ -5007,27 +5062,47 @@ html, body {
     height: 130px !important;
     margin: 0 auto;
   }
-  .college-details {
+  .college-details,
+  .codefury-details,
+  .internship-details,
+  .odyssey-details {
     max-width: 100% !important;
   }
-  .college-campus-backdrop {
+  .college-campus-backdrop,
+  .codefury-backdrop-scene,
+  .internship-backdrop-workspace,
+  .odyssey-backdrop-scene {
     opacity: 0.18 !important;
     width: 100% !important;
   }
-  .codefury-backdrop-scene,
-  .odyssey-backdrop-scene {
-    opacity: 0.25 !important;
-    width: 100% !important;
-  }
   .parchment-pinned-doc {
-    top: -10px;
-    right: 12px;
-    transform: rotate(2deg) scale(0.9);
+    top: -8px;
+    right: 8px;
+    transform: rotate(3deg) scale(0.75);
+    transform-origin: top right;
   }
-  .header-meta-school, .header-meta-college, .header-meta-codefury, .header-meta-internship, .header-meta-odyssey {
+  .header-meta-school-ref,
+  .header-meta-school, 
+  .header-meta-college, 
+  .header-meta-codefury, 
+  .header-meta-internship, 
+  .header-meta-odyssey {
     margin-right: 0 !important;
     flex-wrap: wrap;
     gap: 8px;
+    margin-top: 6px;
+  }
+  .stepper-horizontal-row,
+  .focus-horizontal-row {
+    flex-wrap: wrap !important;
+  }
+  .poster-highlights-banner {
+    flex-direction: column !important;
+  }
+  .highlights-banner-tab {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 12px;
   }
 }
 
