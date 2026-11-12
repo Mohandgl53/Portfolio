@@ -4314,6 +4314,13 @@ html, body {
   color: #ffffff !important;
 }
 
+.exp-card-college .exp-card-inner {
+  padding-left: 118px !important;
+  padding-right: 16px !important;
+  position: relative;
+  z-index: 2;
+}
+
 .college-layout {
   position: relative;
   z-index: 2;
@@ -4322,27 +4329,31 @@ html, body {
   gap: 12px;
 }
 .college-compass-col {
-  width: 105px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 130px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, black 62%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 62%, transparent 100%);
 }
 .college-compass-tool-img {
-  width: 100px;
-  height: 130px;
-  object-fit: contain;
-  filter: drop-shadow(2px 4px 8px rgba(15, 23, 42, 0.25));
-  transition: transform 0.4s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  transition: transform 0.6s ease;
 }
 .exp-card-college:hover .college-compass-tool-img {
-  transform: scale(1.04) rotate(-2deg);
+  transform: scale(1.04);
 }
 
 .college-details {
   flex: 1;
-  max-width: 82%;
+  max-width: 100%;
 }
 
 .card-heading-modern {
@@ -4390,12 +4401,12 @@ html, body {
   align-items: center;
   gap: 4px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 800;
   color: #0f172a;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  min-width: 98px;
+  letter-spacing: 0.02em;
+  min-width: 88px;
   flex-shrink: 0;
 }
 .stepper-row-label svg,
@@ -4407,7 +4418,7 @@ html, body {
 .focus-pills-row {
   display: flex;
   flex-wrap: nowrap;
-  gap: 3.5px;
+  gap: 3px;
   align-items: center;
 }
 .stepper-milestone-wire {
@@ -4417,7 +4428,7 @@ html, body {
 }
 .step-wire-connector {
   height: 2px;
-  width: 14px;
+  width: 7px;
   background: #0284c7;
   flex-shrink: 0;
   opacity: 0.75;
@@ -4425,16 +4436,16 @@ html, body {
 .step-node-dot {
   color: #16a34a;
   font-size: 8px;
-  margin-right: 3px;
+  margin-right: 2px;
 }
 .step-pill-ref {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   font-family: var(--mono);
-  font-size: 9.4px;
+  font-size: 8.8px;
   font-weight: 600;
-  padding: 2px 6px;
+  padding: 2px 5px;
   border-radius: 5px;
   white-space: nowrap;
 }
@@ -4449,7 +4460,7 @@ html, body {
   border: 1px solid #60a5fa !important;
   box-shadow: 0 0 10px rgba(29, 78, 216, 0.45);
   border-radius: 999px !important;
-  padding: 2.5px 8px !important;
+  padding: 2px 7px !important;
 }
 .star-icon {
   color: #fef08a;
@@ -4461,9 +4472,9 @@ html, body {
   display: inline-flex;
   align-items: center;
   font-family: var(--mono);
-  font-size: 9.8px;
+  font-size: 9.1px;
   font-weight: 600;
-  padding: 2px 7px;
+  padding: 2px 6px;
   border-radius: 999px;
   background: #ffffff;
   color: #0369a1;
@@ -4562,6 +4573,12 @@ html, body {
   border: 1px solid rgba(192, 132, 252, 0.35);
 }
 
+.exp-card-codefury .exp-card-inner {
+  padding-left: 150px !important;
+  position: relative;
+  z-index: 2;
+}
+
 .codefury-layout {
   position: relative;
   z-index: 2;
@@ -4571,22 +4588,27 @@ html, body {
 }
 
 .codefury-badge-col {
-  flex-shrink: 0;
-  width: 120px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 146px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 3;
+  justify-content: flex-start;
+  padding-left: 10px;
+  pointer-events: none;
+  z-index: 2;
 }
 .codefury-badge-img {
-  width: 112px;
-  height: 140px;
+  width: 128px;
+  height: calc(100% - 4px);
   object-fit: contain;
-  filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.65));
+  filter: drop-shadow(0 0 18px rgba(168, 85, 247, 0.65));
   transition: transform 0.4s ease;
 }
 .exp-card-codefury:hover .codefury-badge-img {
-  transform: scale(1.05) translateY(-2px);
+  transform: scale(1.04) translateY(-2px);
 }
 
 .codefury-details {
@@ -4763,6 +4785,12 @@ html, body {
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
+.exp-card-internship .exp-card-inner {
+  padding-left: 205px !important;
+  position: relative;
+  z-index: 2;
+}
+
 .internship-layout {
   display: flex;
   align-items: center;
@@ -4771,19 +4799,23 @@ html, body {
   z-index: 2;
 }
 .internship-art-col {
-  width: 130px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 245px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, black 55%, rgba(0,0,0,0.65) 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 55%, rgba(0,0,0,0.65) 78%, transparent 100%);
 }
 .internship-laptop-img {
-  width: 125px;
-  height: 135px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.35));
-  transition: transform 0.4s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left 75%;
+  transition: transform 0.6s ease;
 }
 .exp-card-internship:hover .internship-laptop-img {
   transform: scale(1.04);
@@ -5021,6 +5053,12 @@ html, body {
   border: 1px solid rgba(251, 191, 36, 0.35);
 }
 
+.exp-card-odyssey .exp-card-inner {
+  padding-left: 205px !important;
+  position: relative;
+  z-index: 2;
+}
+
 .odyssey-layout {
   position: relative;
   z-index: 2;
@@ -5030,22 +5068,26 @@ html, body {
 }
 
 .odyssey-art-planet {
-  flex-shrink: 0;
-  width: 125px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 245px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, black 55%, rgba(0,0,0,0.65) 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 55%, rgba(0,0,0,0.65) 78%, transparent 100%);
 }
 .odyssey-planet-astronaut-img {
-  width: 120px;
-  height: 135px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.75));
-  transition: transform 0.4s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  transition: transform 0.6s ease;
 }
 .exp-card-odyssey:hover .odyssey-planet-astronaut-img {
-  transform: scale(1.05) translateY(-2px);
+  transform: scale(1.04);
 }
 
 .odyssey-details {
@@ -5154,6 +5196,38 @@ html, body {
 .bullet-odyssey {
   color: #f59e0b !important;
 }
+
+/* Card 1 spacing so 2021-2022 & GRADE 75% do not overlap pinned school photo */
+.header-meta-school-ref {
+  margin-right: 162px !important;
+}
+
+/* Responsive mobile overrides for full-height integrated left artwork */
+@media (max-width: 768px) {
+  .exp-card-college .exp-card-inner,
+  .exp-card-codefury .exp-card-inner,
+  .exp-card-internship .exp-card-inner,
+  .exp-card-odyssey .exp-card-inner {
+    padding-left: 16px !important;
+  }
+  .college-compass-col,
+  .codefury-badge-col,
+  .internship-art-col,
+  .odyssey-art-planet {
+    position: relative !important;
+    width: 100% !important;
+    height: 150px !important;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
+    padding-left: 0 !important;
+    justify-content: center !important;
+  }
+  .codefury-badge-img {
+    width: auto !important;
+    height: 140px !important;
+  }
+}
+
 
 
 /* Responsive adjustments */

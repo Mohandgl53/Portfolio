@@ -240,6 +240,16 @@ export const Experience = () => {
               />
             </div>
 
+            {/* Integrated Left-Side Drafting Compass & Blueprint */}
+            <div className="college-compass-col" aria-hidden="true">
+              <img
+                src={EXPERIENCE_ILLUSTRATIONS.collegeCompass}
+                alt="Architectural Drafting Compass & Blueprint"
+                className="college-compass-tool-img"
+                loading="eager"
+              />
+            </div>
+
             <div className="exp-card-inner">
               <div className="exp-card-header">
                 <span className="category-pill pill-college slanted-badge">
@@ -269,16 +279,6 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content college-layout">
-                {/* Left Drafting Compass & Blueprint Architecture */}
-                <div className="college-compass-col" aria-hidden="true">
-                  <img
-                    src={EXPERIENCE_ILLUSTRATIONS.collegeCompass}
-                    alt="Architectural Drafting Compass & Blueprint"
-                    className="college-compass-tool-img"
-                    loading="eager"
-                  />
-                </div>
-
                 <div className="card-details-col college-details">
                   <h3 className="card-heading-modern">
                     B.Tech in <span className="college-blue-gradient">Artificial Intelligence & Data Science</span>
@@ -374,6 +374,16 @@ export const Experience = () => {
               />
             </div>
 
+            {/* Integrated Left-Side VIP Lanyard Badge */}
+            <div className="codefury-art-col codefury-badge-col" aria-hidden="true">
+              <img
+                src={EXPERIENCE_ILLUSTRATIONS.codefuryBadge}
+                alt="CODEFURRY '25 VIP Lanyard Pass Badge"
+                className="codefury-badge-img"
+                loading="eager"
+              />
+            </div>
+
             <div className="exp-card-inner">
               <div className="exp-card-header">
                 <span className="category-pill pill-hackathon slanted-badge">
@@ -404,16 +414,6 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content codefury-layout">
-                {/* VIP Lanyard Badge on Left */}
-                <div className="codefury-art-col codefury-badge-col">
-                  <img
-                    src={EXPERIENCE_ILLUSTRATIONS.codefuryBadge}
-                    alt="CODEFURRY '25 VIP Lanyard Pass Badge"
-                    className="codefury-badge-img"
-                    loading="eager"
-                  />
-                </div>
-
                 <div className="card-details-col codefury-details flex-1">
                   <h3 className="card-heading-neon">
                     CODEFURRY<span className="neon-magenta-gradient">-25</span>
@@ -475,6 +475,16 @@ export const Experience = () => {
             {/* Drawn Futuristic Chamfered Inner Frame */}
             <div className="card-drawn-inner-frame frame-internship" aria-hidden="true"></div>
 
+            {/* Integrated Left-Side Analytics Laptop & Coffee Mug */}
+            <div className="internship-art-col" aria-hidden="true">
+              <img
+                src={EXPERIENCE_ILLUSTRATIONS.internshipDeskLaptop}
+                alt="Persevex Analytics Workstation with Coffee Mug"
+                className="internship-laptop-img"
+                loading="eager"
+              />
+            </div>
+
             <div className="exp-card-inner">
               <div className="exp-card-header">
                 <span className="category-pill pill-internship slanted-badge">
@@ -504,16 +514,6 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content internship-layout">
-                {/* Left-side Analytics Laptop & Coffee Mug */}
-                <div className="internship-art-col" aria-hidden="true">
-                  <img
-                    src={EXPERIENCE_ILLUSTRATIONS.internshipDeskLaptop}
-                    alt="Persevex Analytics Workstation with Coffee Mug"
-                    className="internship-laptop-img"
-                    loading="eager"
-                  />
-                </div>
-
                 <div className="card-details-col internship-details flex-1">
                   <h3 className="card-heading-corporate">
                     Data Science <em className="cyan-highlight">Intern</em>
@@ -613,6 +613,16 @@ export const Experience = () => {
             {/* Drawn Futuristic Chamfered Inner Frame */}
             <div className="card-drawn-inner-frame frame-odyssey" aria-hidden="true"></div>
 
+            {/* Integrated Left-Side Astronaut Gazing at Glowing Planet */}
+            <div className="odyssey-art-col odyssey-art-planet" aria-hidden="true">
+              <img
+                src={EXPERIENCE_ILLUSTRATIONS.hackOdysseyPlanet}
+                alt="Astronaut gazing at glowing orange planet"
+                className="odyssey-planet-astronaut-img"
+                loading="eager"
+              />
+            </div>
+
             <div className="exp-card-inner">
               <div className="exp-card-header">
                 <span className="category-pill pill-odyssey slanted-badge">
@@ -643,16 +653,6 @@ export const Experience = () => {
               </div>
 
               <div className="card-main-content odyssey-layout">
-                {/* Astronaut Gazing at Glowing Planet on Left */}
-                <div className="odyssey-art-col odyssey-art-planet">
-                  <img
-                    src={EXPERIENCE_ILLUSTRATIONS.hackOdysseyPlanet}
-                    alt="Astronaut gazing at glowing orange planet"
-                    className="odyssey-planet-astronaut-img"
-                    loading="eager"
-                  />
-                </div>
-
                 <div className="card-details-col odyssey-details flex-1">
                   <h3 className="card-heading-sci-fi">
                     HACK ODYSSEY <span className="amber-glow">3.0</span>
