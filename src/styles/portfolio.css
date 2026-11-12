@@ -3865,7 +3865,7 @@ html, body {
   overflow: hidden;
 }
 .exp-card-outer:hover {
-  transform: translateY(-2px);
+  transform: none !important;
 }
 
 .exp-card-inner {
@@ -4005,7 +4005,11 @@ html, body {
   transition: transform 0.4s ease;
 }
 .exp-card-school:hover .parchment-scroll-img {
-  transform: scale(1.01);
+  transform: none !important;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 24px rgba(217, 119, 6, 0.45));
+}
+[data-theme="light"] .exp-card-school:hover .parchment-scroll-img {
+  filter: drop-shadow(0 20px 36px rgba(120, 53, 15, 0.35)) drop-shadow(0 0 20px rgba(34, 197, 94, 0.35));
 }
 
 [data-theme="light"] .exp-card-school,
@@ -4043,7 +4047,8 @@ html, body {
   display: block;
 }
 .exp-card-school:hover .pinned-school-photograph-img {
-  transform: rotate(1deg) translateY(-2px);
+  transform: rotate(4deg) !important;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.65));
 }
 
 .pill-school {
@@ -4150,7 +4155,7 @@ html, body {
   transition: transform 0.4s ease;
 }
 .exp-card-school:hover .school-globe-img {
-  transform: scale(1.04) rotate(-2deg);
+  transform: none !important;
 }
 
 /* Horizontal Academic Foundation Split Banner matching Reference */
@@ -4278,7 +4283,7 @@ html, body {
   transition: transform 0.6s ease;
 }
 .exp-card-college:hover .college-campus-mural-img {
-  transform: scale(1.04);
+  transform: none;
 }
 
 .pill-college {
@@ -4352,7 +4357,7 @@ html, body {
   transition: transform 0.6s ease;
 }
 .exp-card-college:hover .college-compass-tool-img {
-  transform: scale(1.04);
+  transform: none;
 }
 
 .college-details {
@@ -4537,7 +4542,7 @@ html, body {
   transition: transform 0.6s ease;
 }
 .exp-card-codefury:hover .codefury-backdrop-img {
-  transform: scale(1.04);
+  transform: none;
 }
 
 .pill-hackathon {
@@ -4612,7 +4617,8 @@ html, body {
   transition: transform 0.4s ease;
 }
 .exp-card-codefury:hover .codefury-badge-img {
-  transform: scale(1.04) translateY(-2px);
+  transform: none;
+  filter: drop-shadow(0 0 24px rgba(168, 85, 247, 0.85));
 }
 
 .codefury-details {
@@ -4684,8 +4690,8 @@ html, body {
   text-align: center;
 }
 .codefury-sticky-note-paper:hover {
-  transform: rotate(-1deg) scale(1.04);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  transform: rotate(-3deg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
 }
 .sticky-tape-strip {
   position: absolute;
@@ -4856,7 +4862,7 @@ html, body {
   transition: transform 0.6s ease;
 }
 .exp-card-internship:hover .internship-laptop-img {
-  transform: scale(1.04);
+  transform: none;
 }
 
 .internship-details {
@@ -5051,7 +5057,7 @@ html, body {
   transition: transform 0.6s ease;
 }
 .exp-card-odyssey:hover .odyssey-backdrop-img {
-  transform: scale(1.04);
+  transform: none;
 }
 
 .pill-odyssey {
@@ -5125,7 +5131,7 @@ html, body {
   transition: transform 0.6s ease;
 }
 .exp-card-odyssey:hover .odyssey-planet-astronaut-img {
-  transform: scale(1.04);
+  transform: none;
 }
 
 .odyssey-details {
@@ -5270,6 +5276,27 @@ html, body {
     justify-content: center !important;
     box-sizing: border-box !important;
   }
+}
+
+/* ── STRICT ZERO HOVER ZOOM & ZERO MOVEMENT SAFEGUARD ── */
+.timeline-item .exp-card-outer:hover,
+.timeline-item .exp-card-outer:hover *,
+.timeline-item:hover .exp-card-outer,
+.timeline-item:hover .exp-card-outer * {
+  transform: none !important;
+}
+
+/* Preserve static rotation of Card 1 photo and Card 3 memo with zero hover movement */
+.timeline-item .pinned-school-photograph-img,
+.timeline-item:hover .pinned-school-photograph-img,
+.exp-card-school:hover .pinned-school-photograph-img {
+  transform: rotate(4deg) !important;
+}
+
+.timeline-item .codefury-sticky-note-paper,
+.timeline-item:hover .codefury-sticky-note-paper,
+.codefury-sticky-note-paper:hover {
+  transform: rotate(-3deg) !important;
 }
 
 @media (max-width: 992px) {
