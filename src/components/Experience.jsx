@@ -429,12 +429,10 @@ export const Experience = () => {
 
                   {/* Pinned Sticky Note Highlights matching New Reference */}
                   <div className="codefury-sticky-highlights-row">
-                    <img
-                      src={EXPERIENCE_ILLUSTRATIONS.codefurySticky}
-                      alt="Key Highlights Note"
-                      className="codefury-sticky-img"
-                      loading="eager"
-                    />
+                    <div className="codefury-sticky-note-paper" aria-label="Key Highlights">
+                      <div className="sticky-tape-strip" aria-hidden="true"></div>
+                      <span className="sticky-note-title">Key Highlights</span>
+                    </div>
                     <ul className="codefury-bullet-list">
                       <li>
                         <span className="codefury-check-dot">✓</span>
@@ -663,7 +661,7 @@ export const Experience = () => {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 8H2l10-8z"/>
                     </svg>
-                    <span>P.S.R.R. College of Engineering</span>
+                    <span>Kalasalingam Academy of Research and Education</span>
                   </div>
 
                   {/* Horizontal Key Highlights Banner matching Reference */}
@@ -696,14 +694,6 @@ export const Experience = () => {
           </div>
         </div>
 
-      </div>
-
-      {/* Atmospheric Mountain Ridge Footer matching Reference */}
-      <div className="experience-bottom-mountains" aria-hidden="true">
-        <svg className="mountain-ridge-svg" viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none">
-          <path d="M0,90 L0,55 L90,25 L180,48 L270,18 L380,42 L480,12 L580,45 L690,20 L800,5 L910,28 L1020,10 L1130,38 L1240,15 L1350,40 L1440,22 L1440,90 Z" fill="#040812" opacity="0.95"/>
-          <path d="M0,90 L0,70 L110,45 L210,60 L320,32 L420,52 L530,22 L640,55 L750,26 L860,48 L970,18 L1080,45 L1190,25 L1300,58 L1440,35 L1440,90 Z" fill="#060c18" opacity="0.85"/>
-        </svg>
       </div>
     </section>
   );
