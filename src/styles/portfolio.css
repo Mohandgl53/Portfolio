@@ -610,18 +610,34 @@ h1.hero-name span {
   color: var(--mute);
 }
 
-/* ── BOUNDLESS 3D HERO STAGE & HOLOGRAPHIC AVATAR ── */
+/* ── BOUNDLESS HERO PORTRAIT PRESENTATION (TRANSPARENT BACKGROUND) ── */
 .hero-portrait-stage {
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 480px;
+  max-width: 440px;
   justify-self: center;
-  overflow: visible !important;
-  perspective: 1200px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.hero-profile-photo {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  display: block;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  user-select: none;
+  pointer-events: auto;
+  transition: none !important;
 }
 
 #sph-canvas {
@@ -3230,7 +3246,10 @@ footer {
   .hero-portrait-stage {
     max-width: 280px !important;
     margin: 10px auto 0 auto !important;
-    padding: 12px 0 !important;
+    padding: 0 !important;
+  }
+  .hero-profile-photo {
+    max-width: 260px !important;
   }
   .floating-chat-pill {
     bottom: 12px !important;

@@ -1,89 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import gsap from 'gsap';
-import { useTheme } from '../context/ThemeContext';
+import React from 'react';
 import { PORTRAIT_PHOTO_B64 } from '../assets/portraitPhoto';
 import { downloadResume } from '../utils/downloadResume';
 
 export const Hero = () => {
-  const canvasRef = useRef(null);
-  const cardRef = useRef(null);
-  const { isDark } = useTheme();
-
-  // Three.js ambient stardust particle sphere behind portrait
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
-    camera.position.z = 320;
-
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-
-    const stage = canvas.parentElement;
-    const size = stage ? Math.max(stage.getBoundingClientRect().width * 1.5, 480) : 480;
-    renderer.setSize(size, size, false);
-
-    const group = new THREE.Group();
-    scene.add(group);
-
-    const particleCount = 180;
-    const pGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      const radius = 80 + Math.random() * 26;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(Math.random() * 2 - 1);
-      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      positions[i * 3 + 2] = radius * Math.cos(phi);
-    }
-    pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const particleMat = new THREE.PointsMaterial({
-      color: isDark ? 0x38bdf8 : 0x0284c7,
-      size: 2.0,
-      transparent: true,
-      opacity: 0.65
-    });
-    const particleCloud = new THREE.Points(pGeo, particleMat);
-    group.add(particleCloud);
-
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
-
-    const onPointerMove = (e) => {
-      const dx = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
-      const dy = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
-      targetX = dy * 0.35;
-      targetY = dx * 0.35;
-    };
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
-
-    let rafId;
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.05;
-      currentY += (targetY - currentY) * 0.05;
-      group.rotation.x = currentX;
-      group.rotation.y = currentY + performance.now() * 0.0003;
-      renderer.render(scene, camera);
-      rafId = requestAnimationFrame(animate);
-    };
-    animate();
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('pointermove', onPointerMove);
-      renderer.dispose();
-      pGeo.dispose();
-      particleMat.dispose();
-    };
-  }, [isDark]);
-
-  // Photo is static & stationary (no hover pop-out, tilt, or floating animation)
-
   return (
     <section id="home">
       <div>
@@ -158,74 +77,11 @@ export const Hero = () => {
       </div>
 
       <div className="hero-portrait-stage" id="heroStage">
-        <canvas ref={canvasRef} id="sph-canvas" aria-label="3D Celestial Reactor"></canvas>
-
-        {/* Ambient Orbital Rings */}
-        <div className="hud-orbital-ring hud-orbital-ring-outer" aria-hidden="true"></div>
-        <div className="hud-orbital-ring hud-orbital-ring-inner" aria-hidden="true"></div>
-
-        {/* Biometric HUD Cockpit Portrait Card */}
-        <div className="portrait-card-3d" id="portraitCard" ref={cardRef}>
-          {/* Top-Right Active Beacon Satellite Chip */}
-          <div className="hud-satellite-chip chip-top-right">
-            <span className="chip-beacon active"></span>
-            <span>AI SYSTEMS ACTIVE</span>
-          </div>
-
-          <div className="portrait-frame-glass">
-            {/* Precision Targeting Corner Reticles */}
-            <div className="hud-reticle top-left" aria-hidden="true"></div>
-            <div className="hud-reticle top-right" aria-hidden="true"></div>
-            <div className="hud-reticle bottom-left" aria-hidden="true"></div>
-            <div className="hud-reticle bottom-right" aria-hidden="true"></div>
-
-            {/* Precision Coordinate Grid & Laser Scanline */}
-            <div className="hud-grid-overlay" aria-hidden="true"></div>
-            <div className="hud-scanline-beam" aria-hidden="true"></div>
-            <div className="hud-glass-glare" aria-hidden="true"></div>
-
-            {/* Top Telemetry Header */}
-            <div className="hud-telemetry-top">
-              <span><span className="hud-pulse-dot"></span> SYS:ONLINE</span>
-              <span>LOC: TN, INDIA</span>
-            </div>
-
-            {/* High-Resolution Portrait Photo */}
-            <img
-              src={PORTRAIT_PHOTO_B64}
-              alt="Mohan Kumar T — AI Systems & Full-Stack Architect"
-              className="portrait-img"
-            />
-
-            {/* Audio Waveform Live Telemetry */}
-            <div className="hud-waveform" aria-hidden="true">
-              <span className="hud-waveform-label">CORE ARCHITECT // AGENTIC AI</span>
-              <div className="hud-waveform-bars">
-                <span className="hud-wave-bar"></span>
-                <span className="hud-wave-bar"></span>
-                <span className="hud-wave-bar"></span>
-                <span className="hud-wave-bar"></span>
-                <span className="hud-wave-bar"></span>
-                <span className="hud-wave-bar"></span>
-                <span className="hud-wave-bar"></span>
-                <span className="hud-wave-bar"></span>
-                <span className="hud-wave-bar"></span>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom-Left Satellite Chip */}
-          <div className="hud-satellite-chip chip-bottom-left">
-            <span className="chip-beacon"></span>
-            <span>FULL-STACK ARCHITECT</span>
-          </div>
-        </div>
-
-        {/* Floating Cockpit Status Pill */}
-        <div className="portrait-meta-badge">
-          <span className="meta-dot"></span>
-          <span className="meta-text">B.Tech AI & Data Science — P.S.R.R. Engg</span>
-        </div>
+        <img
+          src={PORTRAIT_PHOTO_B64}
+          alt="Mohan Kumar T — AI Systems & Full-Stack Architect"
+          className="hero-profile-photo"
+        />
       </div>
     </section>
   );
