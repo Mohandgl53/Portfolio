@@ -1966,7 +1966,7 @@ h1.hero-name span {
 .cert-showcase-section {
   position: relative;
   padding: 60px 24px 80px 24px;
-  max-width: 1320px;
+  max-width: 1380px;
   margin: 0 auto;
   z-index: 3;
 }
@@ -2032,15 +2032,39 @@ h1.hero-name span {
   line-height: 1.5;
 }
 
+.header-gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 480px;
+  margin: 4px auto 0 auto;
+}
+
+.divider-gold-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.4) 40%, rgba(217, 119, 6, 0.85) 100%);
+}
+
+.divider-gold-line:last-child {
+  background: linear-gradient(90deg, rgba(217, 119, 6, 0.85) 0%, rgba(245, 158, 11, 0.4) 60%, transparent 100%);
+}
+
 .header-gold-medal {
-  filter: drop-shadow(0 2px 6px rgba(245, 158, 11, 0.5));
+  filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ── 2 × 3 GRID LAYOUT ── */
 .cert-diploma-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
+  width: 100%;
 }
 
 @media (max-width: 1080px) {
@@ -2072,8 +2096,8 @@ h1.hero-name span {
 }
 
 .cert-diploma-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 24px rgba(245, 158, 11, 0.3);
+  transform: none !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 20px rgba(245, 158, 11, 0.35) !important;
 }
 
 /* Inner Double Gold / Accent Pinstripe Border with Ornamental Corners */
@@ -2118,54 +2142,80 @@ h1.hero-name span {
 }
 
 .ribbon-red-gold.ribbon-top-left {
-  background: linear-gradient(135deg, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 60%, transparent 60%);
+  background: linear-gradient(135deg, #b91c1c 0%, #b91c1c 48%, #f59e0b 49%, #f59e0b 57%, transparent 58%);
 }
 .ribbon-red-gold.ribbon-bottom-right {
-  background: linear-gradient(-45deg, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 60%, transparent 60%);
+  background: linear-gradient(-45deg, #b91c1c 0%, #b91c1c 48%, #f59e0b 49%, #f59e0b 57%, transparent 58%);
 }
 
 .ribbon-blue-gold.ribbon-top-left {
-  background: linear-gradient(135deg, #0284c7 0%, #0284c7 50%, #f59e0b 50%, #f59e0b 60%, transparent 60%);
+  background: linear-gradient(135deg, #ea580c 0%, #ea580c 48%, #fde047 49%, #fde047 57%, transparent 58%);
 }
 .ribbon-blue-gold.ribbon-bottom-right {
-  background: linear-gradient(-45deg, #0284c7 0%, #0284c7 50%, #f59e0b 50%, #f59e0b 60%, transparent 60%);
+  background: linear-gradient(-45deg, #0284c7 0%, #0284c7 48%, #38bdf8 49%, #38bdf8 57%, transparent 58%);
 }
 
 .ribbon-purple-gold.ribbon-top-left {
-  background: linear-gradient(135deg, #7c3aed 0%, #7c3aed 50%, #c084fc 50%, #c084fc 60%, transparent 60%);
+  background: linear-gradient(135deg, #6d28d9 0%, #6d28d9 48%, #f59e0b 49%, #f59e0b 57%, transparent 58%);
 }
 .ribbon-purple-gold.ribbon-bottom-right {
-  background: linear-gradient(-45deg, #7c3aed 0%, #7c3aed 50%, #c084fc 50%, #c084fc 60%, transparent 60%);
+  background: linear-gradient(-45deg, #6d28d9 0%, #6d28d9 48%, #f59e0b 49%, #f59e0b 57%, transparent 58%);
 }
 
 .ribbon-cyan-tech.ribbon-top-left {
-  background: linear-gradient(135deg, #0284c7 0%, #0284c7 50%, #38bdf8 50%, #38bdf8 60%, transparent 60%);
+  background: linear-gradient(135deg, #0284c7 0%, #0284c7 48%, #38bdf8 49%, #38bdf8 57%, transparent 58%);
 }
 .ribbon-cyan-tech.ribbon-bottom-right {
-  background: linear-gradient(-45deg, #0284c7 0%, #0284c7 50%, #38bdf8 50%, #38bdf8 60%, transparent 60%);
+  background: linear-gradient(-45deg, #0284c7 0%, #0284c7 48%, #38bdf8 49%, #38bdf8 57%, transparent 58%);
 }
 
 .ribbon-purple-poly.ribbon-top-left {
-  background: linear-gradient(135deg, #6d28d9 0%, #6d28d9 50%, #a855f7 50%, #a855f7 60%, transparent 60%);
+  background: linear-gradient(135deg, #6d28d9 0%, #6d28d9 48%, #f59e0b 49%, #f59e0b 57%, transparent 58%);
 }
 .ribbon-purple-poly.ribbon-bottom-right {
-  background: linear-gradient(-45deg, #6d28d9 0%, #6d28d9 50%, #a855f7 50%, #a855f7 60%, transparent 60%);
+  background: linear-gradient(-45deg, #6d28d9 0%, #6d28d9 48%, #f59e0b 49%, #f59e0b 57%, transparent 58%);
 }
 
 .ribbon-black-gold.ribbon-top-left {
-  background: linear-gradient(135deg, #090d16 0%, #090d16 50%, #f59e0b 50%, #f59e0b 60%, transparent 60%);
+  background: linear-gradient(135deg, #d97706 0%, #d97706 48%, #fde047 49%, #fde047 57%, transparent 58%);
 }
 .ribbon-black-gold.ribbon-bottom-right {
-  background: linear-gradient(-45deg, #090d16 0%, #090d16 50%, #f59e0b 50%, #f59e0b 60%, transparent 60%);
+  background: linear-gradient(-45deg, #0f172a 0%, #0f172a 48%, #f59e0b 49%, #f59e0b 57%, transparent 58%);
+}
+
+/* Card Metallic Theme Borders */
+.cert-theme-red-gold {
+  border: 2px solid #b91c1c !important;
+  box-shadow: 0 0 0 1px #d97706, 0 16px 36px rgba(0, 0, 0, 0.55) !important;
+}
+.cert-theme-blue-gold {
+  border: 2px solid #0284c7 !important;
+  box-shadow: 0 0 0 1px #d97706, 0 16px 36px rgba(0, 0, 0, 0.55) !important;
+}
+.cert-theme-purple-gold {
+  border: 2px solid #7c3aed !important;
+  box-shadow: 0 0 0 1px #d97706, 0 16px 36px rgba(0, 0, 0, 0.55) !important;
+}
+.cert-theme-persevex-blue {
+  border: 2px solid #0284c7 !important;
+  box-shadow: 0 0 0 1px #38bdf8, 0 16px 36px rgba(0, 0, 0, 0.55) !important;
+}
+.cert-theme-purple-hack {
+  border: 2px solid #6d28d9 !important;
+  box-shadow: 0 0 0 1px #a855f7, 0 16px 36px rgba(0, 0, 0, 0.55) !important;
+}
+.cert-theme-gold-odyssey {
+  border: 2px solid #d97706 !important;
+  box-shadow: 0 0 0 1px #92400e, 0 16px 36px rgba(0, 0, 0, 0.55) !important;
 }
 
 /* ── ARCHITECTURAL WATERMARK ── */
 .cert-watermark {
   position: absolute;
-  bottom: 25px;
-  left: 10px;
-  width: 85px;
-  height: 75px;
+  bottom: 18px;
+  left: 6px;
+  width: 140px;
+  height: 95px;
   pointer-events: none;
   z-index: 1;
 }
@@ -2242,12 +2292,12 @@ h1.hero-name span {
 
 .cert-doc-type {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 10.5px;
+  font-size: 11.5px;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: #1e293b;
   text-transform: uppercase;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
 }
 .text-cyan-dark { color: #0369a1 !important; }
 .text-purple-dark { color: #581c87 !important; }
@@ -2256,37 +2306,37 @@ h1.hero-name span {
 .cert-intro-serif {
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
-  font-size: 9.5px;
-  color: #475569;
-  margin-bottom: 1px;
+  font-size: 11px;
+  color: #334155;
+  margin-bottom: 2px;
 }
 
 .cert-recipient-name {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 15.5px;
+  font-size: 18px;
   font-weight: 800;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  margin: 1px 0;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+  margin: 2px 0;
 }
 .name-burgundy {
-  color: #881337 !important;
+  color: #6e2928 !important;
 }
 
 .cert-completion-desc {
   font-family: var(--sans);
-  font-size: 9px;
+  font-size: 10px;
   color: #334155;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   line-height: 1.25;
 }
 
 .cert-course-title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 12.5px;
+  font-size: 15px;
   font-weight: 800;
   line-height: 1.2;
-  margin: 1px 0;
+  margin: 2px 0;
 }
 .title-navy { color: #1e3a8a !important; }
 .title-purple-hack { color: #4c1d95 !important; }
@@ -2303,13 +2353,14 @@ h1.hero-name span {
 }
 
 .score-pill-gold {
-  background: #fef08a;
-  color: #854d0e;
-  border: 1px solid #eab308;
+  background: #fde047;
+  color: #1e293b;
+  border: 1.2px solid #ca8a04;
   font-weight: 800;
-  font-size: 9.5px;
-  padding: 1px 5px;
+  font-size: 11px;
+  padding: 1px 7px;
   border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(202, 138, 4, 0.25);
 }
 
 .cert-pill-meta-row {
@@ -2326,11 +2377,11 @@ h1.hero-name span {
 
 .cert-desc-paragraph {
   font-family: var(--sans);
-  font-size: 8px;
+  font-size: 9px;
   color: #475569;
   line-height: 1.35;
-  margin: 1px 0 0 0;
-  max-width: 240px;
+  margin: 2px 0 0 0;
+  max-width: 270px;
 }
 
 .cert-date-banner-hack {
@@ -2342,8 +2393,8 @@ h1.hero-name span {
 /* ── ROSETTE RIBBON BADGE (Top-Right / Right Center) ── */
 .cert-rosette-wrapper {
   position: absolute;
-  top: 52px;
-  right: 12px;
+  top: 44px;
+  right: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2353,12 +2404,12 @@ h1.hero-name span {
 
 .rosette-head {
   position: relative;
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
 }
 
 .rosette-laurel-wreath {
@@ -2381,7 +2432,7 @@ h1.hero-name span {
 
 .rosette-title {
   font-family: var(--sans);
-  font-size: 7.5px;
+  font-size: 8px;
   font-weight: 800;
   color: #78350f;
   text-transform: uppercase;
@@ -2390,7 +2441,7 @@ h1.hero-name span {
 
 .rosette-value {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 900;
   color: #1e293b;
 }
@@ -2398,17 +2449,17 @@ h1.hero-name span {
 /* Hanging Fabric Ribbon Tails */
 .rosette-tails {
   position: absolute;
-  top: 38px;
-  width: 30px;
-  height: 20px;
+  top: 42px;
+  width: 32px;
+  height: 22px;
   display: flex;
   justify-content: space-between;
   z-index: 1;
 }
 
 .ribbon-tail {
-  width: 12px;
-  height: 20px;
+  width: 14px;
+  height: 22px;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
