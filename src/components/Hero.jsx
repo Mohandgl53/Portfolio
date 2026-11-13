@@ -160,28 +160,71 @@ export const Hero = () => {
       <div className="hero-portrait-stage" id="heroStage">
         <canvas ref={canvasRef} id="sph-canvas" aria-label="3D Celestial Reactor"></canvas>
 
-        {/* Free-Standing Borderless Silhouette Presentation */}
-        <div
-          className="freestanding-portrait-wrap"
-          id="portraitCard"
-        >
-          {/* Cinematic Atmospheric Backlight Aura (Blooms directly behind Mohan) */}
-          <div className="portrait-backlight-aura" aria-hidden="true"></div>
+        {/* Ambient Orbital Rings */}
+        <div className="hud-orbital-ring hud-orbital-ring-outer" aria-hidden="true"></div>
+        <div className="hud-orbital-ring hud-orbital-ring-inner" aria-hidden="true"></div>
 
-
-
-          {/* Free-Standing Cutout Photo (No Card, No Border, Seamless Bottom Vignette) */}
-          <img
-            src={PORTRAIT_PHOTO_B64}
-            alt="Mohan Kumar T — AI Systems & Full-Stack Architect"
-            className="freestanding-silhouette-img"
-          />
-
-          {/* Floating 3D Telemetry Pill Badge */}
-          <div className="freestanding-status-chip">
-            <span className="chip-pulse-dot"></span>
-            <span className="chip-status-text">AI Systems & Full-Stack Architect</span>
+        {/* Biometric HUD Cockpit Portrait Card */}
+        <div className="portrait-card-3d" id="portraitCard" ref={cardRef}>
+          {/* Top-Right Active Beacon Satellite Chip */}
+          <div className="hud-satellite-chip chip-top-right">
+            <span className="chip-beacon active"></span>
+            <span>AI SYSTEMS ACTIVE</span>
           </div>
+
+          <div className="portrait-frame-glass">
+            {/* Precision Targeting Corner Reticles */}
+            <div className="hud-reticle top-left" aria-hidden="true"></div>
+            <div className="hud-reticle top-right" aria-hidden="true"></div>
+            <div className="hud-reticle bottom-left" aria-hidden="true"></div>
+            <div className="hud-reticle bottom-right" aria-hidden="true"></div>
+
+            {/* Precision Coordinate Grid & Laser Scanline */}
+            <div className="hud-grid-overlay" aria-hidden="true"></div>
+            <div className="hud-scanline-beam" aria-hidden="true"></div>
+            <div className="hud-glass-glare" aria-hidden="true"></div>
+
+            {/* Top Telemetry Header */}
+            <div className="hud-telemetry-top">
+              <span><span className="hud-pulse-dot"></span> SYS:ONLINE</span>
+              <span>LOC: TN, INDIA</span>
+            </div>
+
+            {/* High-Resolution Portrait Photo */}
+            <img
+              src={PORTRAIT_PHOTO_B64}
+              alt="Mohan Kumar T — AI Systems & Full-Stack Architect"
+              className="portrait-img"
+            />
+
+            {/* Audio Waveform Live Telemetry */}
+            <div className="hud-waveform" aria-hidden="true">
+              <span className="hud-waveform-label">CORE ARCHITECT // AGENTIC AI</span>
+              <div className="hud-waveform-bars">
+                <span className="hud-wave-bar"></span>
+                <span className="hud-wave-bar"></span>
+                <span className="hud-wave-bar"></span>
+                <span className="hud-wave-bar"></span>
+                <span className="hud-wave-bar"></span>
+                <span className="hud-wave-bar"></span>
+                <span className="hud-wave-bar"></span>
+                <span className="hud-wave-bar"></span>
+                <span className="hud-wave-bar"></span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom-Left Satellite Chip */}
+          <div className="hud-satellite-chip chip-bottom-left">
+            <span className="chip-beacon"></span>
+            <span>FULL-STACK ARCHITECT</span>
+          </div>
+        </div>
+
+        {/* Floating Cockpit Status Pill */}
+        <div className="portrait-meta-badge">
+          <span className="meta-dot"></span>
+          <span className="meta-text">B.Tech AI & Data Science — P.S.R.R. Engg</span>
         </div>
       </div>
     </section>
