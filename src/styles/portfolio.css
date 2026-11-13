@@ -1971,6 +1971,30 @@ h1.hero-name span {
   z-index: 3;
 }
 
+/* ── CERTIFICATE SECTION BACKDROP AURORA RIBBONS ── */
+.cert-bg-ribbons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cert-ribbon-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.3));
+}
+
+[data-theme='light'] .cert-ribbon-svg {
+  opacity: 0.45;
+  filter: drop-shadow(0 0 8px rgba(2, 132, 199, 0.2));
+}
+
 /* ── CERTIFICATE SECTION HEADER (UNIFIED WITH PROJECTS, SKILLS, ABOUT) ── */
 .cert-sec-header {
   text-align: center;
@@ -2117,7 +2141,7 @@ h1.hero-name span {
   border-radius: 7px;
   line-height: 0;
   font-size: 0;
-  aspect-ratio: 1200 / 720;
+  aspect-ratio: 1200 / 740;
   background: #060b18;
 }
 

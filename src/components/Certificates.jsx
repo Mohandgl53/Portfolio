@@ -6,7 +6,7 @@ import certPersevex from '../assets/certificates/cert_persevex.png';
 import certLesuccess from '../assets/certificates/cert_lesuccess.png';
 import certOdyssey from '../assets/certificates/cert_odyssey.png';
 
-// ── CERTIFICATE DATA (STANDARDIZED TO UNIFORM 1200x720 PROPORTIONS) ──
+// ── CERTIFICATE DATA (STANDARDIZED TO UNIFORM 1200x740 PROPORTIONS) ──
 const CERTIFICATES = [
   {
     id: 'nptel-java',
@@ -67,6 +67,41 @@ const CERTIFICATES = [
 export const Certificates = () => {
   return (
     <section id="certificates" className="cert-showcase-section">
+      {/* ── BACKDROP AURORA RIBBONS (MATCHING REFERENCE COMPOSITION) ── */}
+      <div className="cert-bg-ribbons" aria-hidden="true">
+        <svg viewBox="0 0 1440 220" fill="none" preserveAspectRatio="none" className="cert-ribbon-svg">
+          <path
+            d="M-40 30 C280 150, 480 -10, 840 55 C1080 110, 1280 15, 1480 70"
+            stroke="url(#certRibbonGrad1)"
+            strokeWidth="1.8"
+            opacity="0.38"
+            fill="none"
+          />
+          <path
+            d="M-40 75 C240 15, 580 130, 930 35 C1180 -15, 1340 100, 1480 45"
+            stroke="url(#certRibbonGrad2)"
+            strokeWidth="1.2"
+            opacity="0.28"
+            fill="none"
+          />
+          <defs>
+            <linearGradient id="certRibbonGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0"/>
+              <stop offset="25%" stopColor="#38bdf8" stopOpacity="0.8"/>
+              <stop offset="55%" stopColor="#818cf8" stopOpacity="0.9"/>
+              <stop offset="80%" stopColor="#3b82f6" stopOpacity="0.8"/>
+              <stop offset="100%" stopColor="#0284c7" stopOpacity="0"/>
+            </linearGradient>
+            <linearGradient id="certRibbonGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#0284c7" stopOpacity="0"/>
+              <stop offset="35%" stopColor="#60a5fa" stopOpacity="0.75"/>
+              <stop offset="70%" stopColor="#38bdf8" stopOpacity="0.75"/>
+              <stop offset="100%" stopColor="#818cf8" stopOpacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
       {/* ── SECTION HEADER (MATCHING PROJECTS, SKILLS, AND ABOUT HEADINGS) ── */}
       <div className="cert-sec-header">
         <div className="sec-tag">VERIFIED CREDENTIALS</div>
