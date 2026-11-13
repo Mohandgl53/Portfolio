@@ -6,129 +6,128 @@ import certPersevex from '../assets/certificates/cert_persevex.png';
 import certLesuccess from '../assets/certificates/cert_lesuccess.png';
 import certOdyssey from '../assets/certificates/cert_odyssey.png';
 
-// ── REFINED CLASSIC GOLDEN LAUREL BRANCH (ACCURATE TO REFERENCE DESIGN) ──
-const GoldenLaurelBranch = ({ isRight = false }) => (
+// ── REFINED ELECTRIC BLUE LAUREL BRANCH (MATCHING WEBSITE'S SIGNATURE BLUE PALETTE) ──
+const ElectricBlueLaurelBranch = ({ isRight = false }) => (
   <span className={`header-laurel-branch ${isRight ? 'right-laurel' : 'left-laurel'}`} aria-hidden="true">
     <svg width="48" height="48" viewBox="0 0 80 80" fill="none" style={{ transform: isRight ? 'scaleX(-1)' : 'none' }}>
       <defs>
-        <linearGradient id={`laurelStemGrad_${isRight ? 'r' : 'l'}`} x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#d97706"/>
-          <stop offset="50%" stopColor="#f59e0b"/>
-          <stop offset="100%" stopColor="#fde047"/>
+        <linearGradient id={`blueLaurelStemGrad_${isRight ? 'r' : 'l'}`} x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#1d4ed8"/>
+          <stop offset="50%" stopColor="#0ea5e9"/>
+          <stop offset="100%" stopColor="#38bdf8"/>
         </linearGradient>
-        <linearGradient id={`laurelLeafGrad_${isRight ? 'r' : 'l'}`} x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#b45309"/>
-          <stop offset="35%" stopColor="#f59e0b"/>
-          <stop offset="75%" stopColor="#fbbf24"/>
-          <stop offset="100%" stopColor="#fef08a"/>
+        <linearGradient id={`blueLaurelLeafGrad_${isRight ? 'r' : 'l'}`} x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#1e40af"/>
+          <stop offset="35%" stopColor="#2563eb"/>
+          <stop offset="75%" stopColor="#38bdf8"/>
+          <stop offset="100%" stopColor="#bae6fd"/>
         </linearGradient>
-        <filter id={`laurelGlow_${isRight ? 'r' : 'l'}`} x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="1" stdDeviation="1.5" floodColor="#92400e" floodOpacity="0.4"/>
+        <filter id={`blueLaurelGlow_${isRight ? 'r' : 'l'}`} x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#0284c7" floodOpacity="0.45"/>
         </filter>
       </defs>
       {/* Graceful curved stem */}
       <path
         d="M68 74 C46 62, 26 44, 20 14"
-        stroke={`url(#laurelStemGrad_${isRight ? 'r' : 'l'})`}
+        stroke={`url(#blueLaurelStemGrad_${isRight ? 'r' : 'l'})`}
         strokeWidth="3.2"
         strokeLinecap="round"
       />
-      {/* 9 Pairs of Classical Golden Leaves */}
-      <g filter={`url(#laurelGlow_${isRight ? 'r' : 'l'})`}>
-        <ellipse cx="21" cy="15" rx="7.5" ry="3.8" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-30 21 15)"/>
-        <ellipse cx="14" cy="22" rx="7" ry="3.5" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(35 14 22)"/>
-        <ellipse cx="28" cy="26" rx="8" ry="4" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-35 28 26)"/>
-        <ellipse cx="18" cy="34" rx="7.5" ry="3.8" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(25 18 34)"/>
-        <ellipse cx="36" cy="39" rx="8" ry="4" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-40 36 39)"/>
-        <ellipse cx="25" cy="48" rx="8" ry="4" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(20 25 48)"/>
-        <ellipse cx="46" cy="53" rx="8.5" ry="4.2" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-45 46 53)"/>
-        <ellipse cx="34" cy="62" rx="8" ry="4" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(15 34 62)"/>
-        <ellipse cx="58" cy="67" rx="8.5" ry="4.2" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-45 58 67)"/>
-        <ellipse cx="46" cy="73" rx="7.5" ry="3.8" fill={`url(#laurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(10 46 73)"/>
+      {/* 9 Pairs of Classical Leaves in Electric Cyan-Blue */}
+      <g filter={`url(#blueLaurelGlow_${isRight ? 'r' : 'l'})`}>
+        <ellipse cx="21" cy="15" rx="7.5" ry="3.8" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-30 21 15)"/>
+        <ellipse cx="14" cy="22" rx="7" ry="3.5" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(35 14 22)"/>
+        <ellipse cx="28" cy="26" rx="8" ry="4" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-35 28 26)"/>
+        <ellipse cx="18" cy="34" rx="7.5" ry="3.8" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(25 18 34)"/>
+        <ellipse cx="36" cy="39" rx="8" ry="4" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-40 36 39)"/>
+        <ellipse cx="25" cy="48" rx="8" ry="4" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(20 25 48)"/>
+        <ellipse cx="46" cy="53" rx="8.5" ry="4.2" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-45 46 53)"/>
+        <ellipse cx="34" cy="62" rx="8" ry="4" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(15 34 62)"/>
+        <ellipse cx="58" cy="67" rx="8.5" ry="4.2" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(-45 58 67)"/>
+        <ellipse cx="46" cy="73" rx="7.5" ry="3.8" fill={`url(#blueLaurelLeafGrad_${isRight ? 'r' : 'l'})`} transform="rotate(10 46 73)"/>
       </g>
     </svg>
   </span>
 );
 
-// ── CERTIFICATE DATA (MATCHING EXACT 6 CARDS IN REFERENCE IMAGE) ──
 export const Certificates = () => {
   const [selectedCert, setSelectedCert] = useState(null);
 
+  // ── CERTIFICATE DATA (MATCHING EXACT 6 CARDS IN REFERENCE IMAGE) ──
   const CERTIFICATES = [
-  {
-    id: 'nptel-java',
-    title: 'Programming in Java',
-    issuer: 'NPTEL • IIT Kharagpur',
-    category: 'Elite Certification',
-    badge: 'Elite 86%',
-    date: 'Jan – Apr 2026',
-    image: certJava,
-    themeClass: 'cert-card-red-gold',
-    alt: 'NPTEL Programming in Java Certificate of Completion - IIT Kharagpur - Elite 86%',
-    desc: '12-week rigorous course in Core Java, OOP architecture, concurrency, collections, and JVM internals, completed with an Elite score of 86%.'
-  },
-  {
-    id: 'nptel-python',
-    title: 'Python for Data Science',
-    issuer: 'NPTEL • IIT Madras',
-    category: 'Elite Certification',
-    badge: 'Elite 75%',
-    date: 'Jan – Feb 2025',
-    image: certPython,
-    themeClass: 'cert-card-cyan-gold',
-    alt: 'NPTEL Python for Data Science Certificate of Completion - IIT Madras - Elite 75%',
-    desc: '4-week specialized course covering NumPy, Pandas, Scipy, statistical modeling, data wrangling, and predictive analytics from IIT Madras.'
-  },
-  {
-    id: 'nptel-dsa',
-    title: 'Programming, DSA Using Python',
-    issuer: 'NPTEL • IIT Madras',
-    category: 'Course Completion',
-    badge: 'Passing 49%',
-    date: 'Jul – Sep 2024',
-    image: certDsa,
-    themeClass: 'cert-card-purple-gold',
-    alt: 'NPTEL Programming, Data Structures and Algorithms using Python Certificate - IIT Madras',
-    desc: '8-week foundation in asymptotic complexity, search/sort algorithms, recursive structures, dynamic programming, and graph algorithms.'
-  },
-  {
-    id: 'persevex-internship',
-    title: 'Data Science & Analytics Internship',
-    issuer: 'Persevex Data Science & Analytics',
-    category: 'Industrial Internship',
-    badge: 'Internship Verified',
-    date: 'Jul – Sep 2025',
-    image: certPersevex,
-    themeClass: 'cert-card-tech-blue',
-    alt: 'Persevex Data Science & Analytics Industrial Internship Completion Certificate',
-    desc: 'Hands-on industrial internship working on automated data preprocessing pipelines, feature engineering, and predictive modeling for business intelligence.'
-  },
-  {
-    id: 'lesuccess-hackathon',
-    title: 'LeSuccess Code for Innovation Hackathon',
-    issuer: 'Syed Ammal Engineering College & LeSuccess',
-    category: 'Hackathon Finalist',
-    badge: 'Finalist (24h)',
-    date: 'Apr 25 – 26, 2025',
-    image: certLesuccess,
-    themeClass: 'cert-card-purple-hack',
-    alt: 'LeSuccess Code for Innovation Hackathon Certificate of Participation - Finalist',
-    desc: 'National 24-hour hackathon finalist for architecting a peer-to-peer credit-based digital library with algorithmic valuation for community book exchange.'
-  },
-  {
-    id: 'hack-odyssey',
-    title: 'Hack Odyssey 3.0 Hackathon',
-    issuer: 'Kalasalingam Engineering College',
-    category: '24h Challenge',
-    badge: '24h Challenge',
-    date: '2025',
-    image: certOdyssey,
-    themeClass: 'cert-card-gold-odyssey',
-    alt: 'Hack Odyssey 3.0 Hackathon Certificate of Participation - 24h Challenge',
-    desc: '24-hour hackathon recognition for architecting a Polygon blockchain anti-tampering provenance shield using cryptographic SHA-256 digital signatures.'
-  },
-];
-
+    {
+      id: 'nptel-java',
+      title: 'Programming in Java',
+      issuer: 'NPTEL • IIT Kharagpur',
+      category: 'Elite Certification',
+      badge: 'Elite 86%',
+      date: 'Jan – Apr 2026',
+      image: certJava,
+      themeClass: 'cert-card-red-gold',
+      alt: 'NPTEL Programming in Java Certificate of Completion - IIT Kharagpur - Elite 86%',
+      desc: '12-week rigorous course in Core Java, OOP architecture, concurrency, collections, and JVM internals, completed with an Elite score of 86%.'
+    },
+    {
+      id: 'nptel-python',
+      title: 'Python for Data Science',
+      issuer: 'NPTEL • IIT Madras',
+      category: 'Elite Certification',
+      badge: 'Elite 75%',
+      date: 'Jan – Feb 2025',
+      image: certPython,
+      themeClass: 'cert-card-cyan-gold',
+      alt: 'NPTEL Python for Data Science Certificate of Completion - IIT Madras - Elite 75%',
+      desc: '4-week specialized course covering NumPy, Pandas, Scipy, statistical modeling, data wrangling, and predictive analytics from IIT Madras.'
+    },
+    {
+      id: 'nptel-dsa',
+      title: 'Programming, DSA Using Python',
+      issuer: 'NPTEL • IIT Madras',
+      category: 'Course Completion',
+      badge: 'Passing 49%',
+      date: 'Jul – Sep 2024',
+      image: certDsa,
+      themeClass: 'cert-card-purple-gold',
+      alt: 'NPTEL Programming, Data Structures and Algorithms using Python Certificate - IIT Madras',
+      desc: '8-week foundation in asymptotic complexity, search/sort algorithms, recursive structures, dynamic programming, and graph algorithms.'
+    },
+    {
+      id: 'persevex-internship',
+      title: 'Data Science & Analytics Internship',
+      issuer: 'Persevex Data Science & Analytics',
+      category: 'Industrial Internship',
+      badge: 'Internship Verified',
+      date: 'Jul – Sep 2025',
+      image: certPersevex,
+      themeClass: 'cert-card-tech-blue',
+      alt: 'Persevex Data Science & Analytics Industrial Internship Completion Certificate',
+      desc: 'Hands-on industrial internship working on automated data preprocessing pipelines, feature engineering, and predictive modeling for business intelligence.'
+    },
+    {
+      id: 'lesuccess-hackathon',
+      title: 'LeSuccess Code for Innovation Hackathon',
+      issuer: 'Syed Ammal Engineering College & LeSuccess',
+      category: 'Hackathon Finalist',
+      badge: 'Finalist (24h)',
+      date: 'Apr 25 – 26, 2025',
+      image: certLesuccess,
+      themeClass: 'cert-card-purple-hack',
+      alt: 'LeSuccess Code for Innovation Hackathon Certificate of Participation - Finalist',
+      desc: 'National 24-hour hackathon finalist for architecting a peer-to-peer credit-based digital library with algorithmic valuation for community book exchange.'
+    },
+    {
+      id: 'hack-odyssey',
+      title: 'Hack Odyssey 3.0 Hackathon',
+      issuer: 'Kalasalingam Engineering College',
+      category: '24h Challenge',
+      badge: '24h Challenge',
+      date: '2025',
+      image: certOdyssey,
+      themeClass: 'cert-card-gold-odyssey',
+      alt: 'Hack Odyssey 3.0 Hackathon Certificate of Participation - 24h Challenge',
+      desc: '24-hour hackathon recognition for architecting a Polygon blockchain anti-tampering provenance shield using cryptographic SHA-256 digital signatures.'
+    },
+  ];
 
   // Close modal on Escape key
   useEffect(() => {
@@ -149,7 +148,7 @@ export const Certificates = () => {
 
   return (
     <section id="certificates" className="cert-showcase-section">
-      {/* ── HEADER WITH EXACT GOLDEN LAURELS, PLATINUM TAG, AND SUNBURST GRADIENT ── */}
+      {/* ── HEADER WITH BLUE/CYAN THEME HARMONIZED FOR ALL THEMES ── */}
       <div className="cert-showcase-header">
         <div className="cert-sec-tag-row">
           <span className="tag-decor-line tag-decor-left"></span>
@@ -158,38 +157,39 @@ export const Certificates = () => {
         </div>
 
         <h2 className="cert-showcase-title">
-          <GoldenLaurelBranch isRight={false} />
-          <span className="title-text-white">My Certification </span>
-          <span className="title-text-gold">Collection</span>
-          <GoldenLaurelBranch isRight={true} />
+          <ElectricBlueLaurelBranch isRight={false} />
+          <span className="title-text-blue-light">My Certification </span>
+          <span className="title-text-blue-gradient">Collection</span>
+          <ElectricBlueLaurelBranch isRight={true} />
         </h2>
 
         <p className="cert-showcase-subtitle">
           A curated showcase of my course completions, internship, and hackathon recognitions.
         </p>
 
-        {/* Delicate Golden Rule Divider with Center Seal Medallion */}
-        <div className="header-gold-divider" aria-hidden="true">
-          <div className="divider-gold-line divider-line-left"></div>
-          <div className="header-gold-medal">
+        {/* Delicate Electric Blue Rule Divider with Center Sapphire Star Medallion */}
+        <div className="header-blue-divider" aria-hidden="true">
+          <div className="divider-blue-line divider-line-left"></div>
+          <div className="header-blue-medal">
             <svg width="28" height="32" viewBox="0 0 40 46" fill="none">
               <defs>
-                <linearGradient id="divMedalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#fde047"/>
-                  <stop offset="50%" stopColor="#f59e0b"/>
-                  <stop offset="100%" stopColor="#b45309"/>
+                <linearGradient id="divMedalGradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#bae6fd"/>
+                  <stop offset="45%" stopColor="#38bdf8"/>
+                  <stop offset="80%" stopColor="#0284c7"/>
+                  <stop offset="100%" stopColor="#1e40af"/>
                 </linearGradient>
               </defs>
-              {/* Hanging gold ribbon tails */}
-              <polygon points="15,26 11,44 18,40 21,44 19,26" fill="#b45309"/>
-              <polygon points="25,26 21,44 24,40 31,44 27,26" fill="#d97706"/>
+              {/* Hanging sapphire ribbon tails */}
+              <polygon points="15,26 11,44 18,40 21,44 19,26" fill="#1d4ed8"/>
+              <polygon points="25,26 21,44 24,40 31,44 27,26" fill="#0284c7"/>
               {/* Circular Medallion */}
-              <circle cx="20" cy="20" r="14" fill="url(#divMedalGrad)" stroke="#78350f" strokeWidth="1.5"/>
-              <circle cx="20" cy="20" r="10.5" stroke="#fef08a" strokeWidth="1" strokeDasharray="3 1.5" fill="none"/>
-              <polygon points="20,13 22,18 27.5,18 23,21.5 25,27 20,23.5 15,27 17,21.5 12.5,18 18,18" fill="#fef08a"/>
+              <circle cx="20" cy="20" r="14" fill="url(#divMedalGradBlue)" stroke="#1e3a8a" strokeWidth="1.5"/>
+              <circle cx="20" cy="20" r="10.5" stroke="#e0f2fe" strokeWidth="1" strokeDasharray="3 1.5" fill="none"/>
+              <polygon points="20,13 22,18 27.5,18 23,21.5 25,27 20,23.5 15,27 17,21.5 12.5,18 18,18" fill="#ffffff"/>
             </svg>
           </div>
-          <div className="divider-gold-line divider-line-right"></div>
+          <div className="divider-blue-line divider-line-right"></div>
         </div>
       </div>
 
