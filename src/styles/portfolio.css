@@ -1971,63 +1971,107 @@ h1.hero-name span {
   z-index: 3;
 }
 
-/* ── HEADER ── */
+/* ── CERTIFICATE SHOWCASE HEADER (MATCHING DESIGN REFERENCE) ── */
 .cert-showcase-header {
   text-align: center;
-  max-width: 860px;
+  max-width: 920px;
   margin: 0 auto 36px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.cert-sec-tag-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.tag-decor-line {
+  width: 50px;
+  height: 1.5px;
+  position: relative;
+}
+
+.tag-decor-left {
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.5) 40%, #f59e0b 100%);
+}
+.tag-decor-left::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  background: #f59e0b;
+  transform: rotate(45deg);
+}
+
+.tag-decor-right {
+  background: linear-gradient(90deg, #f59e0b 0%, rgba(245, 158, 11, 0.5) 60%, transparent 100%);
+}
+.tag-decor-right::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  background: #f59e0b;
+  transform: rotate(45deg);
+}
+
 .cert-sec-tag {
   font-family: var(--mono);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
-  color: #fbbf24;
-  letter-spacing: 0.18em;
+  color: #f1f5f9;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  margin-bottom: 8px;
-  text-shadow: 0 0 12px rgba(251, 191, 36, 0.4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .cert-showcase-title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(24px, 3.8vw, 42px);
+  font-size: clamp(28px, 4vw, 44px);
   font-weight: 800;
-  color: #ffffff;
   letter-spacing: -0.01em;
-  margin: 0 0 8px 0;
-  line-height: 1.2;
+  margin: 2px 0 6px 0;
+  line-height: 1.15;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
+  gap: 14px;
 }
 
-.cert-showcase-title em {
+.title-text-white {
+  color: #ffffff !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+}
+
+.title-text-gold {
   font-style: italic;
-  font-weight: 700;
-  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+  font-weight: 800;
+  background: linear-gradient(180deg, #fffbeb 0%, #fef08a 22%, #f59e0b 55%, #d97706 82%, #92400e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.45));
   padding-right: 4px;
 }
 
 .header-laurel-branch {
   display: inline-flex;
   align-items: center;
-  filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.45));
+  filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.55));
 }
 
 .cert-showcase-subtitle {
   font-family: var(--sans);
   font-size: 14.5px;
   color: #cbd5e1;
-  margin: 0 0 12px 0;
+  margin: 0 0 10px 0;
   max-width: 650px;
   line-height: 1.5;
 }
@@ -2038,22 +2082,23 @@ h1.hero-name span {
   justify-content: center;
   gap: 16px;
   width: 100%;
-  max-width: 480px;
+  max-width: 520px;
   margin: 4px auto 0 auto;
 }
 
 .divider-gold-line {
   flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.4) 40%, rgba(217, 119, 6, 0.85) 100%);
+  height: 1.5px;
 }
-
-.divider-gold-line:last-child {
-  background: linear-gradient(90deg, rgba(217, 119, 6, 0.85) 0%, rgba(245, 158, 11, 0.4) 60%, transparent 100%);
+.divider-line-left {
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.4) 30%, rgba(217, 119, 6, 0.9) 92%, #f59e0b 100%);
+}
+.divider-line-right {
+  background: linear-gradient(90deg, #f59e0b 0%, rgba(217, 119, 6, 0.9) 8%, rgba(245, 158, 11, 0.4) 70%, transparent 100%);
 }
 
 .header-gold-medal {
-  filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.6));
+  filter: drop-shadow(0 3px 8px rgba(245, 158, 11, 0.65));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6469,3 +6514,19 @@ html, body {
   color: #0284c7 !important;
 }
 
+
+.title-hackathon {
+  color: #0f172a !important;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 2px 0;
+}
+
+.gold-foil-seal-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 6px rgba(120, 53, 15, 0.5));
+}
